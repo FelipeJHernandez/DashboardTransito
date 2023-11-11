@@ -1,15 +1,17 @@
 body{
   background-color: black !important;
 }
-#graficaPastel{
-  margin-bottom: 25%;
-}
 h1{
   text-align: center;
   color: white;
 }
+h3{
+  color: white !important;
+}
 h4{
-  text-align: center;
+  color: white !important;
+}
+p{
   color: white;
 }
 .GraficaHM{

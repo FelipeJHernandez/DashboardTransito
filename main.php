@@ -14,15 +14,67 @@
   <script>
     var numHombres = <?php echo $numHombres; ?>;
     var numMujeres = <?php echo $numMujeres; ?>;
+
+    var rango0a10 = <?php echo $rango0a10; ?>;
+    var rango10a20 = <?php echo $rango10a20; ?>;
+    var rango20a40 = <?php echo $rango20a40; ?>;
+    var rango40a60 = <?php echo $rango40a60; ?>;
+    var rango60oMas = <?php echo $rango60oMas; ?>;
+
+    var cantidadOccisos = <?php echo $cantidadOccisos; ?>;
+    var cantidadLesionados = <?php echo $cantidadLesionados; ?>;
+    var cantidadnoHeridos = <?php echo $cantidadnoHeridos; ?>;
+
+    var cantidadPasajeros = <?php echo $cantidadPasajeros; ?>;
+    var cantidadConductores = <?php echo $cantidadConductores; ?>;
+    var cantidadPeatones = <?php echo $cantidadPeatones; ?>;
+    var cantidadCiclista = <?php echo $cantidadCiclista; ?>;
+    var cantidadMotociclista = <?php echo $cantidadMotociclista; ?>;
+
+    var cantidadPasajerosLesionados = <?php echo $cantidadPasajerosLesionados; ?>;
+    var cantidadConductoresLesionados = <?php echo $cantidadConductoresLesionados; ?>;
+    var cantidadPeatonesLesionados = <?php echo $cantidadPeatonesLesionados; ?>;
+    var cantidadCiclistaLesionados = <?php echo $cantidadCiclistaLesionados; ?>;
+    var cantidadMotociclistaLesionados = <?php echo $cantidadMotociclistaLesionados; ?>;
   </script>
-  <div class = "container">
-    <div class = "row">
-      <div class = "col-md-6">
-        <div class = "GraficaHM">
-          <h4>Gráfica</h4>
-          <canvas id="graficaPastel"></canvas>
-        </div>
+  <div>
+    <h3>Datos pasajeros</h3>
+    <div>
+      <div class = "graficaMuestra">
+        <h4>Hombres/Mujeres</h4>
+        <p style = "color: white;">Porcentaje de hombres y mujeres involucrados en accidentes de tránsito</p>
+        <canvas id="graficaPastel" width="400" height="400"></canvas>
       </div>
+      <div class = "graficaMuestra">
+        <h4>Edades</h4>
+        <p style = "color: white;">Porcentaje de incolucrados en cada rango de edad</p>
+        <canvas id="graficaEdad" width="400" height="400"></canvas>
+      </div>
+
+      <div class = "graficaMuestra">
+        <h4>Porcentaje de gente herida/muerta</h4>
+        <p style = "color: white;">Porcentaje de incolucrados muertos y lesionados</p>
+        <canvas id="graficaCondicion" width="400" height="400"></canvas>
+      </div>
+
+      <div class = "graficaMuestra">
+        <h4>Porcentaje de involucrados entre los occisos</h4>
+        <p style = "color: white;">Porcentaje de personas que han resultado muertas segun su rol dentro del accidente automovilistico </p>
+        <canvas id="tipoOccisos" width="400" height="400"></canvas>
+      </div>
+
+      <div class = "graficaMuestra">
+        <h4>Porcentaje de involucrados entre los lesionados</h4>
+        <p style = "color: white;">Porcentaje de personas que han resultado lesionados segun su rol dentro del accidente automovilistico </p>
+        <canvas id="tipoLesionados" width="400" height="400"></canvas>
+      </div>
+
+    </div>
+    <div>
+      <h2>Datos de los choques</h2>
+    </div>
+    <div>
+      <h2>Datos de los vehiculos</h2>
     </div>
   </div>
   <script src="Dashboard.js"></script>
