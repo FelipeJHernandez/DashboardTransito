@@ -36,7 +36,44 @@
     var cantidadPeatonesLesionados = <?php echo $cantidadPeatonesLesionados; ?>;
     var cantidadCiclistaLesionados = <?php echo $cantidadCiclistaLesionados; ?>;
     var cantidadMotociclistaLesionados = <?php echo $cantidadMotociclistaLesionados; ?>;
+
+    var choques2018 = <?php echo $choques2018; ?>;
+    var derrapes2018 = <?php echo $derrapes2018;?>;
+    var atropellos2018 = <?php echo $atropellos2018;?>;
+    var caidasc2018 = <?php echo $caidasc2018;?>;
+    var volcaduras2018 = <?php echo $volcaduras2018;?>;
+    var caidasp2018 = <?php  echo $caidasp2018; ?>;
+
+    var choques2019 = <?php echo $choques2019; ?>;
+    var derrapes2019 = <?php echo $derrapes2019;?>;
+    var atropellos2019=<?php echo $atropellos2019;?>;
+    var caidasc2019=<?php echo $caidasc2019;?>;
+    var volcaduras2019=<?php echo $volcaduras2019;?>;
+    var caidasp2019=<?php echo $caidasp2019; ?>;
+
+    var choques2020 = <?php echo $choques2020; ?>;
+    var derrapes2020 = <?php echo $derrapes2020;?>;
+    var atropellos2020=<?php echo $atropellos2020;?>;
+    var caidasc2020=<?php echo $caidasc2020;?>;
+    var volcaduras2020=<?php echo $volcaduras2020;?>;
+    var caidasp2020=<?php echo $caidasp2020; ?>;
+
+    var choques2021 = <?php echo $choques2021; ?>;
+    var derrapes2021 = <?php echo $derrapes2021;?>;
+    var atropellos2021=<?php echo $atropellos2021;?>;
+    var caidasc2021=<?php echo $caidasc2021;?>;
+    var volcaduras2021=<?php echo $volcaduras2021;?>;
+    var caidasp2021=<?php echo $caidasp2021; ?>;
+
+    var choques2022 = <?php echo $choques2022; ?>;
+    var derrapes2022 = <?php echo $derrapes2022;?>;
+    var atropellos2022=<?php echo $atropellos2022;?>;
+    var caidasc2022=<?php echo $caidasc2022;?>;
+    var volcaduras2022=<?php echo $volcaduras2022;?>;
+    var caidasp2022=<?php echo $caidasp2022; ?>;
+
   </script>
+
   <div>
     <h3>Datos pasajeros</h3>
     <div>
@@ -71,10 +108,15 @@
 
     </div>
     <div>
-      <h2>Datos de los choques</h2>
+      <h2>Datos de los accidentes</h2>
+      <div class="graficaMuestra">
+        <h4>Accidentes más frecuentes por año</h4>
+        <p style = "color: white;">Cantidad de accidentes más frecuentes en cada año</p>
+        <canvas id="tipoAccidente" width="1200" height="400"></canvas>
+      </div>
     </div>
     <div>
-      <h2>Datos de los vehiculos</h2>
+      <h2>Datos de los lugares</h2>
     </div>
   </div>
   <script src="Dashboard.js"></script>
