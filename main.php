@@ -7,6 +7,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@latest"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-heatmap.min.js"></script>
 </head>
 <body>
   <h1>Dashboard</h1>
@@ -72,6 +74,58 @@
     var volcaduras2022=<?php echo $volcaduras2022;?>;
     var caidasp2022=<?php echo $caidasp2022; ?>;
 
+    var AccidentesMadrugadaLunes=<?php echo $AccidentesMadrugadaLunes;?>;
+    var AccidentesMananaLunes=<?php echo $AccidentesMananaLunes;?>;
+    var AccidentesMediodiaLunes=<?php echo $AccidentesMediodiaLunes;?>;
+    var AccidentesTardeLunes=<?php echo $AccidentesTardeLunes;?>;
+    var AccidentesNocheLunes=<?php echo $AccidentesNocheLunes;?>;
+    var AccidentesMuyNocheLunes=<?php echo $AccidentesMuyNocheLunes;?>;
+
+    var AccidentesMadrugadaMartes=<?php echo $AccidentesMadrugadaMartes;?>;
+    var AccidentesMananaMartes=<?php echo $AccidentesMananaMartes;?>;
+    var AccidentesMediodiaMartes=<?php echo $AccidentesMediodiaMartes;?>;
+    var AccidentesTardeMartes=<?php echo $AccidentesTardeMartes;?>;
+    var AccidentesNocheMartes=<?php echo $AccidentesNocheMartes;?>;
+    var AccidentesMuyNocheMartes=<?php echo $AccidentesMuyNocheMartes;?>;
+
+    var AccidentesMadrugadaMiercoles=<?php echo $AccidentesMadrugadaMiercoles;?>;
+    var AccidentesMananaMiercoles=<?php echo $AccidentesMananaMiercoles;?>;
+    var AccidentesMediodiaMiercoles=<?php echo $AccidentesMediodiaMiercoles;?>;
+    var AccidentesTardeMiercoles=<?php echo $AccidentesTardeMiercoles;?>;
+    var AccidentesNocheMiercoles=<?php echo $AccidentesNocheMiercoles;?>;
+    var AccidentesMuyNocheMiercoles=<?php echo $AccidentesMuyNocheMiercoles;?>;
+
+    var AccidentesMadrugadaJueves=<?php echo $AccidentesMadrugadaJueves;?>;
+    var AccidentesMananaJueves=<?php echo $AccidentesMananaJueves;?>;
+    var AccidentesMediodiaJueves=<?php echo $AccidentesMediodiaJueves;?>;
+    var AccidentesTardeJueves=<?php echo $AccidentesTardeJueves;?>;
+    var AccidentesNocheJueves=<?php echo $AccidentesNocheJueves;?>;
+    var AccidentesMuyNocheJueves=<?php echo $AccidentesMuyNocheJueves;?>;
+
+    var AccidentesMadrugadaViernes=<?php echo $AccidentesMadrugadaViernes;?>;
+    var AccidentesMananaViernes=<?php echo $AccidentesMananaViernes;?>;
+    var AccidentesMediodiaViernes=<?php echo $AccidentesMediodiaViernes;?>;
+    var AccidentesTardeViernes=<?php echo $AccidentesTardeViernes;?>;
+    var AccidentesNocheViernes=<?php echo $AccidentesNocheViernes;?>;
+    var AccidentesMuyNocheViernes=<?php echo $AccidentesMuyNocheViernes;?>;
+
+    var AccidentesMadrugadaSabado=<?php echo $AccidentesMadrugadaSabado;?>;
+    var AccidentesMananaSabado=<?php echo $AccidentesMananaSabado;?>;
+    var AccidentesMediodiaSabado=<?php echo $AccidentesMediodiaSabado;?>;
+    var AccidentesTardeSabado=<?php echo $AccidentesTardeSabado;?>;
+    var AccidentesNocheSabado=<?php echo $AccidentesNocheSabado;?>;
+    var AccidentesMuyNocheSabado=<?php echo $AccidentesMuyNocheSabado;?>;
+
+    var AccidentesMadrugadaDomingo=<?php echo $AccidentesMadrugadaDomingo;?>;
+    var AccidentesMananaDomingo=<?php echo $AccidentesMananaDomingo;?>;
+    var AccidentesMediodiaDomingo=<?php echo $AccidentesMediodiaDomingo;?>;
+    var AccidentesTardeDomingo=<?php echo $AccidentesTardeDomingo;?>;
+    var AccidentesNocheDomingo=<?php echo $AccidentesNocheDomingo;?>;
+    var AccidentesMuyNocheDomingo=<?php echo $AccidentesMuyNocheDomingo;?>;
+
+    var Tipo_V = <?php echo json_encode($Tipo_V); ?>;
+    var N_Evento = <?php echo json_encode($N_Evento); ?>;
+
   </script>
 
   <div>
@@ -113,6 +167,12 @@
         <h4>Accidentes más frecuentes por año</h4>
         <p style = "color: white;">Cantidad de accidentes más frecuentes en cada año</p>
         <canvas id="tipoAccidente" width="1200" height="400"></canvas>
+      </div>
+      <div id="HeatmapHoras">
+        
+      </div>
+      <div id="Grafica vehiculos en accidentes">
+        <canvas id="tipoVehiculo" width="400" height="400"></canvas>
       </div>
     </div>
     <div>
