@@ -516,7 +516,7 @@
                                 
             </div>
             <!-- /page content -->
-
+            <div id="HeatmapHoras"></div>
             
             <!-- footer content -->
             <footer>
