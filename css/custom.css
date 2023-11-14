@@ -4985,3 +4985,18 @@ ul.notifications {
     border-radius: 10px;
     background: #111111;
   }
+.graficaMuestra {
+    width: 100%;
+    max-width: 1400px; /* Limita el ancho máximo a 1300px si el contenedor es más ancho */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+#tipoAccidente {
+    width: 100%; /* Usa el 100% del ancho del contenedor padre */
+    height: 800px;
+}
+
+#graficaPastel{
+  width: 100%;
+  height: 400;
+}

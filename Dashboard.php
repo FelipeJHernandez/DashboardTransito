@@ -1,5 +1,5 @@
 <?php
-  $conn = mysqli_connect("localhost", "root", "R00T", "hechos_transito");
+  $conn = mysqli_connect("localhost", "root", "root", "hechos_transito");
   if ($conn) {
       //genero
     	$query = "SELECT count(Genero) as totM from identidad where Genero = 'M'";
@@ -767,6 +767,29 @@
       }
       $rango = mysqli_fetch_assoc($resultado);
       $AccidentesMuyNocheDomingo = $rango['num_Accidentes'];
+      
+      // Consulta para obtener el número de accidentes por alcaldía
+      $query = "SELECT a.Alcaldia, COUNT(e.iD_Evento) AS NumeroAccidentes
+      FROM alcaldía a
+      JOIN colonias c ON a.iD_Alcaldia = c.ID_Alcaldia
+      JOIN calle ca ON c.ID_Colonia = ca.ID_Colonia
+      JOIN lugaraccicente l ON ca.ID_Calle = l.primeraCalle OR ca.ID_Calle = l.segundaCalle
+      LEFT JOIN evento e ON l.ID_Lugar = e.ID_Lugar
+      WHERE a.iD_Alcaldia IS NOT NULL
+      GROUP BY a.Alcaldia
+      ORDER BY NumeroAccidentes DESC";
+
+      $resultado = $conn->query($query);
+
+      if (!$resultado) {
+          die("La consulta falló: " . $conn->error);
+      }
+
+      while ($row = mysqli_fetch_assoc($resultado)) {
+         $alcaldia = $row['Alcaldia'];
+          $numeroAccidentes = $row['NumeroAccidentes'];
+         echo "Alcaldia: " . $alcaldia . " - Numero de Accidentes: " . $numeroAccidentes . "<br>";
+      }
 
 
 

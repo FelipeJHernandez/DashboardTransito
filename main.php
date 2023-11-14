@@ -129,6 +129,9 @@
     var AccidentesTardeDomingo=<?php echo $AccidentesTardeDomingo;?>;
     var AccidentesNocheDomingo=<?php echo $AccidentesNocheDomingo;?>;
     var AccidentesMuyNocheDomingo=<?php echo $AccidentesMuyNocheDomingo;?>;
+    
+    var alcaldias =<?php echo $alcaldias;?>;
+    var numeroAccidentes = <?php echo $numeroAccidentes;?>;
 
     var Tipo_V = <?php echo json_encode($Tipo_V); ?>;
     var N_Evento = <?php echo json_encode($N_Evento); ?>;
@@ -174,11 +177,6 @@
                                 </ul>
                                 <br>
                                 
-                                Backend Python
-                                <ul>
-
-                                </ul>
-                                <br>
                                 
                                 Plantilla
                                 <ul>
@@ -197,7 +195,8 @@
                                 
                                 Graficadores
                                 <ul>
-
+                                <li>Chart.js</li>
+                                <li>Anychart</li>
                                 </ul>
                             </div>
                         </div>
@@ -222,43 +221,37 @@
                     </div>
                     
                     <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"><i class="fa-light fa-user fa-sm" style="color: #5f7191;"></i></i>Edades</span>
-                        <!--<div class="count" id="d_vtopa"></div>
-                        <span class="count_bottom" id="d_vtopp"></span> -->
+                     <span class="count_top"><i class="fa-regular fa-hand"></i> Edades </span>
                     </div>
                     
                     <div class="col-md-2 col-sm-4  tile_stats_count">
                         <span class="count_top"><i class="fa-solid fa-genderless fa-sm" style="color: #738096;"></i> G&eacute;nero</span>
-                        <!--<div class="count" id="d_ticket"></div>
-                        <span class="count_bottom"></span>-->
+
                     </div>
                     
                     <div class="col-md-2 col-sm-4  tile_stats_count">
                         <span class="count_top"><i class="fa-solid fa-notes-medical fa-sm" style="color: #6f86ae;"></i>Status de involucrados</span>
-                        <!---<div class="count" id="d_vtopca"></div>
-                        <span class="count_bottom" id="d_vtopcn"></span>-->
+
                     </div>
                     
                     <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"><i class="fa-light fa-skull fa-sm" style="color: #344156;"></i> Occisos</span>
-                       <!-- <div id="d_film"></div>
-                        <span class="count_bottom" id="d_filmcat"></span>-->
+                        <span class="count_top"><i class="fa-solid fa-skull" style="color: #596a88;"></i> Occisos</span>
                     </div>
                     
                     <div class="col-md-2 col-sm-4  tile_stats_count">
                         <span class="count_top"><i class="fa-solid fa-crutch fa-sm" style="color: #66758f;"></i> Lesionados</span>
-                       <!-- <div class="count" id="d_topca"></div>
-                        <span class="count_bottom" id="d_topcd"></span>-->
+ 
                     </div>
                     <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"><<i class="fa-light fa-tag fa-sm" style="color: #5b6576;"></i> Más frecuentes</span>
-                       <div class="count" id="d_topca"></div>
-                        <span class="count_bottom" id="d_topcd">Por año</span>
+                        <span class="count_top"><i class="fa-solid fa-car-rear" style="color: #546178;"></i>Vehiculos</span>
                     </div>
                     <div class="col-md-2 col-sm-4  tile_stats_count">
-                        <span class="count_top"> <i class="fa-light fa-location-dot fa-sm">Lugares</span>
-                       <div class="count" id="d_topca"></div>
-                        <span class="count_bottom" id="d_topcd"></i>Por zona </span>
+                        <span class="count_top"><i class="fa-solid fa-map-location" style="color: #525d6f;"></i>Lugares</span>
+                        <div class="count" id="d_topca"></div>
+                        <span class="count_bottom" id="d_topcd"></i>Por alcaldías </span>
+                    </div>
+                    <div class="col-md-3 col-sm-4 tile_stats_count text-wrap">
+                        <span class="count_top"> <i class="fa-solid fa-traffic-light" style="color: #435065;"></i>Semaforo/Intersecciones</span>
                     </div>
                 </div>
                 <!-- /top tiles -->
@@ -271,31 +264,10 @@
                             <div class="x_title">
                                 <a><h4>Accidentes</h4></a>
                             </div>
-                            <div class="x_content">
-                                <div id="d_vmes" style="height:285px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-4">
-                        <div class="x_panel">
-                            <div class="x_content">
-                                <h4>Tipo de accidentes</h4>
-                                <div class="row" style="margin-bottom:5px;">
-                                    <div class="col-md-12 text-center">
-                                        <select id="s_mes" class="select2_group form-control">
-                                            <option selected="true" value="5">Choques</option>
-                                            <option value="6">Atropellos</option>
-                                            <option value="7">Derrapes</option>
-                                            <option value="8">Ca&iacute;das de ciclistas</option>
-                                            <option value="8">Volcaduras</option>
-                                            <option value="8">Ca&iacute;das de pasajeros</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <h4>Tipo de accidentes</h4>
+
                                 <div class="graficaMuestra">
-                                <canvas id="tipoAccidente" width="1200" height="400"></canvas>
-                            </div>
+                                <canvas id="tipoAccidente" ></canvas>
                         </div>
                     </div>
                 </div>
@@ -303,14 +275,13 @@
                 <div class="clearfix"></div>
                 
                 <div class="row">
-                    <div class="col-md-8 col-sm-8">
+                    <div class="col-md-8 col-sm-8 mx-auto">
                         <div class="x_panel">
                             <div class="x_title">
                                 <a><h4>Accidentes por G&eacute;nero</h4></a>
                             </div>
                             <div class = "graficaMuestra">
-                                <p style = "color: white;">Porcentaje de hombres y mujeres involucrados en accidentes de tránsito</p>
-                                <canvas id="graficaPastel" width="400" height="400"></canvas>
+                                <canvas id="graficaPastel"></canvas>
                             </div>
                         </div>
                     </div>
@@ -319,7 +290,7 @@
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-8 col-sm-8">
+                    <div class="col-md-6">
                         <div class="x_panel">
                             <div class="x_title">
                                 <a><h4>Accidentes por Edades</h4></a>
@@ -331,25 +302,6 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-4 col-sm-4">
-                        <div class="x_panel">
-                            <div class="x_content">
-                                <h4>Rango de edades</h4>
-                                <div class="row" style="margin-bottom:5px;">
-                                    <div class="col-md-12 text-center">
-                                        <select id="s_mes" class="select2_group form-control">
-                                            <option selected="true" value="5">0 a 10</option>
-                                            <option value="6">10 a 20</option>
-                                            <option value="7">20 a 40</option>
-                                            <option value="8">40  a 60</option>
-                                            <option value="9">60 a m&aacute;s</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="d_vmespais" style="height:270px;"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="clearfix"></div>
@@ -361,8 +313,6 @@
                                 <a><h4>Status de los involucrados</h4></a>
                             </div>
                             <div class = "graficaMuestra">
-                            <h4>Porcentaje de gente herida/muerta</h4>
-                            <p style = "color: white;">Porcentaje de incolucrados muertos y lesionados</p>
                             <canvas id="graficaCondicion" width="400" height="400"></canvas>
                             </div>
                         </div>
@@ -376,31 +326,11 @@
                                 <a><h4>Occisos</h4></a>
                             </div>
                             <div class = "graficaMuestra">
-                                <p style = "color: white;">Porcentaje de personas que han resultado muertas segun su rol dentro del accidente automovilistico </p>
                                 <canvas id="tipoOccisos" width="400" height="400"></canvas>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col-md-4 col-sm-4">
-                        <div class="x_panel">
-                            <div class="x_content">
-                                <h4>Según su rol</h4>
-                                <div class="row" style="margin-bottom:5px;">
-                                    <div class="col-md-12 text-center">
-                                        <select id="s_mes" class="select2_group form-control">
-                                            <option selected="true" value="5">Pasajeros</option>
-                                            <option value="6">Conductores</option>
-                                            <option value="7">Peatones</option>
-                                            <option value="8">Ciclistas</option>
-                                            <option value="8">Motociclistas</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="d_vmespais" style="height:270px;"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="clearfix"></div>
@@ -411,108 +341,30 @@
                                 <a><h4>Lesionados</h4></a>
                             </div>
                             <div class = "graficaMuestra">
-                                <p style = "color: white;">Porcentaje de personas que han resultado lesionados segun su rol dentro del accidente automovilistico </p>
                                 <canvas id="tipoLesionados" width="400" height="400"></canvas>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col-md-4 col-sm-4">
-                        <div class="x_panel">
-                            <div class="x_content">
-                                <h4>Según su rol</h4>
-                                <div class="row" style="margin-bottom:5px;">
-                                    <div class="col-md-12 text-center">
-                                        <select id="s_mes" class="select2_group form-control">
-                                            <option selected="true" value="5">Pasajeros</option>
-                                            <option value="6">Conductores</option>
-                                            <option value="7">Peatones</option>
-                                            <option value="8">Ciclistas</option>
-                                            <option value="8">Motociclistas</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="d_vmespais" style="height:270px;"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="clearfix"></div>
+                
                 <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="x_panel" style="height:650px;">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="x_panel">
                             <div class="x_title">
-                                <a><h4>Accidentes por lugares</h4></a>
+                                <a><h4>Accidentes por alcaldias</h4></a>
                             </div>
-                            <div class="x_content text-center">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" id="t_hm" title="Para facilitar observar la frecuencia en alcaldías">Mapa de calor</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" id="t_barras">Barras</a>
-                                    </li>
-                                </ul>
-                                
-                                <div id="d_hm" style="display:block;height:450px;">
-                                    <div id="d_hmcats" style="height:100%"></div>
-                                </div>
-                                
-                                <div id="d_barras" style="display:none;height:450px;">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-md-4">&nbsp;</div>
-                                        <div class="col-md-1 legendBox lBMay">Choque</div>
-                                        <div class="col-md-1 legendBox lBJun">Atropellos</div>
-                                        <div class="col-md-1 legendBox lBJul">Derrapes</div>
-                                        <div class="col-md-1 legendBox lBAug">Caídas de ciclistas</div>
-                                        <div class="col-md-1 legendBox lBAug">Volcaduras</div>
-                                        <div class="col-md-1 legendBox lBAug">Caídas de pasajeros</div>
-                                        <div class="col-md-4">&nbsp;</div>
-                                    </div>
-                                    <br>
-                                    <canvas id="d_cats"></canvas>
-                                </div>
-                                
+                            <div class = "graficaMuestra">
+                              <!--<  <canvas id="graficaAccidentesAlcaldia" width="400" height="400"></canvas> -->
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 
                 <div class="clearfix"></div>
-                <!--
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <a><h4>Desempe&ntilde;o de filmes</h4></a>
-                            </div>
-                            <div class="x_content">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="col-md-12 text-center" style="background-color:#DCEDE9;height:350px;">
-                                            <h3>Mejores pel&iacute;culas</h3>
-                                            <small>Con rentas sin importar el <i>raiting</i></small>
-                                            <hr>
-                                            <div id="d_topfilms"></div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="col-md-12 text-center" style="background-color:#F1D3C0;height:350px;">
-                                            <h3>Peores pel&iacute;culas</h3>
-                                            <small>Sin rentas y bajo <i>raiting</i></small>
-                                            <hr>
-                                            <div id="d_badfilms"></div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                                 
             </div>
             <!-- /page content -->
