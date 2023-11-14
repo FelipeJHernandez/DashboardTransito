@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>PHP</title>
+  <meta name="Description" content="PHP has been pre-configured for test, production and development. A UniController sub-menu allows you to easily switch between the three configurations. This page covers configuration and additional features for maintaining PHP.">
+  <meta name="Keywords" content="PHP,Select,version,configuration,file,Edit,Basic,Modules,Accelerators,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p800">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/php_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>PHP</h1>
+</tr>
+</table>
+
+<p><b>PHP</b> is a general-purpose scripting language designed for creating dynamic web pages. The Apache server uses a PHP processor module to generate the final web page being served. It interprets code embedded into HTML documents. PHP has been pre-configured for test, production and development. A UniController sub-menu allows you to easily switch between the three configurations. This page covers configuration and additional features for maintaining PHP.</p>
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+
+   <table border="0">
+       <tr>
+         <td><a href="#View phpInfo" >View phpInfo</a></td>
+         <td>- Runs PHP function phpinfo()</td>
+       </tr>
+       <tr>
+         <td><a href="#Select PHP version" >Select PHP version</a></td>
+         <td>- Versions 7.x to 8.x</td>
+       </tr>
+       <tr>
+         <td><a href="#Select PHP configuration file" >Select PHP configuration file</a> </td>
+         <td>- php_test.ini, php_development.ini or php_production.ini </td>
+       </tr>
+       <tr>
+         <td><a href="#Edited selected configuration file" >Edit selected configuration file</a></td>
+         <td>- Edit file in Notepad</td>
+       </tr>
+        <tr>
+         <td><a href="#Edit Basic and Modules" >Edit Basic and Modules</a></td>
+         <td>- Edit Basic Configuration and Enable/Disable PHP Modules</td>
+       </tr>
+
+        <tr>
+         <td><a href="#PHP Accelerators" >Enable/Disable Zend OpCache Accelerator</a></td>
+         <td>- Enable/Disable Zend OpCache PHP Accelerator</td>
+       </tr>
+
+        <tr>
+         <td><a href="#View PHP Accelerator control panel" >View Zend OpCache Control Panel</a></td>
+         <td>- View Zend OpCache PHP Accelerator Control Panel</td>
+       </tr>
+
+   </table>
+
+ </div>
+</div>
+
+<p><b>Note:</b> A default installation of Uniform Server Zero installs PHP as an Apache module.<br>
+
+<a name="View phpInfo"></a>
+<h2>View phpInfo</h2>
+
+<p class="access">PHP &gt; View phpInfo</p>
+
+<p>This menu button opens a page in the default browser that runs the PHP function <b>phpinfo()</b>, displaying a wealth of information relating to PHP. The page provides very detailed information and a menu splits this into smaller sections, making it easier to read.</p>
+
+<ul>
+ <li>url: http://localhost/us_extra/phpinfo.php - Page displayed</li>
+ <li>Location: C:\UniServerZ\home\us_extra\<b>phpinfo.php</b></li>
+</ul>
+
+<p>PHP Info Menu</p>
+<ul>
+ <li>Configuration - Displays PHP Core configuration.</li>
+ <li>Environment - PHP current environment.</li>
+ <li>Modules - List all modules.</li>
+ <li>Extensions - Overview and details (includes functions) for all loaded extensions.</li>
+
+ <li>Variables - List all currently available PHP variables.</li>
+ <li>General - Intro information.</li>
+</ul>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Select PHP version"></a>
+<h2>Select PHP version</h2>
+
+<p>The Uniform Server Zero provides switching between PHP versions 7.x to 8.x. To achieve this, you need to download a suitable PHP plugin for each version.</p>
+
+<p class="access">PHP &gt; Select PHP version</p>
+
+<p><b>Note:</b> While Apache is running, menu option is disabled (greyed out) to prevent problems.</p>
+
+
+<table width="100%">
+  <tr valign="top">
+    <td width="45%">
+<p><b><i>Selection</i>:</b></p>
+      <ul>
+        <li>Click version you wish to use (A-F).</li>
+        <li>Previous selection is deselected and new selection enabled.</li>
+        <li>Selected PHP version is indicated by a check marker (E).</li>
+      </ul>
+
+<p><b>Note 1:</b> For the new settings to become effective, you must restart the Apache server.<br>
+   <b>Note 2:</b> Greyed out menu button indicates that PHP version plugin is not installed.</p>
+
+    </td>
+    <td width="5%">&nbsp;</td>
+    <td>
+         <img src="images/C11_php_version_switching.gif" alt="PHP switching">
+    </td>
+ </tr>
+</table>
+<p><b>Note:</b> For full menu details, see <a href="php_version_switching.html">PHP Version Switching</a> page.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Select PHP configuration file"></a>
+<h2>Select PHP configuration file</h2>
+
+<p>The Uniform Server Zero provides switching between PHP configuration files <b>php_test.ini</b>, <b>php_development.ini</b> and <b>php_production.ini</b></p>
+
+<p class="access">PHP &gt; Select PHP configuration file</p>
+
+<p><b>Note:</b> While Apache is running, menu option is disabled (greyed out) to prevent problems.</p>
+
+<table width="100%">
+  <tr valign="top">
+    <td width="45%">
+<p><b><i>Selection</i>:</b></p>
+      <ul>
+        <li>Click configuration file you wish to use (A-C).</li>
+        <li>Previous selection is deselected and new selection enabled.</li>
+        <li>Selected configuration file is indicated by a check marker (C).</li>
+      </ul>
+<p><b>Note:</b> For the new settings to become effective, you must restart the Apache server.</p>
+    </td>
+    <td width="5%">&nbsp;</td>
+    <td>
+         <img src="images/C11_php_config_switching.gif" alt="PHP switching">
+    </td>
+ </tr>
+</table>
+
+
+<p><b>Test Configuration file</b></p>
+
+<p class="access">PHP &gt; Select PHP configuration file &gt; php_test.ini</p>
+
+<p><b>Note:</b> In the following, <b>phpxx</b> represents the PHP version selected (covered above).</p>
+
+  <ul>
+    <li>File path: UniServerZ\core\phpxx\<b>php_test.ini</b></li>
+    <li>This configuration file is pre-configured and can be modified for testing before making changes to the other two configuration files. </li>
+    <li><b>Note:</b> In a default installation of The Uniform Server Zero, the current configuration is a copy of this file (<b>php_test.ini</b> = <b>php_production.ini</b>).</li>
+  </ul>
+
+<p><b>Development Configuration file</b></p>
+
+<p class="access">PHP &gt; Select PHP configuration file &gt; php_development.ini</p>
+
+  <ul>
+    <li>File path: UniServer\core\phpxx\<b>php_development.ini</b></li>
+    <li>This configuration file is pre-configured for development. </li>
+    <li><b>Note:</b> Errors are displayed in the user's browser and also directed to log file.</li>
+  </ul>
+
+<p><b>Production Configuration file</b></p>
+
+<p class="access">PHP &gt; Select PHP configuration file &gt; php_production.ini</p>
+
+  <ul>
+    <li>File path: UniServerZ\core\phpxx\<b>php_production.ini</b></li>
+    <li>This configuration file is pre-configured for production use. </li>
+    <li><b>Note:</b> Errors are not displayed; these are directed to Apache's log file.</li>
+  </ul>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Edited selected configuration file"></a>
+<h2>Edit selected configuration file</h2>
+
+<p>The following menu allows you to edit the <b>currently selected</b> (covered above) PHP configuration file in Notepad.<br>
+<b>Note:</b> While Apache is running, menu option is disabled (greyed out) to prevent problems.</p>
+
+<p class="access">PHP &gt; Edit selected configuration file</p>
+  <ul>
+    <li><b>Note:</b> This configuration file is the <b>active configuration</b>. When Apache is started, the contents of this file will configure PHP. </li>
+  </ul>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Edit Basic and Modules"></a>
+<h2>Edit Basic and Modules</h2>
+
+<p><b><i>Edit Basic Configuration</i></b></p>
+
+<p class="access">PHP &gt; Edit Basic and Modules &gt; Edit Basic Configuration </p>
+
+<table width="100%">
+ <tbody><tr valign="top">
+  <td width="45%">
+<p>This menu item allows you to change commonly configured PHP options.<br>
+
+<b>Note:</b> While Apache is running, menu option is disabled (greyed out) to prevent problems.</p>
+
+<ul>
+  <li><b>Test</b> (1): Before changing either development or production, use this file for temporary testing.</li>
+  <li><b>Development</b> (2): Configuration file used for development. Errors will be written to the screen. You can enable other parameters for testing.</li>
+  <li><b>Production</b> (3): Configuration file used for production. Prevents errors being written to screen. The initial settings tighten security, using <b>Production Value</b> by default. Any changes you wish to be permanent should be made in this file.</li>
+</ul>
+
+  </td>
+  <td width="5%">&nbsp;</td>
+  <td>
+   <img src="images/C11_php_basic_config_1.gif" alt="PHP Basic configuration">
+  </td>
+ </tr>
+</tbody></table>
+
+<p><b>Note 1:</b> After making changes, click the corresponding <b>Update</b> button. This writes the modified data to the associated configuration file.<br>
+<b>Note 2:</b> Changes to the current configuration are used next time the servers are started.<br>
+<b>Note 3:</b> For test, development and production configuration files to become effective, you need to <a href="#Select PHP configuration file">select</a> the appropriate file and restart Apache.<br>
+<b>Note 4:</b> Do not enable <b>Short Open Tags</b>. Doing so will conflict with other languages, such as XML's open tag.  For detailed information, see <a href="php_short_open_tags.html">PHP Short Open Tags</a>.
+
+
+<table width="100%">
+ <tr valign="top">
+  <td width="45%">
+<p><b><i>PHP Modules Enable/Disable</i></b></p>
+
+<p>The following sub-menu allows you to enable or disable PHP extensions for the <b>currently selected</b> PHP configuration file:</p>
+<p class="access">PHP &gt; Edit Basic and Modules &gt; PHP Modules Enable/Disable</p>
+
+<p><b>Note:</b> While Apache is running, menu option is disabled (greyed out) to prevent problems.</p>
+<ul>
+ <li>Checkbox unchecked: Extension disabled</li>
+ <li>Checkbox checked: Extension enabled</li>
+</ul>
+<p><b>Note:</b> After changing state, you must <b>restart</b> the Apache server for the new configuration to be recognized.</p>
+<p>File modified is the currently selected PHP configuration. Current selected config is shown at the top; for example:</p>
+   <ul>
+     <li>PHP Version: <b>phpxx</b></li>
+     <li>Config File: <b>php_production.ini</b></li>
+   </ul>  
+   </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+<img src="images/C11_php_extensions_1.gif" alt="PHP Extentions enable disable">
+   </td>
+ </tr>
+ </table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="PHP Accelerators"></a>
+<h2>Enable/Disable Zend OpCache Accelerator</h2>
+
+<p>The Uniform Server Zero provides support for the Zend OpCache PHP Accelerator. The following UniController sub-menu allows you to enable or disable it.</p>
+
+<p class="access">PHP &gt; Enable/Disable Zend OpCache Accelerator </p>
+
+<p><b>Note:</b> While Apache is running, menu option is disabled (greyed out) to prevent problems.</p>
+
+<table width="100%">
+ <tr valign="top">
+
+  <td width="45%">
+<p><b><i>Selection</i>:</b></p>
+      <ul>
+        <li>Enable or Disable Zend OpCache</li>
+        <li>When enabled, the icon is highlighted.</li>
+      </ul>
+<p><b>Note 1:</b> For the new settings to become effective, you must restart the Apache server.<br>
+<b>Note 2:</b> A greyed out menu option indicates the accelerator is unavailable.</p>
+  </td>
+  <td width="5%">&nbsp;</td>
+  <td>
+   <img src="images/C11_php_select_accelerator.gif" alt="PHP Accelerators">
+  </td>
+ </tr>
+</table>
+
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="View PHP Accelerator control panel"></a>
+<h2>View Zend OpCache Control Panel</h2>
+
+<p>The Uniform Server Zero provides support for the Zend OpCache PHP accelerator. The following UniController sub-menu allows you to display the accelerator's controller in your default browser.</p>
+
+<p class="access">PHP &gt; View Zend OpCache Control Panel</p>
+<p><b>Note:</b> <b>View Zend OpCache Control Panel</b> menu button greyed out indicates Apache and MySQL not running. The button is enabled when Apache and MySQL are running and PHP is installed.</p>
+
+<table width="100%">
+ <tr valign="top">
+  <td width="45%">
+
+<p>Zend OpCache provides faster PHP execution through opcode caching and optimization. It improves PHP performance by storing precompiled script bytecode in the shared memory.</p>
+<p>The Uniform Server Zero default installation has Zend OpCache <b>disabled</b>.</p>
+
+<p>The Zend OpCache Control Panel is shown on the right.</p>
+
+  </td>
+  <td width="5%">&nbsp;</td>
+  <td>
+   <img src="images/C11_php_zend_opcache.gif" alt="Zend OpCache control panel">
+  </td>
+ </tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

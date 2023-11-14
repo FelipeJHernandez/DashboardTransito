@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>PHP Version Switching</title>
+  <meta name="Description" content="The Uniform Server Zero XIV provides switching between PHP versions 5.3, 5.4, 5.5, 5.6, 7.0 and 7.1 to achieve this you need to download a suitable PHP plugin for each version">
+  <meta name="Keywords" content="PHP,Version,Switching,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p840">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/php_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>PHP Version Switching</h1>
+</tr>
+</table>
+
+<p>The Uniform Server Zero XIV provides switching between PHP versions 7.x and 8.x. To achieve this, you need to download a suitable PHP module for each version (for example, <b>ZeroXIV_php_7_x_x.exe</b> or <b>ZeroXIV_php_8_x_x.exe</b>), as explained below.</p>
+
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Switching overview" >Switching overview</a></li>
+   <li><a href="#UniController PHP Switching" >UniController PHP Switching</a></li>
+   <li><a href="#Installing a PHP plugin" >Installing a PHP module</a></li>
+   <li><a href="#Important information" >Important information</a></li>
+   </ul>
+ </div>
+</div>
+
+
+<a name="Switching overview"></a>
+<h2>Switching overview</h2>
+
+<table width="100%">
+  <tr valign="top">
+   <td width="45%">
+<p><b>PHP Switching</b></p>
+
+<p>In order to switch between PHP versions, environment variable <b>PHP_SELECT</b> is set to the selected PHP version. Valid values are <b>php7x</b> and <b>php8x</b>, <b>x</b> being the php series number installed on your system.</p>
+
+<p>To ensure correct PHP configuration file is used, environment variable <b>PHP_INI_SELECT</b> is set to the selected PHP configuration file. Valid values are <b>php_test.ini</b>, <b>php_development.ini</b> and <b>php_production.ini</b>.</p>
+
+<p>The <b>PHP_SELECT</b> environment variable is used in the Apache configuration file <b>httpd.conf</b> to select the appropriate configuration block that, in turn, selects a configuration file (for example, <b>php8x.conf</b> or <b>php8y.conf</b>).</p>
+
+<p> Within the selected configuration file (for example, <b>php8x.conf</b> or <b>php8y.conf</b>), environment variable <b>PHP_INI_SELECT</b> selects the PHP configuration file to use.
+ 
+<p>The Apache configuration code for PHP switching is shown on the right.</p> 
+
+
+<p><b>Note:</b> Configuration file (for example, <b>php8x.conf</b> or <b>php8y.conf</b>) is installed when a corresponding PHP module is installed.</p>
+
+<p><b>PHP Modules</b></p>
+<p>Related to PHP switching, when installing a module over an existing PHP series (for example, replacing <b>ZeroXIV_php_8_1_4.exe</b> with <b>ZeroXIV_php_8_1_5.exe</b>), it is assumed you want to use it instead of the one currently installed. This allows you to revert to an older version number within the same PHP series.</p>
+ </td>
+ <td width="5%">&nbsp;</td>
+ <td>
+<p>Apache configuration file: UniServerZ\core\apache2\conf\httpd.conf</p>
+
+<pre>
+# Environment variable ${PHP_SELECT} has a value of 
+# php7x, php7y, (...), php8x, php8y, (...). It is used in the 
+# following define statements to select a PHP version to
+# load as a module.
+Define ${PHP_SELECT}
+
+&lt;IfDefine php7x&gt;
+   Include ${US_ROOTF}/core/apache2/conf/extra_us/php7x.conf
+&lt;IfDefine&gt;
+
+&lt;IfDefine php7y&gt;
+   Include ${US_ROOTF}/core/apache2/conf/extra_us/php7y.conf
+&lt;IfDefine&gt;
+
+   (...)
+
+&lt;IfDefine php8x&gt;
+   Include ${US_ROOTF}/core/apache2/conf/extra_us/php8x.conf
+&lt;IfDefine&gt;
+
+&lt;IfDefine php8y&gt;
+   Include ${US_ROOTF}/core/apache2/conf/extra_us/php8y.conf
+&lt;IfDefine&gt;
+
+   (...)
+</pre>
+
+<p>Apache config file: UniServerZ\core\apache2\conf\extra_us\php7x.conf</p>
+
+<pre>
+  LoadFile ${US_ROOTF}/core/php7x/libsasl.dll
+  LoadFile ${US_ROOTF}/core/php7x/icudtxx.dll
+  LoadFile ${US_ROOTF}/core/php7x/icuinxx.dll
+  LoadFile ${US_ROOTF}/core/php7x/icuioxx.dll
+  LoadFile ${US_ROOTF}/core/php7x/iculexx.dll
+  LoadFile ${US_ROOTF}/core/php7x/iculxxx.dll
+  LoadFile ${US_ROOTF}/core/php7x/icuucxx.dll
+
+ # Load PHP module and add handler
+  LoadModule php7_module "${US_ROOTF}/core/php7x/php7apache2_4.dll"
+  AddHandler application/x-httpd-php .php
+ # Configure the path to php.ini
+  PHPIniDir "${US_ROOTF}/core/php7x/${PHP_INI_SELECT}"
+</pre>
+  </td>
+ </tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="UniController PHP Switching"></a>
+<h2>UniController PHP Switching</h2>
+
+<table width="100%">
+ <tr valign="top">
+  <td width="50%">
+<b>PHP Switching</b>
+      <ul>
+        <li>Click version you wish to use (A-F).</li>
+        <li>Previous selection is deselected and new selection enabled.</li>
+        <li>Selected PHP version is indicated by a check marker (E).</li>
+      </ul>
+<p><b>Note 1:</b> For the new settings to become effective, you must restart the Apache server.<br>
+   <b>Note 2:</b> A greyed out button indicates that version is unavailable and you need to install an appropriate module.</p>
+  
+  </td>
+
+  <td>
+    <img src="images/C11_php_version_switching.gif" alt="PHP Switching">
+  </td>
+ </tr>
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Installing a PHP plugin"></a>
+<h2>Installing a PHP module</h2>
+
+<p>Installing is a misnomer! Nothing is installed to your PCs registry. All files are extracted to their appropriate location within the UniServer folder structure.</p> 
+
+<p>The extraction procedure is identical for all module versions. Proceed as follows:</p>
+
+<table width="100%">
+ <tr valign="top">
+  <td width="50%">
+<p><b>Install PHP module</b></p>
+
+<ul>
+  <li> If running, stop Apache and MySQL servers. Close Unicontroller. </li>
+  <li> Download required <a href="plugins_detail.html">module</a> installation file, for example <b>ZeroXIV_php_x_x_x.exe</b></li>
+  <li> Save the downloaded file to folder <b>UniServerZ</b>. </li>
+  <li> Double-click on the above installation file; this runs the self extracting archive. </li>
+  <li> If prompted, allow overwriting of existing files. </li>
+  <li> If you wish, delete the installation file; it is no longer required. </li>
+</ul>
+
+<td>
+<p><b>Clean Install</b></p>
+
+<p>There are situations where you want to start from a clean installation. If the series (7x, 7y or 8x) you wish to install already exists, navigate to the core folder and delete the corresponding folder and file. You may then proceed with the extraction process.</p>
+
+<p>For example, to completely remove php 7.x.29, delete folder:</p>
+<ul>
+  <li>C:\UniServerZ\core\<b>php7x</b></li>
+</ul>
+<p>and file:</p>
+<ul>
+  <li>C:\UniServerZ\core\apache2\conf\extra_us\php7x.conf</li>
+</ul>
+
+</td>
+</tr>
+
+<tr valign="top">
+ <td>
+<p><b>Enable The PHP module</b><br>
+<p>Before the module is recognized, it requires selecting as follows:</p>
+  <ul>
+     <li>Click version you wish to use (A-F).</li>
+     <li>Previous selection is deselected and new selection enabled.</li>
+     <li>Selected PHP version is indicated by a check marker (E).</li>
+     <li>Start Apache and the new version of PHP is recognized. </li>
+   </ul>
+  </td>
+
+  <td>
+    <img src="images/C11_php_version_switching.gif" alt="UniTray PHP Switching">
+  </td>
+ </tr>
+</table>
+
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Important information"></a>
+<h2>Important information</h2>
+
+<p>The following lists important information that may catch you out.</p>
+
+
+<p><b>Configuration files:</b> Installing over an existing series will replace all configuration files. If you have made changes to the configuration files, save these files before installing a new version of the same series.</p>
+
+<p><b>Extension artifacts:</b> When installing over an existing series, there may be some extensions that are not included with the existing version. These extensions are not deleted and may be incompatible with the new version. It is recommended to perform a clean install as mentioned above.</p> 
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

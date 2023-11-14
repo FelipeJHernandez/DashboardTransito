@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>MySQL Create Restricted User</title>
+  <meta name="Description" content="MySQL privileges allow each of the users to access and utilize only the areas they need to perform their tasks. This prevents a user from accidentally accessing an area where he or she should not have access, adding to the security of the MySQL server. When you connect to a MySQL server, the host from which you connect and the username you specify determines your identity. With this information, the server then grants privileges based upon this identity. This page focuses on creating a user with restricted privileges. ">
+  <meta name="Keywords" content="MySQL,Server,Create,restricted,User,security,UniController,phpMyAdmin,prompt,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p740">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/mysql_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>MySQL Create Restricted User</h1>
+</tr>
+</table>
+
+<p>MySQL privileges allow each of the users to access and utilize only the areas they need to perform their tasks. This prevents a user from accidentally accessing an area where he or she should not have access, adding to the security of the MySQL server.
+</p><p>When you connect to a MySQL server, the host from which you connect and the username you specify determines your identity. With this information, the server then grants privileges based upon this identity. This page focuses on creating a user with restricted privileges. 
+</p>
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Create Restricted MySQL User using UniController" >Create Restricted MySQL User using UniController</a></li>
+   <li><a href="#Create Restricted MySQL User using phpMyAdmin" >Create Restricted MySQL User using phpMyAdmin</a></li>
+   <li><a href="#Open Add new user page" >&nbsp;&nbsp;Open Add new user page</a></li>
+   <li><a href="#Create new user" >&nbsp;&nbsp;Create new user</a></li>
+   <li><a href="#Assign user to a database" >&nbsp;&nbsp;Assign user to a database</a></li>
+   <li><a href="#Create Restricted MySQL User using MySQL Prompt" >Create Restricted MySQL User using MySQL Console</a></li>
+   <li><a href="#Delete Restricted MySQL User using MySQL Prompt" >Delete Restricted MySQL User using MySQL Console</a></li>
+   <li><a href="#Related topics" >Related topics</a></li>
+
+   </ul>
+ </div>
+</div>
+
+<p>There are three methods for creating a restricted user; you can use UniController, phpMyAdmin or MySQL Console. UniController provides a convenient menu option described below. To use this option, ensure the MySQL server is running; otherwise, the button remains greyed out.</p>
+
+<a name="Create Restricted MySQL User using UniController"></a>
+<h2>Create Restricted MySQL User using UniController</h2>
+
+
+<p class="access">MySQL &gt; Create restricted MySQL User</p>
+
+<table width="100%">
+ <tr valign="top">
+   <td width="45%">
+<ul>
+ <li>Enter a user name (1), e.g. <b>fred</b>.</li>
+ <li>Enter the user password (2), e.g. <b>fred123</b>.</li>
+ <li>Select a database from the list (3) to assign to the user.<br>
+     &nbsp;&nbsp;&nbsp;&#9702; The database name (4) is automatically inserted.<br>
+     &nbsp;&nbsp;&nbsp;&#9702; Alternatively, you can manually enter a database name (4).</li>
+ <li>Select or deselect primary user privileges (5) as required.</li>
+ <li>Click <b>Create User</b> (6).</li>
+</ul>
+
+<p><br><b>Note 1:</b> <b>Cancel</b> (7) clears both the selected database and user input.<br>
+
+<p><b>Note 2:</b> You can manually enter a database (4) even if it does not exist. The database is assigned to the user, and it is assumed you will create this database later.</p>
+   </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+<img src="images/C11_mysql_restricted_user.gif" alt="Create Restricted MySQL User">
+   </td>
+ </tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Create Restricted MySQL User using phpMyAdmin"></a>
+<h2>Create Restricted MySQL User using phpMyAdmin</h2>
+<p>Start Controller and start both servers, then click <b>phpMyAmin</b> button. To create a restricted user, proceed as follows:</p>
+
+<p><b>Note:</b> The following assumes the user to create is <b>mike123</b> and the password is <b>pass123</b>. The database <b>wordpress</b> that the user will be assigned to must have already been created.</p>
+
+<a name="Open Add new user page"></a>
+<h3>Open Add new user page</h3>
+<table width="100%">
+ <tr valign="top">
+   <td width="45%">
+<p>When first started, the phpMyAdmin home page is displayed; you can always return to this page by clicking the <b>Home</b> icon (1).</p>
+    <ul>
+     <li>If not at the home page, click <b>Home</b> icon (1).</li>
+     <li>From the top menu bar, select <b>User accounts</b> (2).</li>
+     <li>Click <b>Add a new User</b> (3).</li>
+     </ul>
+The <b>Add user account</b> page is displayed.
+   </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+    <img src="images/C11_mysql_ru_phpmyadmin1.gif" alt="Create restricted user using phpMyAdmin">
+   </td>
+ </tr>
+</table>
+
+<a name="Create new user"></a>
+<h3>Create new user</h3>
+<table width="100%">
+ <tr valign="top">
+   <td width="45%">
+<p>Creating a new user requires only the login information; the other fields are not required. We will assign this user to a database and set appropriate privileges as a second step.</p>
+<p>From <b>Add user account</b> page:</p>
+    <ul>
+     <li>Enter user name (4); example <b>mike123</b>. </li>
+     <li>From the <b>Host name</b> drop down menu, select <b>Use text field</b>. Enter <b>127.0.0.1</b> (5). This user is restricted to the IPv4 address for localhost.</li>
+     <li>Enter password (6); example <b>pass123</b>.</li>
+     <li>Re-type password (7) as entered above.</li>
+     <li>Click <b>Go</b> (8); confirmation produced.</li>
+     </ul>
+<b>Note:</b> Leave all other fields set to their defaults: <br>
+<ul>
+  <li> Database for user account: <b>None</b> selected   </li> 
+  <li> Global privileges: all boxes <b>Uncheck</b>   </li> 
+  <li> Resource limits: all values set to <b>0</b>   </li> 
+</ul>
+
+   </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+    <img src="images/C11_mysql_ru_phpmyadmin2.gif" alt="Create restricted user using phpMyAdmin">
+   </td>
+ </tr>
+</table>
+
+<a name="Assign user to a database"></a>
+<h3>Assign user to a database</h3>
+<p>The new user created has now been added to the <b>User accounts overview</b> page. This new entry allows a user to be assigned to a database as follows:</p>
+
+<table width="100%">
+ <tr valign="top">
+   <td width="45%">
+<p>After creating a new user, you will be at the <b>Edit privileges: User account</b> page.</p>
+    <ul>
+     <li>If not on <b>Edit privileges: User account</b> page, from <b>Home</b> menu, select <b>User accounts</b> (9).</li>
+     <li>Click <b>Edit Privileges</b> (10) for user <b>mike123</b>.</li>
+    </ul>
+
+   </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+    <img src="images/C11_mysql_ru_phpmyadmin3.gif" alt="Create restricted user using phpMyAdmin">
+   </td>
+ </tr>
+
+
+<tr valign="top" >
+<td width="45%">
+<p>A new page opens, displaying privileges.</p>
+<ul>
+  <li> From the top menu bar, select <b>Databases</b>.</li> 
+  <li> From the <b>Database-specific privileges</b> section, select the database <b>wordpress</b> (11) and click <b>Go</b>.</li>
+</ul>
+</td>
+<td width="5%">&nbsp;</td>
+<td>
+<br>
+   <img src="images/C11_mysql_ru_phpmyadmin4.gif" alt="Create restricted user using phpMyAdmin">
+</td>
+</tr>
+
+<tr valign="top" >
+<td width="45%">
+<p>This directs you to the <b>Database-specific privileges</b> section.</p>
+<ul>
+  <li> Select the privileges required (12-13) for your restricted user.</li> 
+  <li> Click <b>Go</b> (14); this assigns the user to the database with the privileges selected.</li> 
+</ul>
+</td>
+<td width="5%">&nbsp;</td>
+<td>
+<br>
+   <img src="images/C11_mysql_ru_phpmyadmin5.gif" alt="Create restricted user using phpMyAdmin">
+</td>
+</tr>
+
+
+
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Create Restricted MySQL User using MySQL Prompt"></a>
+<h2>Create Restricted MySQL User using MySQL Console</h2>
+
+<p>Creating a user with restricted privileges and assigning that user to an existing database can also be performed using a single SQL line.</p> 
+
+<p><b>Example user</b><br>
+User name to create: <b>fred123</b><br>
+User password: <b>fredpass</b><br>
+Existing database: <b>wordpress</b>
+
+<p>Open MySQL Console: click <b>MySQL Console</b> button.<br>
+Use the MySQL Client utility to create our example user with restricted privileges as follows:</p>
+   
+<table width="100%">
+ <tr>
+
+<td>
+ <ul>
+  <li><code>GRANT SELECT, INSERT, UPDATE, DELETE ON wordpress.* TO 'fred123'@'127.0.0.1' IDENTIFIED BY 'fredpass';</code></li>
+  <li><code>exit</code></li>
+ </ul>
+
+<p>The result is shown below:</p>
+<pre>
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: x.x.x MySQL Community Server - GPL
+
+Copyright (c) (...), Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> GRANT SELECT, INSERT, UPDATE, DELETE ON wordpress.* TO 'fred123'@'127.0.0.1' IDENTIFIED BY 'fredpass';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> exit
+Bye
+
+C:\UniServerZ\core\mysql\bin>
+
+</pre>
+</td>
+
+ </tr>
+</table>
+
+<p><b>Note:</b> If you have changed the MySQL root password, remember to substitute <b>root</b> (-p<b>root</b>) with your password in the above.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Delete Restricted MySQL User using MySQL Prompt"></a>
+<h2>Delete Restricted MySQL User using MySQL Console</h2>
+
+<p>Delete a user (example: <b>fred123</b>) with restricted privileges as follows:</p> 
+
+<p>Open MySQL Console: click <b>MySQL Console</b> button.<br>
+Use the MySQL Client utility to delete our example user <b>fred123</b>:</p>
+
+
+<table width="100%">
+ <tr valign='top'>
+<td>
+<p>Enter the following in a command window:</p>
+ <ul>
+  <li><code> DROP USER 'fred123'@'127.0.0.1';</code></li>
+  <li><code> exit</code></li>
+ </ul>
+
+<p>The result is shown below:</p>
+
+<pre>
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: x.x.x MySQL Community Server - GPL
+
+Copyright (c) (...), Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> DROP USER 'fred123'@'127.0.0.1';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> exit
+Bye
+
+C:\UniServerZ\core\mysql\bin>
+
+</pre>
+</td>
+
+ </tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Related topics"></a>
+<h2>Related topics</h2>
+
+<p><a href="server_utils_mysql_console.html">MySQL Console</a> <br>
+<a href="server_utils.html#Server Console">How to run a standard Server Console command window</a> <br>
+<a href="server_utils.html#MySQL Console">MySQL Console command window short cut</a> </p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

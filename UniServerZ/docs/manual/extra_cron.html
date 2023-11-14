@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>CRON</title>
+  <meta name="Description" content="The Uniform Servers portable Cron plugin has been integrated into Uniform Server Zero">
+  <meta name="Keywords" content="Cron,Configuration,format,plugin,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p530">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/extra_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>CRON</h1>
+</tr>
+</table>
+
+<p>Cron originated in the Unix environment. It is a job scheduler, allowing scripts to be run automatically at a certain time or date. The name was based on the Greek word for time, <i>chronos</i>.</p>
+
+<p>The Uniform Servers portable Cron plugin has been integrated into Uniform Server Zero. Cron's configuration file has been pre-populated with various scripts to be run. These are essentially four-line templates that require enabling to run the appropriate applications from the Cron script.</p>
+
+<p>The Uniform Server Zero provides a simple user control interface to start and stop Cron.</p>
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Features" >Features</a></li>
+   <li><a href="#Configuration file" >Configuration file</a></li>
+   <li><a href="#Configuration block format" >&nbsp;&nbsp;Configuration block format</a></li>
+   <li><a href="#Cron Controller" >Cron Controller</a></li>
+   <li><a href="#Logging" >Logging</a></li>
+   <li><a href="#Additional information" >Additional information</a></li>
+   <li><a href="#Test Scripts" >Test Scripts</a></li>
+   <li><a href="#Summary" >Summary</a></li>
+   </ul>
+ </div>
+</div>
+
+
+<a name="Features"></a>
+<h2>Features</h2>
+<ul>
+ <li>Configuration file pre-configured for common applications.</li>
+ <li>Run Cron as a standard program.</li>
+ <li>Run scripts with the following file extensions: <b>.bat</b>, <b>.vbs</b> and <b>.php</b></li>
+ <li>Pre-configured to run Moodle and Drupal cron jobs.</li>
+</ul>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Configuration file"></a>
+<h2>Configuration file</h2>
+
+<p>Each script to be run requires a configuration entry in the configuration file <b>cron.ini</b>. Open this file in the default editor using UniController as follows:</p>
+
+<p class="access">Extra &gt; Cron</p>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<ul>
+  <li> Each script to be run requires a configuration block. On the right, three examples are shown.</li>
+  <li> Command-line scripts (<b>.bat</b>, <b>.vbs</b> and <b>.php</b>) require either an absolute or relative path (including script's file name) to be specified.<br>
+      &nbsp;&nbsp;&nbsp;&#9702; <b>Note:</b> For portability, a relative path is specified.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This path is relative to folder UniServerZ, e.g. \home\us_cron\test\<b>test_cron_1.bat</b><br>
+      &nbsp;&nbsp;&nbsp;&#9702; <b>Note:</b> Scripts with a <b>.vbs</b> extension are run using the <b>Cscript.exe</b> engine.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;These scripts shall not use any GUI interfaces.</li>
+  <li> Web-applications require a URL path. This URL path is what you would type into a browser to run that script.</li>
+</ul>
+</td>
+
+<td width="5%"> &nbsp; </td>
+
+<td>
+<pre>
+;[moodle]
+;start  = 0000-00-00 2:10:00
+;period = hourly
+;path   = http://localhost/moodle/admin/cron.php
+;ref    =
+
+;[drupal]
+;start  = 0000-00-00 2:30:00
+;period = hourly
+;path   = http://localhost/drupal/cron.php
+;ref    =
+
+;[Test_cron_1]
+;start  = 0000-00-00 23:35:00
+;period = 10
+;path   = C:\UniServerZ\home\us_cron\test\test_cron_1.bat
+;ref    =
+</pre>
+</td>
+</tr>
+</table>
+
+<a name="Configuration block format"></a>
+<h3>Configuration block format</h3>
+
+<p>Each script running a Command-line or Web-application is defined in a separate block with the following format:</p>
+
+<table>
+<tr valign="top">
+<td>[drupal]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </td>
+<td>--</td>
+<td>Each block starts with a unique name enclosed in square brackets. Note that no spaces are allowed.</td>
+</tr>
+
+<tr valign="top">
+<td>start  = </td>
+<td>--</td>
+<td> Initial start time with the following format: Y-M-D H:M:S  -  <b>Note:</b> 24-hour clock.</td>
+</tr>
+
+<tr valign="top">
+<td>period =  </td>
+<td>--</td>
+<td>How often to run the script from the above referenced start time.<br> Values: hourly, daily, weekly, monthly or numeric in seconds.</td> 
+</tr>
+
+<tr valign="top">
+<td>path   =  </td>
+<td>--</td>
+<td>
+a) For a web application, the full URL of the script, e.g. http://localhost/drupal/cron.php <br>
+b) Command-line (CLI) option 1: Use an absolute path with back-slashes, e.g. C:\UniServer\uni_con\cron\test_cron_1.bat<br>
+c) Command-line (CLI) option 2: Use a relative path with back-slashes, e.g. \home\us_cron\test_cron_1.bat</td> 
+</tr>
+
+<tr valign="top">
+<td>ref    =  </td>
+<td>--</td>
+<td>A timestamp updated by cron script. Set initial value to blank.</td>
+</tr>
+</table>
+
+<br>
+<table cellpadding="2">
+<tr valign="top">
+  <td ><b>Note 1:</b></td>
+  <td>Cron automatically updates <b>ref</b>. It initially adds <b>period</b> as set above to <b>Start</b> time.<br>
+      For subsequent runs, it sets <b>ref</b>  to current time + <b>period</b>.</td>
+</tr> 
+  
+<tr valign="top">
+  <td><b>Note 2:</b></td>
+  <td>To change <b>start</b> time, first set a new value for <b>start</b> and delete the <b>ref</b> number, then save the file.<br>
+      The script will run at the new date and time set, and thereafter at the rate you defined for <b>period</b>. </td> 
+</tr>
+
+
+<tr valign="top">
+  <td><b>Note 3:</b></td>
+  <td>To use pre-configured web blocks for Moodle and Drupal, uncomment to enable.</td>
+</tr>
+
+<tr valign="top">
+  <td><b>Note 4:</b></td>
+  <td>Command-line paths starting with "\" followed by sub-folders below UniServerZ are portable.<br>
+      Paths outside UniServerZ are not portable and require manually changing after relocating Uniform Server Zero.</td>
+</tr>
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Cron Controller"></a>
+<h2>Cron Controller</h2>
+
+<p>The Uniform Server Zero provides a simple user control interface to start and stop Cron. Open this controller as follows:</p>
+<p class="access">Extra &gt; Cron </p>
+
+<table width="100%">
+<tr valign="top">
+
+<td width="45%">
+<p>The Cron Controller consists of two buttons and two check boxes shown on the right.</p>
+<ul>
+  <li><b>Edit configuration file</b> button (1) opens the configuration file in Notepad.</li>
+  <li><b>View log file</b> button (2) opens the Cron log file in Notepad.</li>
+  <li><b>Run Cron</b> (3) - Clicking this check box toggles between two states, checked and unchecked, which starts and stops Cron respectively. </li> 
+  <li><b>Cron logging</b> (4) - Clicking this check box toggles between two states, checked and unchecked, which enables and disables Cron logging respectively. </li> 
+</ul>
+<p><b>Note:</b> Initially, both <b>Run Cron</b> (3) and <b>Cron logging</b> (4) check boxes are unchecked.</p>
+ 
+</td>
+<td width="5%"> &nbsp; </td>
+<td>
+<img src="images/C11_cron_controller.gif" alt="Cron controller">
+</td>
+</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Logging"></a>
+<h2>Logging</h2>
+
+<p>Cron logs the following information:</p>
+<ul>
+  <li>Time Cron was started.</li>
+  <li>Start time and path of a script that is run.</li>
+  <li>Time Cron was stopped. <b>Note:</b> if this is missing from the log, it means UniController was not closed before the PC was turned off. </li>
+</ul>
+
+<p><b>Note:</b> Cron logging is disabled by default. </p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Additional information"></a>
+<h2>Additional information</h2>
+
+<p>Cron, run and logging are disabled by default. Instead of using the Cron controller covered above, you can directly edit the server configuration file.</p>
+<p>To enable both Cron running and logging, proceed as follows:</p>
+
+<table width="100%">
+ <tr valign="top">
+  <td width="45%">
+    <ul>
+      <li>Open user configuration file: UniServerZ\home\us_config\<b>us_config.ini</b>&nbsp;</li>
+      <li>Locate section [CRON] shown on right. </li>
+      <li>Set <b>enable_cron</b> to true.</li>
+      <li>Set <b>cron_logging</b> to true.</li>
+    </ul>
+</td>
+
+<td width="5%"> &nbsp; </td>
+
+<td>
+<pre>
+[CRON]
+; Run Cron
+; true   - Run Cron 
+; false  - Disable (stop) Cron (default)
+enable_cron=false
+
+; Cron logging
+; true   - Enable logging 
+; false  - no logging (default)
+cron_logging=false
+</pre>
+</td>
+</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Test Scripts"></a>
+<h2>Test Scripts</h2>
+
+<p>Four test files have been included and pre-configured in Cron's configuration file.</p>
+
+<p>The following three scripts are simple command-line script creating a text file when run:</p>
+
+<ul>
+  <li>UniServerZ\home\us_cron\test\<b>test_cron_1.bat</b> - File created: UniServerZ\home\us_cron\test\<b>test_cron_1_bat_result.txt</b></li>
+  <li>UniServerZ\home\us_cron\test\<b>test_cron_2.vbs</b> - File created: UniServerZ\home\us_cron\test\<b>test_cron_2_vbs_result.txt</b></li>
+  <li>UniServerZ\home\us_cron\test\<b>test_cron_3.php</b> - File created: UniServerZ\home\us_cron\test\<b>test_cron_3_php_result.txt</b></li>
+</ul>
+
+<p>Copy the fourth script UniServerZ\home\us_cron\test\<b>cron_test.php</b> to root folder UniServerZ\<b>www</b> - File created: UniServerZ\www\<b>us_cron_test_4.txt</b></p>
+
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Summary"></a>
+<h2>Summary</h2>
+
+<p>The above has shown how easy Cron is to use and configure.<br></p> 
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

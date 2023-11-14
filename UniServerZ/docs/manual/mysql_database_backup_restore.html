@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>MySQL Database Backup / Restore</title>
+  <meta name="Description" content="The Uniform Server's database backup allows for manual backup and restoring a selected database. The Uniform Server's database backup provides a quick and convenient method to backup a single database. Depending on the database size, this may take a considerable length of time to complete.">
+  <meta name="Keywords" content="MySQL,Server,Database,backup,restore,manual,single,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p760">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/mysql_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>MySQL Database Backup / Restore</h1>
+</tr>
+</table>
+
+<p>The Uniform Server's database backup allows for manual backup and restoring a selected database.</p>
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Database backup" >Database backup</a></li>
+   <li><a href="#Database restore" >Database restore</a></li>
+   </ul>
+ </div>
+</div>
+<br>
+
+
+<a name="Database backup"></a>
+<h2>Database backup</h2>
+
+<p>The Uniform Server's database backup provides a quick and convenient method to backup a single database. Depending on the database size, this may take a considerable length of time to complete.</p>
+
+<p>From UniController, select backup database menu as follows:</p>
+<p class="access"> MySQL &gt; Database backup</p>
+
+
+<table width="100%">
+ <tr valign="top">
+
+  <td width="45%">
+<p><b><i>Select and create database backup</i></b></p>
+ <ul>
+  <li>Select a database for backing up (2).</li>
+  <li>Optionally, change the default name displayed (3). <b>Note:</b> must end in <b>.sql</b></li>
+  <li>Click <b>Create backup</b> (6).</li>
+  <li>Wait for <b>Backup Complete</b> message. This will take a long time for a large database.</li>  
+ </ul>
+
+<p><b>Notes:</b></p>
+
+ <ul>
+  <li><b>Clear</b> (4) clears selected database and backup name.</li>
+  <li><b>Help</b> (5) displays more information.</li>
+ </ul>
+  </td>
+  <td width="5%">&nbsp;</td>
+  <td>
+<img src="images/C11_mysql_dbbackup.gif" alt="Select db to backup or delete">
+  </td>
+
+ </tr>
+</table>
+
+<p><b>Note 1:</b> The database backup is created in folder: UniServerZ\<b>db_backup_restore</b></p>
+<p><b>Note 2:</b> The Uniform Server's database backup effectively runs the following <b>Server Console</b> command:</p>
+
+<p><code>mysqldump --user=root --password=root --host=127.0.0.1 --databases db_name > output_file.sql</code></p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Database restore"></a>
+<h2>Database restore</h2>
+
+<p>The Uniform Server's database restore provides a quick and convenient method to restore a single database. Depending on the database size, this may take a considerable length of time to complete.</p>
+
+
+<p>From UniController, select restore database menu as follows:</p>
+<p class="access"> MySQL &gt; Database restore</p>
+
+
+<table width="100%">
+ <tr valign="top">
+  <td width="45%">
+<p><b><i>Restore database</i></b></p>
+
+ <ul>
+  <li>Select database name to restore (1).</li>
+  <li>Click <b>Restore</b> button (4).</li>
+  <li>Wait for <b>Backup Complete</b> message. This will take a long time for a large database.</li> 
+ </ul>
+
+<p><b>Notes:</b></p>
+
+ <ul>
+  <li><b>Help</b> (2) displays more information.</li>
+  <li><b>Clear</b> (3) clears selected database.</li>
+
+ </ul>
+
+
+  </td>
+  <td width="5%">&nbsp;</td>
+  <td>
+<img src="images/C11_mysql_dbrestore.gif" alt="Restore selected database">
+  </td>
+
+ </tr>
+</table>
+
+<p><b>Note 1:</b> The menu option allows you to restore a database from a backup file. The backup files are located in folder UniServerZ\<b>db_backup_restore</b>. They either already exist in the folder after you create a database backup or you can copy a file to this folder for restoring.</p>  
+
+<p><b>Note 2:</b> The Uniform Server's database restore effectively runs the following <b>Server Console</b> command:</p>
+
+<p><code> mysql --no-defaults --host=127.0.0.1 --port=3306 --user=root --password=root  --execute="source restore_file.sql"</code></p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

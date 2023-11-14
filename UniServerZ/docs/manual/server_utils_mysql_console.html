@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>MySQL Console</title>
+  <meta name="Description" content="The MySQL client is a very popular admin tool. Uniform Server provides a dedicated menu button that directly runs this utility in a console window. This page focuses on using the MySQL client. It is not intended as a definitive guide but just an introduction to show you how to access and use it.">
+  <meta name="Keywords" content="MySQL,Console,Prompt,command,window,short,cut,Basic,commands,Creating,users,permissions,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+/*****************************************/
+.td_sub{
+ font-size: 12px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+/*****************************************/
+</style>
+</head>
+
+
+<body id="p320">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/server_utils_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>MySQL Console</h1>
+</tr>
+</table>
+
+<p>The MySQL client is a very popular admin tool. Uniform Server provides a dedicated menu button that directly runs this utility in a console window. The console window displays <b>mysql&gt;</b> where you type MySQL commands; this combination is commonly referred to as the <b>MySQL prompt</b>. From this window, the MySQL server can be administered.</p>  
+
+<p>This page focuses on using the MySQL client. It is not intended as a definitive guide, but just an introduction to show you how to access and use it.</p>
+
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#MySQL client background information" >MySQL Console - background information</a></li>
+   <li><a href="#MySQL client - command window short cut" >MySQL Console - MySQL client shortcut</a></li>
+   <li><a href="#Basic MySQL commands" >Basic MySQL commands</a></li>
+   <li><a href="#Creating MySQL users" >Creating MySQL users</a></li>
+   <li><a href="#MySQL user permissions" >MySQL user permissions</a></li>
+   <li><a href="#Permissions overview" >Permissions overview</a></li>
+   <li><a href="#Data Manipulation" >&nbsp;&nbsp;Data Manipulation</a></li>
+   <li><a href="#Table manipulation" >&nbsp;&nbsp;Table manipulation</a></li>
+
+   <li><a href="#Related topics" >Related topics</a></li>
+   </ul>
+ </div>
+</div>
+
+<a name="MySQL client background information"></a>
+<h2>MySQL Console - background information</h2>
+<p>The following shows how to run the MySQL client in a standard command window from a fixed and portable installation.</p>
+
+<p><b>Fixed installation:</b></p>
+<p>After installing the MySQL server, its environment is set up allowing you to run the MySQL client directly from a command prompt. To start the MySQL client, proceed as follows:</p>
+
+
+<ol>
+<li>Start the mysql server - MySQL server must be running.</li>
+<li>Press the <b>Windows + R</b> keys - Opens the run menu.</li>
+<li>Type <b>cmd</b> and click <b>OK</b> - Opens a standard command window. </li>
+<li>Type <b>mysql.exe {parameters}</b> - Runs the MySQL client and displays the mysql prompt.</li>
+</ol>
+
+<p><b>Note 1:</b> The {parameters} are:</p> <pre>-h127.0.0.1 -uroot -proot</pre> <p><b>or</b></p> <pre>--host=127.0.0.1 --port=3306 --user=root --password=root</pre><br>
+<p><b>Note 2:</b> If you have changed the MySQL root password, remember to substitute -p<b>root</b> or --password=<b>root</b> with your password in the above.</p>
+
+<p><b>Portable installation:</b></p>
+<p>The MySQL server environment is not configured for a standard command window; an additional command is required to run the MySQL client. To start the MySQL client, proceed as follows:</p>
+
+<ol>
+<li>Start the mysql server - MySQL server must be running.</li>
+<li>Press the <b>Windows + R</b> keys - Opens the run menu.</li>
+<li>Type <b>cmd</b> and click <b>OK</b> - Opens a standard command window. </li>
+<li>Type <b>cd {path to mysql.exe}</b> - Where <b>{path to mysql.exe}</b> is full path to <b>mysql.exe</b>, for example C:\UniServerZ\core\mysql\<b>bin</b></li>
+<li>Type <b>mysql.exe {parameters}</b> - Runs the MySQL client and displays the mysql prompt.</li>
+</ol>
+
+<p><b>Note 1:</b> The {parameters} are:</p> <pre>-h127.0.0.1 -uroot -proot</pre> <p><b>or</b></p> <pre>--host=127.0.0.1 --port=3306 --user=root --password=root</pre><br>
+<p><b>Note 2:</b> If you have changed the MySQL root password, remember to substitute -p<b>root</b> or --password=<b>root</b> with your password in the above.</p>
+
+<p>Running the MySQL client requires a number of steps; you can reduce these by running the <b>Server Console</b> and entering the line:</p>
+
+<ul>
+  <li><code>mysql.exe <code>--host=127.0.0.1 --port=3306 --user=root --password=root</code></code>
+</ul>
+<p>However, this again requires additional work. The next section introduces <b>MySQL Console</b>, which removes the above tedium.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="MySQL client - command window short cut"></a>
+<h2>MySQL Console - MySQL client shortcut</h2>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<p>Running the MySQL client from UniController has a number of advantages:</p>
+ <ul>
+   <li>Opening the MySQL client requires only a single button click.   </li>
+   <li>The button is enabled only when the MySQL server is running.   </li>
+   <li>Server location tracking is automatically setting correct paths to MySQL binaries.   </li>
+   <li>User configured port and root password are automatically picked up.</li>
+ </ul>
+
+<p><b>Run MySQL Console:</b></p>
+
+<ol>
+  <li> Start UniController.</li> 
+  <li> Start MySQL server: click <b>Start MySQL</b> button.</li>
+  <li> Start MySQL Console: click <b>MySQL Console</b>.</li> 
+  <li> Since we are not going to use the utility, close it by entering <b>exit</b>.</li>
+</ol>
+
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+    <img src="images/C11_mysql_us_cmd_window.gif" alt="MySQL command window">
+</td>
+</tr>
+</table>
+
+<p>A MySQL console window is shown on the right. Note that after entering <b>exit</b> and pressing <b>Enter</b>, you are greeted with <b>Bye</b> and returned to a <a href="server_utils_server_console.html">Server Console</a> window. To re-run a MySQL console, first close this server console window and click the <b>MySQL Console</b> button again.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Basic MySQL commands"></a>
+<h2>Basic MySQL commands</h2>
+
+<p>The following provides a list of basic mysql commands, along with their descriptions.<br>
+Each command starts at a command prompt <b>mysql&gt;</b>. It is shown for reference; you do not type this in.</p>
+
+<table>
+<tr><td><b>Command</b></td><td><b>Description</b></td></tr>
+<tr><td><code>mysql&gt; create database [databasename]; &nbsp;</code></td> <td class="td_sub">Create a database on the MySQL server.</td></tr>
+<tr><td><code>mysql&gt; show databases;</code></td>                 <td class="td_sub">List all databases on the MySQL server.</td></tr>
+<tr><td><code>mysql&gt; use [db name];</code></td>                  <td class="td_sub">Switch to a database (selects a database).</td></tr>
+<tr><td><code>mysql&gt; show tables;</code></td>                    <td class="td_sub">List all tables in a database.</td></tr>
+<tr><td><code>mysql&gt; describe [table name];</code></td>          <td class="td_sub">View database's field formats.</td></tr>
+<tr><td><code>mysql&gt; drop database [database name];</code></td>  <td class="td_sub">Delete a database.</td></tr>
+<tr><td><code>mysql&gt; drop table [table name];</code></td>        <td class="td_sub">Delete a table.</td></tr>
+<tr><td><code>mysql&gt; SELECT * FROM [table name];</code></td>     <td class="td_sub">Show all data in a table.</td></tr>
+<tr><td><code>mysql&gt; show columns from [table name];</code></td> <td class="td_sub">List the columns and column information for a table.</td></tr>
+</table>
+<br>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Creating MySQL users"></a>
+<h2>Creating MySQL users</h2>
+
+<p>Creating a user for MySQL requires you to create a username with a password and assign permissions to different databases as needed. </p>
+
+<p><b>New user</b></p>
+
+<p>To create a new user with username 'fred' and password 'us123', proceed as follows:</p>
+
+<table>
+<tr><td>Click <b>MySQL Console</b></td>                                                <td class="td_sub">- Runs MySQL client. At the prompt, type next three lines.</td></tr>
+<tr><td><code>CREATE USER 'fred'@'127.0.0.1' IDENTIFIED BY 'us123';&nbsp;</code></td> <td class="td_sub">- Enter SQL command to create user and password.</td></tr>
+<tr><td><code>FLUSH PRIVILEGES;</code></td>                                     <td class="td_sub">- Flush the privileges, which reloads the 'user' table in MySQL.</td></tr>
+<tr><td><code>exit;</code></td>                                                 <td class="td_sub">- Exit MySQL client.</td></tr>
+</table>
+<p>At this stage, our new user <b>fred</b> is lacking permission and can't do anything, not even log onto the server. See next section for details.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="MySQL user permissions"></a>
+<h2>MySQL user permissions</h2>
+
+<p>Generally, the database of a web application is assigned to one specific user. There would be no need to have this user access any other database. </p>
+
+<p>You can assign a user to an existing database or create a new one. In this example, we create a new database 'wordpress' and allow 'fred' to have full access to it. He will be able to create, read, update and delete records as needed.</p>
+
+<p><b>New database assign user</b></p>
+
+<p>To create a new database and assign user 'fred', proceed as follows:</p>
+
+<table>
+<tr><td>Click <b>MySQL Console</b></td>                                                <td class="td_sub">- Runs MySQL client. At the prompt, type next four lines.</td></tr>
+<tr><td><code>CREATE DATABASE wordpress;&nbsp;</code></td>                      <td class="td_sub">- Enter SQL command to create new database.</td></tr>
+<tr><td><code>GRANT ALL PRIVILEGES ON wordpress.* TO 'fred'@'127.0.0.1';&nbsp;</code></td>  <td class="td_sub">- Grant privileges.</td></tr>
+<tr><td><code>FLUSH PRIVILEGES;</code></td>                                     <td class="td_sub">- Flush the privileges, which reloads the 'user' table in MySQL.</td></tr>
+<tr><td><code>exit;</code></td>                                                 <td class="td_sub">- Exit MySQL client.</td></tr>
+</table>
+<p>The above grants all permissions to your new user. If you wish to refine permissions granted, see next section for details.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Permissions overview"></a>
+<h2>Permissions overview</h2>
+<p>You can grant all permissions to a user for a specific database as above, or grant only a limited set of permission as covered in this section.</p>
+
+<p>Using the root user account, a database structure is created. You assign restrictions to this database for a specific user, either allowing full permissions or tailor restrictions to data and/or table manipulation.</p>
+
+<a name="Data Manipulation"></a>
+<h3>Data Manipulation</h3>
+<p>The most common use for a database is data manipulation, requiring the following minimum permissions:</p>
+
+<div  style="position: relative;left:50px">
+<table style="border: solid 1px black">
+<tr><td>SELECT&nbsp;</td>       <td>- read only</td></tr>
+<tr><td>INSERT</td>       <td>- insert rows/data</td></tr>
+<tr><td>UPDATE</td>       <td>- change inserted rows/data</td></tr>
+<tr><td>DELETE</td>       <td>- drop rows of data</td></tr>
+</table>
+</div>
+
+<p>To assign individual permissions, proceed as follows:</p>
+
+<table>
+<tr><td>Click <b>MySQL Console</b></td>                                                 <td class="td_sub">- Runs MySQL client. <b>Note:</b> logs into MySQL as the root user.</td></tr>
+<tr valign="top"><td><code>GRANT SELECT, INSERT, UPDATE ON wordpress.* TO 'fred'@'127.0.0.1';&nbsp;</code></td> <td class="td_sub">- Enter SQL command to assign SELECT, INSERT and UPDATE on database 'wordpress' to user 'fred'.</td></tr>
+<tr><td><code>FLUSH PRIVILEGES;</code></td>                                     <td class="td_sub">- Flush the privileges, which reloads the 'user' table in MySQL.</td></tr>
+<tr><td><code>exit;</code></td>                                                 <td class="td_sub">- Exit MySQL client.</td></tr>
+</table>
+
+<p>User <b>fred</b> can now select, insert and update records. However, <b>fred</b> does not have permission to delete records or adjust the structure of the database.</p>
+
+
+<a name="Table manipulation"></a>
+<h3>Table manipulation</h3>
+
+<p>Generally, most users do not require access to allow database structure alterations.  However, if they are designing databases, permissions to edit tables and database structure are required. Following are the permissions required:</p>
+
+<div  style="position: relative;left:50px">
+<table style="border: solid 1px black">
+<tr><td>CREATE&nbsp;</td>  <td>- create new tables</td></tr>
+<tr><td>ALTER</td>         <td>- change table/column names</td></tr>
+<tr><td>DROP</td>          <td>- drop columns/tables</td></tr>
+</table>
+</div>
+
+<p>To assign individual permissions, proceed as follows:</p>
+
+
+<table>
+<tr><td>Click <b>MySQL Console</b></td>                                                 <td class="td_sub">- Runs MySQL client. <b>Note:</b> logs into MySQL as the root user.</td></tr>
+<tr valign="top"><td><code>GRANT CREATE, DROP, ALTER ON wordpress.* TO 'fred'@'127.0.0.1';&nbsp;</code></td> <td class="td_sub">- Enter SQL command to assign CREATE, DROP and ALTER  on database 'wordpress' to user 'fred'.</td></tr>
+<tr><td><code>FLUSH PRIVILEGES;</code></td>                                     <td class="td_sub">- Flush the privileges, which reloads the 'user' table in MySQL.</td></tr>
+<tr><td><code>exit;</code></td>                                                 <td class="td_sub">- Exit MySQL client.</td></tr>
+</table>
+
+<p>User <b>fred</b> is now allowed to create, drop and alter tables on the 'wordpress' database.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Related topics"></a>
+<h2>Related topics</h2>
+
+<p><a href="mysql_change_password.html#Set New MySQL root user password using MySQL Prompt">Set New MySQL root user password using MySQL Console</a> <br>
+<a href="mysql_create_restricted_user.html#Create Restricted MySQL User using MySQL Prompt">Create Restricted MySQL User using MySQL Console</a><br>
+<a href="mysql_create_restricted_user.html#Delete Restricted MySQL User using MySQL Prompt">Delete Restricted MySQL User using MySQL Console</a><br>
+<a href="mysql_edit_restricted_user.html#Edit Restricted MySQL User using MySQL Prompt">Edit Restricted MySQL User using MySQL Console</a></p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

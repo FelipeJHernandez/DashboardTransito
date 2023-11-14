@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Apache - SSL</title>
+  <meta name="Description" content="Apache SSL Virtual Host">
+  <meta name="Keywords" content="SSL,Virtual,Host,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p640">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/apache_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Apache - SSL</h1>
+</tr>
+</table>
+
+
+<p>Secure Sockets Layer (SSL) offers privacy for client-server communication. SSL establishes an encrypted tunnel using cryptography algorithms and keys, through which other protocols such as HTTP are transported.</p>
+
+<p>By default, The Uniform Server Zero installation has SSL disabled for security reason. A certificate/key pair is required and must be unique to the particular server. After creating a new server certificate/key pair, SSL is automatically enabled in Apache's configuration file.</p>
+
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#How to Enable SSL" >How to Enable SSL</a></li>
+   <li><a href="#Apache configuration file changes" >&nbsp;&nbsp;Apache configuration file changes</a></li>
+   <li><a href="#Background" >Background</a></li>
+   <li><a href="#SSL Overview" >&nbsp;&nbsp;SSL Overview</a></li>
+   <li><a href="#IP addresses and SSL" >&nbsp;&nbsp;IP addresses and SSL</a></li>
+   <li><a href="#SSL Virtual Host" >SSL Virtual Host</a></li>
+   <li><a href="#Virtual Host - Configuration" >&nbsp;&nbsp;Default Virtual Host - Configuration</a></li>
+   <li><a href="#Certificates and signing request (CSR) location" >Certificates and server key location</a></li>
+
+   <li><a href="#Where to next" >Where to next</a></li>
+
+   </ul>
+ </div>
+</div>
+
+<a name="How to Enable SSL"></a>
+<h2>How to Enable SSL</h2>
+
+<p>After generating a self-signed certificate, SSL is automatically enabled. The <b>Server Certificate and Key generator</b> form has been pre-configured for a self-signed certificate and there is no need to change these values. Just click <b>Generate</b>.</p>
+
+<p>Please note, however, that a self-signed certificate is not considered secure.  Your browser will most likely complain about it.  Nevertheless, it is fine for local testing and you can set an override for most browsers.<br>  For the case of a production server environment, <b>DO NOT USE</b> a self-signed certificate since it will not be accepted by your users.</p> 
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<p class="access">Apache &gt; Apache SSL &gt; Server Certificate and Key generator</p>
+
+<ul>
+  <li>This opens the <b>Server Certificate and Key generator</b> menu shown at right.</li>
+  <li>Click <b>Generate</b> (D). After a short time, a confirmation pop-up is displayed.</li>
+  <li>For the new configuration to become effective, you must <b>restart Apache server</b>.</li>
+</ul>
+<p>The above generates a self-signed certificate.</p>
+
+<p><b>Note 1:</b> If you have changed the server name using Apache configuration menu, that name will be displayed instead of <b>localhost</b> (A).</p>
+<p><b>Note 2:</b> <b>Country</b> and <b>RSA bits</b> (B-C) are dropdown menus.</p>
+<p><b>Note 3:</b> 2048 Bits (C) provide high-grade encryption; no need to change this.</p>
+
+</td>
+<td width="5%"> &nbsp; </td>
+<td>
+   <img src="images/C11_apache_cert_gen_1.gif" alt="Start as program" >
+</td>
+</tr>
+</table>
+
+<p>After generating a self-signed certificate, the following configuration changes are made:</p>
+
+<a name="Apache configuration file changes"></a>
+<h3>Apache configuration file changes</h3>
+<p>Both <b>php_openssl.dll</b> and <b>httpd-ssl.conf</b> are enabled as follows:</p>
+<ul>
+  <li>Apache configuration file: UniServerZ\core\apache2\conf\<b>httpd.conf</b></li>
+  <li>Existing line: #LoadModule ssl_module modules/mod_ssl.so  </li>
+  <li>Changed to: LoadModule ssl_module modules/mod_ssl.so  </li>
+</ul>
+
+<table width="100%">
+<tr>
+<td width="45%">
+<p>The above change in turn enables <b>httpd-ssl.conf</b> via this block:</p>
+</td>
+<td width="5%"> &nbsp; </td>
+<td>
+<pre>
+&lt;IfModule ssl_module&gt;
+# Secure (SSL/TLS) connections
+Include conf/extra/httpd-ssl.conf
+&lt;/IfModule&gt;
+</pre>
+</td>
+</tr>
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Background"></a>
+<h2>Background</h2>
+<p>The following provides an overview of SSL and background information on how SSL is implemented on The Uniform Server Zero. This section can be skipped.</p>
+
+<a name="SSL Overview"></a>
+<h3>SSL Overview</h3>
+
+<p>The following outlines the SSL process with respect to a client. A Client is generally a user's browser. Let's assume your web-site server has the registered domain <b>fred.com</b></p> 
+<ul>
+  <li>A client makes a connection to <b>fred.com</b> on the SSL port (standard port is 443) by typing https://fred.com into their browser. Note the use of <b>https</b> instead of <b>http</b>.
+On connecting to web server, the client provides a list of available ciphers it can use.
+</li>
+  <li>The Server picks the strongest cipher that both understand and support. The Server sends back a certificate with its name and public encryption key, signed by a trusted Certificate Authority (CA).</li>
+  <li>The Client checks the certificate with the CA. Browsers have a collection of CAs stored locally. These are checked first, avoiding the need to directly contact the CA, and thus speeding up the process.</li>
+  <li>If the certificate is approved, the Client sends back a random number encrypted with the server's public key. This number is unique to the client and can only be decrypted by the server using its private key.</li>
+  <li>The Server and the Client use this random number to generate encrypted packets. Both Client browser and Server now communicate using encryption and all transactions are secured. The browser displays the secure icon.</li>
+</ul>
+
+<a name="IP addresses and SSL"></a>
+<h3>IP addresses and SSL</h3>
+<p>An SSL certificate is bound to your fully qualified domain name, which is encrypted into the certificate. Modern browsers send the server name identification (SNI) along with a request. Apache can use this in Vhosts to resolve certificates.</p>
+
+<p>Unfortunately, IE remains in the dark ages and expects servers to resolve using IP addresses. If you attempt to have more than one SSL certificate associated with the same IP address, you will get undesired results. The bottom line: to appease IE, you are restricted to using a single Apache SSL Vhosts name. </p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="SSL Virtual Host"></a>
+<h2>SSL Virtual Host</h2>
+
+<p>Generating a self-signed certificate enables the SSL Virtual Host configuration file. You can now access your server using either <b>http</b> or <b>htpps</b>; when using <b>https</b>, all transactions are encrypted.</p>
+
+<p>Using <b>https</b> incurs a small speed penalty so generally, a web-site is accessed using <b>http</b> and not <b>https</b>. If a user comes in on <b>http</b> and that linked resource requires <b>https</b>, it is forced (switched) to <b>https</b>. You can define a folder (ssl root folder) to specifically use only <b>https</b>.</p>       
+
+<p>The Uniform Server is pre-configured to run both a secure server (on port 443) and a regular server (on port 80). These are separated using VirtualHosts, which has the advantage of maintainability.</p>
+
+<p>To highlight this separation, a default Server installation has a user configuration button <a href="server_utils.html#View ssl"> View ssl</a> pre-assigned to it. By default, this button is greyed out and enabled only after a server certificate is generated. It then allows the secure folder's index page to be viewed in a browser. Note that you can re-assign this user button.</p>
+
+<a name="Virtual Host - Configuration"></a>
+<h3>Default Virtual Host - Configuration</h3>
+
+
+<p>Configuration file: UniServerZ\core\apache2\conf\extra\<b>httpd-ssl.conf</b></p>
+<table>
+<tr valign="top">
+<td>
+<pre>
+#=========================================================
+# File name: httpd-ssl.conf
+# Created By: The Uniform Server Development Team
+#=========================================================
+
+# This is the Apache server configuration file providing SSL support.
+
+#################### Global SSL ##########################
+Listen ${AP_SSL_PORT} https
+
+SSLProxyCipherSuite HIGH:MEDIUM:!MD5:!RC4
+
+SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:
+ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:
+DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:
+ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:
+ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:
+ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:
+DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:
+DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:
+!3DES:!MD5:!PSK
+
+SSLHonorCipherOrder on 
+
+SSLProtocol all -SSLv3
+SSLProxyProtocol all -SSLv3
+
+SSLPassPhraseDialog  builtin
+
+SSLSessionCache shmcb:${US_ROOTF}/core/apache2/logs/ssl_scache(512000)
+SSLSessionCacheTimeout 300
+
+##
+## SSL Virtual Host Context
+##
+
+&lt;VirtualHost _default_:${AP_SSL_PORT}&gt;
+
+#   General setup for the virtual host
+DocumentRoot "${US_ROOTF_SSL}"
+ServerName "${US_SERVERNAME}"
+ServerAdmin you@example.com
+ErrorLog "${US_ROOTF}/core/apache2/logs/error_ssl.log"
+TransferLog "${US_ROOTF}/core/apache2/logs/access_ssl.log"
+
+#   SSL Engine Switch:
+SSLEngine on
+
+#== Server Certificate:
+SSLCertificateFile "${US_ROOTF}/core/apache2/server_certs/server.crt"
+
+#== Server Private Key:
+SSLCertificateKeyFile "${US_ROOTF}/core/apache2/server_certs/server.key"
+
+SSLVerifyClient none
+SSLProxyEngine off
+
+#== Server Root folder:
+&lt;Directory "${US_ROOTF_SSL}"&gt; 
+  AllowOverride All
+  Require all granted
+  SSLRequireSSL
+&lt;/Directory&gt; 
+
+#SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
+&lt;FilesMatch "\.(cgi|shtml|phtml|php)$"&gt;
+    SSLOptions +StdEnvVars
+&lt;/FilesMatch&gt;
+&lt;Directory "${US_ROOTF}/cgi-bin/"&gt;
+    SSLOptions +StdEnvVars
+&lt;/Directory&gt;
+
+BrowserMatch "MSIE [2-5]" \
+         nokeepalive ssl-unclean-shutdown \
+         downgrade-1.0 force-response-1.0
+
+&lt;/VirtualHost&gt;                                  
+</pre>
+<p style="font-size:10px">Extract from file UniServerZ\core\apache2\conf\extra\<b>httpd-ssl.conf</b></p>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<p>General notes:</p>
+
+<ul>
+<li>Directory <b>${US_ROOTF_SSL}</b> - Informs Apache to listen on port US_ROOTF_SSL; default is 443 (Standard ssl port)</li>
+<li><b>SSLEngine</b> must be enabled for server to use SSL.</li>
+<li><b>DocumentRoot</b> sets the root directory for this virtual host. Allows you to separate secure content from regular content.</li>
+<li><b>SSLRequireSSL</b> forces SSL to be used (on this virtual host). A user can't connect using a regular HTTP request.</li>
+<li><b>SSLProtocol</b> - Disable all protocols other than TLS v1.0 and SSL v3.0.</li>
+<li><b>SSLCipherSuite</b> is set to use only HIGH and MEDIUM security cipher suites.</li>
+<li><b>SSLCertificateFile</b> and <b>SSLCertificateKeyFile</b> - Set to your server certificate and key files location.</li>
+<li><b>SSLVerifyClient</b> - Set to none if not using client authentication.</li>
+</ul>
+
+<p><b>Note 1:</b>  Environment path variable ${US_ROOTF} is automatically updated to match the server location.</p>
+
+<p><b>Note 2:</b>  The root folder path is set by environment variable ${US_ROOTF_SSL}. This is portable if assigned folder is below the main root folder <b>UniServerZ</b>. If assigned outside of the main root folder, the installation is fixed and the servers no longer portable.</p>
+
+
+</td>
+</tr>
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Certificates and signing request (CSR) location"></a>
+<h2>Certificates and server key location</h2>
+
+<p>The Uniform Server uses OpenSSL to generate a <a href="apache_server_cert_self_signed.html">self-signed</a> certificate and server key.</p>
+
+<p>OpenSSL and supporting files are located in folder UniServerZ\core\<b>openssl</b>.<br>
+<b>Note:</b> To view installed server certificate details, run UniServerZ\core\openssl\<b>View_cert_details.bat</b></p>
+
+<p>Server certificates are located or copied to folder UniServerZ\core\apache2\<b>server_certs</b></p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Where to next"></a>
+<h2>Where to next</h2>
+
+<p><a href="apache_server_cert_self_signed.html">Self-signed</a> - Self-signed test certificate details.<br>
+<a href="apache_free_server_cert.html">Free server certificate</a> - How to obtain and install free server certificate.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

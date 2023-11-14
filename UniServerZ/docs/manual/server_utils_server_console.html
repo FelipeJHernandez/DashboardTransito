@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Server Console</title>
+  <meta name="Description" content="The Server Console opens a command window with environment variables preset, and paths configured for server utilities. Apart from cosmetics, it is identical to a standard command window. This page focuses on using the Server Console. It is not intended as a definitive guide, but just an introduction to show you how to access and run server utilities, such as the MySQL client.">
+  <meta name="Keywords" content="Server,Command,Console,standard,window,MySQL,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+/*****************************************/
+.heading {
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #ffffff;
+ background-color:  #2F2F76;
+ font-size: 13px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.td_sub{
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #000000;
+ background-color:  #f0f0f0;
+ font-size: 12px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+/*****************************************/
+</style>
+</head>
+
+
+<body id="p310">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/server_utils_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Server Console</h1>
+</tr>
+</table>
+
+<p>The Server Console opens a command window with environment variables preset and paths configured for Uniform Server utilities. Apart from cosmetics, it is identical to a standard command window.</p>  
+
+<p>This page focuses on using the Server Console. It is not intended as a definitive guide, but just an introduction to show you how to access and run server utilities, such as the MySQL client.<br>
+<b>Note</b>: To run a MySQL client, the preferred method is to use the dedicated MySQL Console.</p>
+
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Command window - background" >Command window - background</a></li>
+   <li><a href="#How to run a standard command window" >&nbsp;&nbsp;How to run a standard command window</a></li>
+   <li><a href="#Server Console" >Server Console</a></li>
+   <li><a href="#MySQL Prompt -  Short cut" >MySQL Console</a></li>
+   <li><a href="#Server Utilities - View help information" >Server Utilities - View help information</a></li>
+   <li><a href="#Related topics" >Related topics</a></li>
+   </ul>
+ </div>
+</div>
+
+<a name="Command window - background"></a>
+<h2>Command window - background</h2>
+<p>Uniform Server Zero XIV is a portable WAMP stack; each component provides a number of command line utilities.  These command line utilities can be run using a standard command window (cmd). The process is tedious, as the following example demonstrates; you need to change the working directory to the folder containing the utility to be run and set any environment variables as required.</p>
+
+<a name="How to run a standard command window"></a>
+<h3>How to run a standard command window</h3>
+
+<p>This example uses the MySQL client to demonstrate how to run command line utilities using the standard command window. MySQL client allows you to run SQL commands; for example, to create or delete databases.</p>
+
+<p>To open a standard command window, run the <b>cmd</b> command from the start menu as described below. From the command window, navigate to the folder containing the MySQL utility program and from this folder, run the MySQL Console utility.</p>
+
+<p><b>Note 1:</b> The path where you installed The Uniform Server Zero XIV may be different; substitute your path as appropriate.<br>
+<b>Note 2:</b> To run MySQL utilities, you must have the MySQL server running.
+
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+
+<ol>
+  <li>Press the <b>Windows + R</b> keys - Opens the run menu.</li>
+  <li>Type <b>cmd</b> and click <b>OK</b> - Opens a standard command window. </li>
+  <li>Type following lines into the command window:<br>
+      <b>cd \</b> <br>
+      <b>cd C:\UniServerZ\core\mysql\bin</b> - Substitute path as appropriate.</li>
+  <li> Run the utility by typing the following:<br>
+       <b>mysql -h127.0.0.1 -uroot -proot</b></li>
+  <li> Since we are not going to use the utility, close it by entering <b>exit</b></li>  
+</ol>
+
+<p>The dialogue in the command window looks similar to that on the right.</p>
+
+</td>
+<td>&nbsp;</td>
+<td>
+    <img src="images/C11_mysql_standard_cmd_wind.gif" alt="Standard command window">
+</td>
+</tr>
+</table>
+
+<p>Running a command window from the host PC can become tedious, especially when running servers from a USB stick or moving servers to a different location because the paths will be different. The Server Console removes these steps; see below.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Server Console"></a>
+<h2>Server Console</h2>
+
+<p>The Server Console opens a command window with environment variables preset and paths configured for server utilities, removing the above steps.</p>
+
+<p>To run a server command-line utility, all that is required is to enter the command name and any parameters. For the above example, proceed as follows:</p>
+
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+
+<ol>
+  <li> Start UniController.</li> 
+  <li> Start MySQL server: click <b>Start MySQL</b> button.</li> 
+  <li> Start Command Console: click <b>Server Console</b> button</li> 
+  <li> Run the utility by typing the following:<br>
+       <b> mysql -h127.0.0.1 -uroot -proot</b></li>
+  <li> Since we are not going to use the utility, close it by entering <b>exit</b></li> 
+</ol>
+
+<p>The Server Console, with its pre-defined paths, makes running utilities easier than using the standard command prompt.</p>
+
+<p>You can access the MySQL server utilities as follows:</p>
+ 
+<ul>
+ <li> <b>mysql.exe</b> - MySQL client, runs SQL commands</li> 
+ <li> <b>mysqladmin.exe</b> - MySQL admin </li> 
+ <li> <b>mysqldump.exe</b> - Database dump</li> 
+</ul>
+
+</td>
+<td>&nbsp;</td>
+<td>
+    <img src="images/C11_command_console_1.gif" alt="Server Console">
+</td>
+</tr></table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="MySQL Prompt -  Short cut"></a>
+<h2>MySQL Console</h2>
+
+<p>The MySQL client is a very popular admin tool; Uniform Server Zero provides a dedicated menu button (<b>MySQL Console</b>) that directly runs this utility in a console window.</p>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<ol>
+  <li> Start UniController</li> 
+  <li> Start MySQL server: click <b>Start MySQL</b> button</li>
+  <li> Start MySQL Console: click <b>MySQL Console</b></li> 
+  <li> Since we are not going to use the utility, close it by entering <b>exit</b></li> 
+</ol>
+<p><b>Note 1:</b> The <b>MySQL Console</b> button is enabled only when the MySQL server is running.</p>
+<p><b>Note 2:</b> The MySQL Console runs a server console and the following command line:<br>
+<b>mysql.exe --host=localhost --port=3306 --user=root --password=root</b><br>
+Parameters used are automatically extracted from current MySQL server configuration.<br>
+The above command line shows default MySQL server configuration parameters.</p>
+<p><b>Note 3:</b> The MySQL client (<b>mysql.exe</b>) allows you to run SQL commands, for example to create or delete databases.</p>
+</td>
+<td>&nbsp;</td>
+<td>
+    <img src="images/C11_mysql_us_cmd_window.gif" alt="Standard command window">
+</td>
+</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Server Utilities - View help information"></a>
+<h2>Server Utilities - View help information</h2>
+
+<p>Each server utility contains a help facility showing parameters that can be used. The following lists utilities available:</p>
+
+<table cellspacing="4">
+<tr valign="top">
+  <td class="heading" ><b>Utility</b></td>
+  <td class="heading" ><b>Help</b></td>
+  <td class="heading" ><b>Comment</b></td>
+  <td></td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">ab.exe</td>
+  <td class="td_sub">-h</td>
+  <td class="td_sub">Benchmarking tool</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">abs.exe</td>
+  <td class="td_sub">-h</td>
+  <td class="td_sub">Benchmarking tool - SSL</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">msmtp.exe</td>
+  <td class="td_sub">--help</td>
+  <td class="td_sub">Mail utility</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">mysql.exe</td>
+  <td class="td_sub">--help</td>
+  <td class="td_sub">MySQL client - runs SQL commands</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">mysqladmin.exe </td>
+  <td class="td_sub">--help</td>
+  <td class="td_sub">MySQL admin</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">mysqldump.exe</td>
+  <td class="td_sub">--help</td>
+  <td class="td_sub">Database dump</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">openssl.exe</td>
+  <td class="td_sub"></td>
+  <td class="td_sub">Open SSL utility</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">php.exe</td>
+  <td class="td_sub">-h</td>
+  <td class="td_sub">PHP command line</td>
+</tr>
+
+<tr valign="top">
+  <td class="td_sub">perl.exe</td>
+  <td class="td_sub">-h</td>
+  <td class="td_sub">Perl command line</td>
+</tr>
+</table>
+
+
+<table width="100%">
+ <tr>
+   <td width="45%"><b>Note 1:</b> To display help information, enter utility name followed by the help parameter; for example:</td>
+   <td>&nbsp;</td>
+   <td><pre>mysqladmin.exe --help</pre></td>
+ </tr>
+
+ <tr>
+  <td><b>Note 2:</b> If output scrolls off the screen, add pipe "<b>| more</b>". This lets you page through the output by hitting the space bar; for example:</td>
+  <td>&nbsp;</td>
+  <td><pre>mysqladmin.exe --help | more</pre></td> 
+</tr>
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Benchmarking tool"></a>
+<h2>Benchmarking tool</h2>
+
+<p>Apache Bench (ab) is a simple http load generating tool.<br>
+Suppose we want to see how fast localhost can handle 100 requests, with a maximum of 10 requests running concurrently. Enter the following into Server Console:</p>
+<pre>
+ab.exe -n 100 -c 10 http://127.0.0.1/
+</pre>
+
+<p>You can target a specific page using the following format, and write the output to a file:</p>
+<pre>
+ab.exe -n 100 -c 10 http://127.0.0.1/test.php > test1.txt
+</pre>
+
+<p>Same as above, with <b>keep-alive</b> on:</p>
+<pre>
+ab.exe -n 100 -c 10 -k http://127.0.0.1/test.php > test1.txt
+</pre>
+
+<p>You can force the request to use <b>mod_deflate</b> (if available), using the following format:</p>
+<pre>
+ab.exe -n 100 -c 10 -H "Accept-Encoding: gzip;" http://127.0.0.1/test.php > test1.txt
+</pre>
+
+<p><b>Note:</b> Running tests from localhost skews the results; you should always run your benchmarks from another machine.<br>
+That said, you might be interested only in comparative results; for example, optimizing a particular piece of code for speed. Running locally will quickly highlight any bottlenecks. </p>
+
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Related topics"></a>
+<h2>Related topics</h2>
+
+<p><a href="mysql_change_password.html#Set New MySQL root user password using MySQL Prompt">Set New MySQL root user password using MySQL Console</a> <br>
+<a href="mysql_restore_password.html#Restore MySQL root user password using command window">Restore MySQL root user password using command window</a> <br>
+<a href="mysql_create_delete_database.html#Create Delete Database using Server Console">Create / Delete Database using Server Console</a><br>
+<a href="mysql_create_restricted_user.html#Create Restricted MySQL User using MySQL Prompt">Create Restricted MySQL User using MySQL Console</a><br>
+<a href="mysql_create_restricted_user.html#Delete Restricted MySQL User using MySQL Prompt">Delete Restricted MySQL User using MySQL Console</a><br>
+<a href="mysql_edit_restricted_user.html#Edit Restricted MySQL User using MySQL Prompt">Edit Restricted MySQL User using MySQL Console</a></p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

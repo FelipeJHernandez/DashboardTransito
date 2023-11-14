@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Server Utilities</title>
+  <meta name="Description" content="UniController has menu sections titled Apache Utilities and MySQL Utilities which provide useful features, such as single button access to phpMyAdmin and server documentation.">
+  <meta name="Keywords" content="Server,Utilities,Console,MySQL,phpMyAdmin,Adminer,Documentation,view,www,ssl,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+/*****************************************/
+.heading {
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #ffffff;
+ background-color:  #2F2F76;
+ font-size: 13px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.td_sub{
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #000000;
+ background-color:  #f0f0f0;
+ font-size: 12px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+/*****************************************/
+</style>
+</head>
+
+
+<body id="p300">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/server_utils_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Server Utilities</h1>
+</tr>
+</table>
+
+<p>UniController has menu sections titled <b>Apache Utilities</b> and <b>MySQL Utilities</b> which provide useful features, such as single button access to phpMyAdmin and server documentation.</p>
+
+<table width="100%">
+ <tr >
+  <td width="45%">
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Utility option buttons (opt1-opt3)"  >Utility option buttons (opt1-opt3)</a></li>
+   <li><a href="#Server Console"  >Server Console</a></li>
+   <li><a href="#View www"        >View www</a></li>
+   <li><a href="#View ssl"        >View ssl</a></li>
+   <li><a href="#Documentation"   >Documentation</a></li>
+   <li><a href="#MySQL Console"    >MySQL Console</a></li>
+   <li><a href="#phpMyAdmin"       >phpMyAdmin</a></li>
+   <li><a href="#Adminer"          >Adminer</a></li>
+  </ul>
+ </div>
+</div>
+  </td>
+
+<td width="5%">&nbsp;</td>
+
+<td>
+     <img src="images/C11_unicontroller_3.gif" alt="Server Utilities">
+</td>
+
+ </tr>
+</table>
+<p>The image on the right shows the available menu options.<br>
+If a menu button is greyed out, it means that that option is currently unavailable. This can be for a number of reasons, such as that a related server (or servers) is not running or the appropriate plugin has not been installed.</p>
+
+<a name="Utility option buttons (opt1-opt3)"></a>
+<h2>Utility option buttons (opt1-opt3)</h2>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<p>Utility option buttons (<b>opt1</b>-<b>opt3</b>) are initially unassigned (no modules installed, only UniController). However, all MySQL support modules have been initially pre-assigned to these buttons. You can change their assignment and button text, but it is recommended to keep the pre-assignments.</p>
+
+<table cellspacing="4">
+ <tr><td class="heading">Option</td> <td class="heading">Current Assignment</td></tr>
+ <tr><td class="td_sub" >opt1  </td> <td class="td_sub" >phpMyAdmin        </td></tr>
+ <tr><td class="td_sub" >opt2  </td> <td class="td_sub" >Adminer           </td></tr>
+ <tr><td class="td_sub" >opt3  </td> <td class="td_sub" >                  </td></tr>
+</table>
+
+<br>
+
+<p>Each option maps to a corresponding folder in the UniServerZ\<b>home</b> folder.<br>
+Option folders contain a file named <b>us_opt.ini</b>; inside this file are two user configurable parameters:</p>
+<pre>
+btntext = phpMyAdmin
+page = index.php
+</pre>
+</td>
+
+<td width="5%">&nbsp;</td>
+
+<td>
+<img src="images/C11_unisevrer_zero_2.gif" alt="UniServer Zero">
+</td>
+</tr>
+</table>
+
+<p>Parameter <b>btntext</b> allows you to set the button text to display. Parameter <b>page</b> allows you to define a page (and parameters) to run when the button is clicked.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Server Console"></a>
+<h2>Server Console</h2>
+
+<p>The Server Console opens a command window with environment variables preset and paths configured for Uniform Server utilities. Apart from cosmetics, it is identical to a standard command window (cmd).</p>
+
+<p><b>Note:</b> For full server console details, see <a href="server_utils_server_console.html">Server Console</a> page.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="View www"></a>
+<h2>View www</h2>
+
+<p><b>View www</b> is a pre-configured button to display the root folder index page in the default/portable browser. It is equivalent to typing the following into a browser's address bar:</p>
+
+<ul>
+ <li>url: http://localhost/ - When using the standard port (80). The port is not included as this is automatically added by browser. </li>
+ <li>url: http://localhost:8080/- When using non-standard port.</li>
+</ul>
+
+<p>Apache searches for an index page in the following order:</p>
+<pre>
+ index.html index.shtml index.html.var index.htm index.php3 index.php index.lua index.pl index.cgi
+</pre>
+<p>Server displays the first index page it finds. If an index page is not found, a directory (folder) listing is produced.<br>
+The list of indexes is defined in the Apache configuration file <b>httpd.conf</b>, using directive <b>DirectoryIndex</b>.</p>  
+
+<p><b>Note:</b> Substitute the domain name (localhost) and port (8080) as appropriate for the values configured.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="View ssl"></a>
+<h2>View ssl</h2>
+
+<p><b>View ssl</b> is a pre-configured button to display the root folder index page in the default/portable browser. It is equivalent to typing the following into a browser's address bar:</p>
+
+<ul>
+ <li>url: https://localhost/ - When using the standard port (443). The port is not included as this is automatically added by browser.</li>
+ <li>url: https://localhost:444/ - When using non-standard port.</li>
+</ul>
+
+<p>Apache searches for an index page in the following order:</p>
+<pre>
+ index.html index.shtml index.html.var index.htm index.php3 index.php index.lua index.pl index.cgi
+</pre>
+<p>Server displays the first index page it finds. If an index page is not found, a directory (folder) listing is produced.<br>
+The list of indexes is defined in the Apache configuration file <b>httpd.conf</b>, using directive <b>DirectoryIndex</b>.</p>  
+
+<p><b>Note:</b> Substitute the domain name (localhost) and port (444) as appropriate for the values configured.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Documentation"></a>
+<h2>Documentation</h2>
+
+<p>The <b>Documentation</b> button opens the <b>index.html</b> page from which the pages you are reading can be accessed. It follows the structure of the UniController menus. The top level describes commonly used functionality, while sub-menus detail the next level of functionality and provide more detailed information. It is self-contained, requiring no external references.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="MySQL Console"></a>
+<h2>MySQL Console</h2>
+
+<p>The MySQL utility is a very popular admin tool. Uniform Server Zero provides a dedicated menu button (<b>MySQL Console</b>) that directly runs this utility in a console window, commonly referred to as the MySQL prompt. From this window, the MySQL server can be administered.</p>
+
+<p><b>Note:</b> For full MySQL console details, see <a href="server_utils_mysql_console.html">MySQL Console</a> page.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="phpMyAdmin"></a>
+<h2>phpMyAdmin</h2>
+
+<p>phpMyAdmin is a MySQL administration tool written in PHP. It allows you to perform tasks such as creating, modifying or deleting databases. You can execute SQL statements and manage users and their permissions.</p>
+
+<p>The <b>phpMyAdmin</b> menu button opens the phpMyAdmin index page in the default/portable browser.</p>
+
+<ul>
+ <li>url: http://localhost:80/us_opt1/index.php</li>
+</ul>
+
+<p><b>Note 1:</b> By default, phpMyAdmin is accessible only to localhost.<br>
+   <b>Note 2:</b> The port (80) is substituted as appropriate for the value configured.<br>
+   <b>Note 3:</b> phpMyAdmin is an alternative to Adminer, which has a smaller foot-print.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Adminer"></a>
+<h2>Adminer</h2>
+
+<p>Adminer is a MySQL administration tool written in PHP. It allows you to perform tasks such as creating, modifying or deleting databases. You can execute SQL statements and manage users and their permissions.</p>
+
+<p>The <b>Adminer</b> menu button opens the Adminer index page in the default/portable browser.</p>
+
+<ul>
+ <li>url: http://localhost:80/us_opt2/index.php </li>
+</ul>
+
+<p><b>Note 1:</b> By default, Adminer is accessible only to localhost.<br>
+   <b>Note 2:</b> The port (80) is substituted as appropriate for the value configured.<br>
+   <b>Note 3:</b> Adminer, with its smaller foot-print, is an alternative to phpMyAdmin.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Extra Utilities</title>
+  <meta name="Description" content="The UniController Extra menu groups additional utilities that do not easily fit into other categories">
+  <meta name="Keywords" content="Extra,menu,PC-Win,start-up,Cron,Edit,Win,hosts,file,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p500">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/extra_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Extra Utilities</h1>
+</tr>
+</table>
+
+<p>The UniController <b>Extra</b> menu groups additional utilities that do not easily fit into other categories.</p>
+
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+
+   <table border="0">
+       <tr><td><a href="#PC-Win start-up" >PC-Win start-up</a></td>        <td>- Automatically run UniController and servers (Apache, MySQL) at start-up.</td></tr>
+       <tr><td><a href="#extra_cron" >Cron</a></td>                        <td>- Cron is a job scheduler allowing scripts to be run automatically.</td></tr>
+       <tr><td><a href="#Edit Win hosts file" >Edit Win hosts file</a></td><td>- View or edit Windows hosts file.</td></tr>
+   </table>
+
+ </div>
+</div>
+
+<a name="PC-Win start-up"></a>
+<h2>PC-Win start-up</h2>
+
+<p>This menu option is the only one that writes data to the registry. Hence, it is not truly portable. It allows you to automatically run UniController and optionally Apache and MySQL servers when you start your computer.</p>
+
+<p>Open <b>PC-Win start-up</b> menu and configure as follows:</p>
+<table width="100%">
+<tr valign="top">
+
+<td width="45%">
+<p class="access">Extra &gt; PC-Win start-up</p>
+<ul>
+ <li><b>Apache server</b> check box (1) enables/disables running Apache server at start-up.</li>
+ <li><b>MySQL server</b> check box (2) enables/disables running MySQL server at start-up.</li>
+ <li><b>Run at start-up</b> check box (3) enables/disables auto run at start-up.<br>
+     &nbsp;&nbsp;&nbsp;&#9702; Checked - Option enabled<br>
+     &nbsp;&nbsp;&nbsp;&#9702; UnChecked - Option disabled</li>
+</ul>
+<p><b>Note:</b> UniController is automatically run when <b>Run at start-up</b> is enabled, while items (1) and (2) are optional (enable/disable as desired).</p>
+
+</td>
+<td width="5%"> &nbsp; </td>
+<td>
+<img src="images/C11_pc_win_start_up.gif" alt="PC-Win start-up">
+</td>
+</tr>
+</table>
+
+<p>The above uses command line parameter <b>pc_win_start</b> to automatically control the servers. UniController supports other command line parameters; see page <a  href="command_line_parameters.html">Command Line Parameters</a> for details.</p>
+
+<a name="Manual Alternative"></a>
+<h3>Manual Alternative</h3>
+
+<p>The following are manual instructions that replicate options (1) and (2) above.</p>
+<p>Edit file: C:\UniServerZ\home\us_config\<b>us_config.ini</b> and change the following section as appropriate:</p>
+<pre>
+[PCSTARTUP]
+RunAtPcStartUpEnabled=false
+RunApacheAtStartUp=false
+RunMysqlAtStartUp=false
+</pre>
+
+<br>
+
+<p>The following are manual instructions that replicate option (3) above.</p>
+
+<p><b><i>Enable run at start-up</i></b></p>
+<ol>
+  <li>Open <b>Run</b> command box by pressing <b>Windows logo</b> + <b>R</b> keys. In the <b>Run</b> command field, type <b>Shell:startup</b> and then press <b>Enter</b> key to open <b>Startup</b> folder.</li>
+  <li>In the right pane, right-click anywhere, select <b>New</b> and then <b>Shortcut</b>.</li>
+  <li>Click <b>Browse...</b> and navigate to <b>C:\UniServerZ\UniController.exe</b> (update path as appropriate). Click <b>OK</b> and <b>Next</b>.
+  <li>Click <b>Finish</b> to complete the process.
+</ol>
+
+<p><b><i>Disable run at start-up</i></b></p>
+
+<ol>
+  <li>Open <b>Run</b> command box by pressing <b>Windows logo</b> + <b>R</b> keys. In the <b>Run</b> command field, type <b>Shell:startup</b> and then press <b>Enter</b> key to open <b>Startup</b> folder.</li>
+  <li>In the right pane, right-click on the <b>UniController</b> shortcut and in the pop-up, click <b>Delete</b>.</li>
+</ol>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="extra_cron"></a>
+<h2>Cron</h2>
+
+<p>The Uniform Servers portable Cron plugin has been integrated into Uniform Server Zero. Cron's configuration file has been pre-populated with various scripts to be run. These are essentially four-line templates that require enabling to run the appropriate applications from the Cron script.</p>
+
+<ul>
+  <li>For full Cron details, see <a href="extra_cron.html">Cron</a> page which includes:<br>
+    &nbsp;&nbsp;&nbsp;&#9702; Cron <a href="extra_cron.html#Configuration file">Configuration file</a><br>
+    &nbsp;&nbsp;&nbsp;&#9702; Cron <a href="extra_cron.html#Cron Controller">Controller</a></li>
+</ul>
+<p>Page also includes additional information and test scripts.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Edit Win hosts file"></a>
+<h2>Edit Win hosts file</h2>
+
+<p>This menu option allows you to directly run the Uniform Server <b>Edit Win hosts file</b> utility (C:\UniServerZ\utils\<b>EdHost.exe</b>).</p>
+
+<p class="access">Extra &gt; Edit Win hosts file</p>
+
+<p><b>Note:</b> At the User Account Control pop-up, click <b>Yes</b> to allow changes to this computer.</p>
+
+<table width="100%">
+<tr valign="top">
+
+<td width="45%">
+<p><b>A)</b> Add <i>IP address/Domain name</i> pair as follows:</p>
+
+<ul>
+  <li>Enter a <b>Host name</b> (1); for example, <b>fred.com</b>.</li>
+  <li><b>IP Address</b> (2): no need to change this (leave as 127.0.0.1)</li>
+  <li>Click <b>Add</b> button (3). Adds entry to the hosts file.<br>
+    &nbsp;&nbsp;&nbsp;&#9702; Also updates displayed host list on right.</li>
+  <li><b>Note: Reset</b> button (4) resets the host name field.</li>
+</ul>
+
+<p><b>B)</b> Delete <i>IP address/Domain name</i> pair as follows:</p>
+
+<ul>
+  <li>Select <i>IP address/Domain name</i> pair to delete (5).</li>
+  <li>Click <b>Delete</b> button (6). Deletes pair from the hosts file.<br>
+    &nbsp;&nbsp;&nbsp;&#9702; Also updates displayed host list on right.</li>
+  <li><b>Note: Reset</b> button (7) resets the form to its default state.</li>
+</ul>
+
+
+</td>
+<td width="5%"> &nbsp; </td>
+<td>
+<img src="images/C11_edit_hosts.gif" alt="Edit Windows host file">
+</td>
+</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

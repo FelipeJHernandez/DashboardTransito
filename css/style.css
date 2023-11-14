@@ -1,0 +1,77 @@
+.logo {
+    max-height:100px;
+}
+
+.avatar {
+    max-height:100px;
+}
+
+.imgproy {
+    width:100px;
+    height:100px;
+    object-fit: cover;
+}
+
+.vizprev {
+  background-color: #eee;
+  border: 1px solid #888;
+}
+
+.eje {
+	font-family : 'Arial';
+	font-size: 10px;
+}
+
+.titgraph {
+	font-family: 'Arial';
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.iconSMin {
+	font-size: 10px;
+}
+
+.iconSize {
+	font-size: 18px;
+}
+
+.iconSMax {
+	font-size: 20px;
+}
+
+path {
+  stroke: white;
+  stroke-width: 0.25px;
+  fill: #B0C0D0;
+}
+
+.legendBox
+{
+	color:				white;
+	margin:				1px;
+}
+
+.lBMay
+{
+	background-color:	#008265;
+}
+
+.lBJun
+{
+	background-color:	#CA7E00;
+}
+
+.lBJul
+{
+	background-color:	#CA4D00;
+}
+
+.lBAug
+{
+	background-color:	#2A3F54;
+}
+
+
+
+

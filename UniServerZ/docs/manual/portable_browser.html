@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Portable Browser</title>
+  <meta name="Description" content="The core component of The Uniform Server Zero portable browser plugin is the Portable Pale Moon browser. This page provides information on the User.ini configuration file and how to manually upgrade Pale Moon">
+  <meta name="Keywords" content="Portable,Browser,Pale,Moon,Configuration,file,User,ini,Manually,upgrade,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p1400">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/portable_browser_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Portable browser</h1>
+</tr>
+</table>
+
+<p>The core component of The Uniform Server Zero portable browser plugin is the Portable Pale Moon browser. This is an optimized version of Firefox. It eliminates some features that most users don’t use, reducing bloat. It is fully compatible with Firefox while being noticeably faster to load and to respond. In addition, all Firefox add-ons work as is. Installing this module transforms The Uniform Server Zero into a fully portable server with the benefit of a full-featured browser.</p>
+
+<p>This page provides information on the <b>User.ini</b> configuration file and how to manually upgrade Pale Moon.</p>
+
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+
+   <li><a href="#Background">Background</a></li>
+   <li><a href="#Configuration file User.ini">Configuration file User.ini</a></li>
+   <li><a href="#Manually upgrade Pale Moon">Manually upgrade Pale Moon</a></li>
+   </ul>
+ </div>
+</div>
+
+<a name="Background"></a>
+<h2>Background</h2>
+
+<p>Choosing a portable web browser for Uniform Server’s portable browser module was not an easy task. There are some very capable portable browsers; for example: Google Chrome, Firefox, Maxthon, Midori, Opera, Pale Moon, PocketKMeleon and TOR Browser Bundle to mention a few.</p>
+
+<p>Final choice was between Portable Firefox and Pale Moon (optimized version of Firefox). Except for compiled plugins, Pale Moon is fully compatible with all of Firefox extensions. The following list features that elevated Pale Moon above Portable Firefox:</p>
+<ul>
+   <li>Size - 10% smaller foot-print.</li>
+   <li>Optimized, resulting in speed increase.</li>
+   <li>Easier to pre-configure - advantage for Uniform Server Zero.</li>
+   <li>Minimum user effort to upgrade to newer version of Pale Moon.</li>
+   <li>Redundant functionality removed – reduces bloat.</li>
+</ul>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Configuration file User.ini"></a>
+<h2>Configuration file <b>User.ini</b></h2>
+
+<p>The Uniform Server Zero portable browser module was designed to have a minimum impact on the Pale Moon core component. Interestingly, the module is just a re-package of Pale Moon with a <b>User.ini</b> configuration file. Clearly, this demonstrates the flexibility of Pale Moon architecture.</p>
+
+<p>The <b>User.ini</b> configuration file is a copy of <b>Palemoon-Portable.ini</b>, with modifications allowing Pale Moon to run seamlessly with Uniform Server Zero. </p>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<b>Modifications:</b>
+<p>Shown on the right are extracts from <b>User.ini</b> configuration file, highlighting the modifications required for Uniform Server.</p>
+
+<p>First two modifications enable the use of a PAC file for resolving domain names.<br>
+Path to the PAC file (C:\UniServerZ\home\us_pac\<b>proxy.pac</b>) is saved to an environment variable (<b>US_PAC</b>) that Pale Moon picks-up. Unicontroller sets <b>US_PAC</b> variable to match the server location, hence is fully portable.</p>
+
+<p>Third modification forces the browser to use a blank page at start-up.</p>
+<p>Fourth modification disables session store resume; we are not worried about this.</p>
+<p>Last modification is to disable the Pale Moon splash screen. It's cosmetic and not required for Uniform Server.</p>
+</td>
+
+<td width="5%">&nbsp;</td>
+
+<td>
+<b>User.ini:</b>
+<pre>
+; ========================================
+; 		** User preferences **
+; ========================================
+
+;(1 US- Enable proxy to use PAC file)
+network.proxy.type=2
+
+;(2 US- Set PAC file either url or path defined by environment variable US_PAC)
+network.proxy.autoconfig_url=%US_PAC%|"/
+
+;(3 US- Start-up page blank)
+browser.startup.page=0
+
+;(4 US- Start-up unable to restore last session)
+browser.sessionstore.resume_from_crash=false
+
+; ========================================
+; 		** Global preferences **
+; ========================================
+
+[Options]
+DeleteTemp=true
+MultipleInstances=true
+RunWait=true
+;ShowSplash=true
+;(5 US- No splash screen)
+ShowSplash=false
+WriteLog=false
+</pre>
+</td>
+</tr>
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Manually upgrade Pale Moon"></a>
+<h2>Manually upgrade Pale Moon</h2>
+
+<p>If a newer version of Pale Moon Portable is released before the Uniform Server zero plugin is updated, you can manually upgrade as follows.</p>
+
+<p><b>Note:</b> Only use official binaries from <a href="https://www.palemoon.org/">https://www.palemoon.org/</a>; see their section on illegal redistributions. Using official binaries tightens security by preventing viruses and malware, which unofficial versions may contain.</p>
+
+<ol>
+ <li>Except for file <b>User.ini</b>, delete all files and folders in C:\UniServerZ\core\<b>palemoon</b></li>
+
+ <li>Download the latest (32-bit) version of Pale Moon Portable from <a href="https://www.palemoon.org/">https://www.palemoon.org/</a><br>
+      &nbsp;&nbsp;&nbsp;&#9702; Save to folder:  C:\UniServerZ\core\<b>palemoon</b> </li>
+
+ <li>Extract contents of the downloaded file:<br>
+     &nbsp;&nbsp;&nbsp;&#9702; Navigate to folder C:\UniServerZ\core\<b>palemoon</b><br>
+     &nbsp;&nbsp;&nbsp;&#9702; Double-click file <b>Palemoon-Portable-x.x.x.exe</b><br>
+     &nbsp;&nbsp;&nbsp;&#9702; This runs the 7-Zip self-extracting archive. No need to change the default path. Click <b>Extract</b> button.</li>
+
+ <li>If you wish to save space, delete the installation file <b>Palemoon-Portable-x.x.x.exe</b>; it is no longer required.</li>
+
+ <li>Create a user profile:<br>
+     &nbsp;&nbsp;&nbsp;&#9702; First time <b>Palemoon-Portable.exe</b> is run, a user profile is created. This process is automatic. <br>
+ 	 &nbsp;&nbsp;&nbsp;&nbsp; To start the process, double-click on file <b>Palemoon-Portable.exe</b> and wait for it to complete.<br>
+     &nbsp;&nbsp;&nbsp;&#9702; <b>Note 1:</b> It takes a relatively long time; on completion, the browser is opened. You can set personal preferences as required.<br>
+     &nbsp;&nbsp;&nbsp;&#9702; <b>Note 2:</b> Preferences required by UniServer have been pre-configured in the <b>User.ini</b> configuration file.<br>
+     &nbsp;&nbsp;&nbsp;&nbsp; When you have finished, close the browser. The browser is now ready to run from UniController as and when required.</li> 
+</ol>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="User configuration file"></a>
+<h3>User configuration file</h3>
+
+<p>After an upgrade, there are two configuration files (<b>Palemoon-Portable.ini</b> and <b>User.ini</b>) located in folder C:\UniServerZ\core\<b>palemoon</b>.</p>
+
+<p>The <b>User.ini</b> file is a modified copy of <b>Palemoon-Portable.ini</b><br>
+<b>Note:</b> The user configuration is used instead of <b>Palemoon-Portable.ini</b>, which can be deleted.</p>
+
+<p>Between releases of Pale Moon, there may be minor changes to <b>Palemoon-Portable.ini</b>. Before deleting this file, check for differences between <b>Palemoon-Portable.ini</b> and <b>User.ini</b> and add changes to the <b>User.ini</b> file. Uniform Server modifications are shown above in section <a href="#Configuration file User.ini">Configuration file User.ini</a></p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

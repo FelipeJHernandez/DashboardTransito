@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Root folder ssl - Access</title>
+  <meta name="Description" content="Enable or disable name password access">
+  <meta name="Keywords" content="Enable,disable,name,password,Local,Intranet,Internet,access,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p630">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/apache_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Root folder ssl - Access</h1>
+</tr>
+</table>
+
+<p>Creating a new <a href="apache_ssl.html">server certificate</a> for The Uniform Server automatically enables SSL in Apache's configuration file. You can now access your server using either http or https. The Uniform Server has a predefined folder (ssl root folder) that is reserved for https access.  
+By default, this folder is restricted to local access only. The following covers opening up your server for public or intranet access, and optionally restricting access using a name and password.</p>
+
+<p><b>Note 1:</b> This menu option requires an <b>.htaccess</b> file in the root folder <b>ssl</b>. If this file does not exist, you are given an option to create it.<br>
+
+<b>Note 2:</b> If it does not already exist, a backup htaccess file (<b>.htaccess_back</b>) is created. This allows the original file to be manually restored.</p>
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Overview" >Overview</a></li>
+   <li><a href="#Background information" >Background information</a></li>
+   <li><a href="#Creating a password file" >Creating a password file</a></li>
+   <li><a href="#Enable or disable name password access" >Enable or disable name password access</a></li>
+   <li><a href="#Change Access" >Change Access</a></li>
+   <li><a href="#Change Access Local" >&nbsp;&nbsp;Local Access</a></li>
+   <li><a href="#Change Access Intranet" >&nbsp;&nbsp;Local and Intranet Access</a></li>
+   <li><a href="#Change Access Internet" >&nbsp;&nbsp;Local, Intranet and Internet Access</a></li>
+   </ul>
+ </div>
+</div>
+
+
+<a name="Overview"></a>
+<h2>Overview</h2>
+
+<p class="access">Apache &gt; Access and Passwords  &gt; Folder ssl access and passwords</p>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+
+<p>This menu is split into three sections as follows:<p>
+
+<ol>
+  <li> <b>Enter name and password: </b> This section allows you to change the access name and password; the defaults are set to root:root. </li>
+  <li> Delete defaults.  <br>
+&nbsp;&nbsp;&nbsp;&#9702; Select the name-password pair <b>root:root</b>  (A).<br>
+&nbsp;&nbsp;&nbsp;&#9702; Click <b>Delete Selected</b> button (B).</li>
+
+<li>Generally, for a private server, a single name and password are used.<br>
+
+&nbsp;&nbsp;&nbsp;&#9702; Enter <b>name</b>  (C).<br>
+&nbsp;&nbsp;&nbsp;&#9702; Enter <b>password</b> (D).<br>
+&nbsp;&nbsp;&nbsp;&#9702; Click <b>Add to list</b> button (E).</li>
+
+<li>Repeat the above for additional name-password pairs.</li>
+
+<li> <b>Enable or Disable Password:</b> Radio buttons enables or disables the use of a password to access root folder <b>www</b>. Default is disabled.</li>
+
+<li> <b>Apache Server Access:</b> This section allows you to set who can gain access to root folder <b>www</b>.  Default is local access only.</li>
+</ol>
+
+</td>
+<td width="5%"> &nbsp; </td>
+<td>
+   <img src="images/C11_general_ssl_access.gif" alt="Root www access">
+</td>
+
+</tr>
+</table>
+
+<p><b>Note 1:</b> Server access is controlled using an <b>.htaccess</b> file. This can be directly edited.<br>
+<b>Note 2:</b> Apache does not require restarting; all changes take effect immediately.</p>
+
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Background information"></a>
+<h2>Background information</h2>
+
+<p>There are three ways of restricting access to documents: either by IP address, hostname or by asking for a username and password. The first two are very similar and can be used to restrict access on an intranet. The last option allows users to be restricted on an individual basis using a username and password. This process is commonly referred to as user authentication. The Uniform Server can restrict access using both IP address and user authentication.</p> 
+
+<p>Setting up user authentication requires two steps. First, you create a file containing a list of usernames and passwords. Secondly, you specify what resources are to be protected and which users are allowed to access them. Setting up IP address access requires only server configuration. Server configuration uses an <b>.htaccess</b> file located in the folder it is protecting (root folder <b>ssl</b>). This allows configuration to take immediate effect and does not require a server restart.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Creating a password file"></a>
+<h2>Creating a password file</h2>
+
+<p>A list of users and passwords needs to be created in a file. For security, this file must be located outside the document root. The Uniform Server is pre-configured and uses file: UniServerZ\htpasswd\ssl\<b>.htpasswd</b></p>
+
+<table width="100%">
+<tr>
+<td width="45%">
+
+<p>The file contains a list of name and password pairs, each on a single line.<br>
+The name and password are separated using a colon.<br>
+A password file can consist of a single line.<br>
+The default is <b>root:root</b><br>
+<b>Important:</b> default passwords are compromised; always delete them.</p>
+</td>
+
+<td width="5%"> &nbsp; </td>
+
+<td>
+<pre>
+root:root
+mike:fred123
+john:xyz45
+dave_smith:za123 
+mike smith:good1234
+</pre>
+</td>
+
+<tr>
+<td>
+<p><b><i>Edit or change password</i></b></p>
+<ul>
+  <li>Select existing name-password pair to be changed (A).</li>
+  <li>Click <b>Delete Selected</b> button (B) removes old name-password and updates password file.</li>
+  <li>Add new name-password (see below).</li>
+</ul>
+
+<p><b><i>Add name/password pair to list</i></b></p>
+<ul>
+  <li>Enter new <b>name</b> (C).</li>
+  <li>Enter new <b>password</b> (D).</li>
+  <li>Click <b>Add to List</b> (E). This updates password file.</li>
+</ul>
+</td>
+
+<td width="5%"> &nbsp; </td>
+
+<td>
+   <img src="images/C11_general_ssl_access.gif" alt="Root ssl access">
+</td>
+
+</tr>
+</table>
+<p><b>Note:</b> The menu provides a convenient way to enter names and passwords.<br>You can edit the file  UniServerZ\htpasswd\ssl\<b>.htpasswd</b> directly using a text editor.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Enable or disable name password access"></a>
+<h2>Enable or disable name password access</h2>
+
+<p>Server configuration uses an <b>.htaccess</b> file located in root folder UniServerZ\<b>ssl</b>. It is pre-configured for basic authentication. The default is basic authentication disabled. Four lines (Apache directives) in this configuration file control authentication and are edited as follows: </p> 
+
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<p><b><i>Enable authentication</i></b></p>
+<ul>
+  <li>Click radio button <b>Password enabled</b> (G).</li>
+  <li>Alternatively, edit file UniServerZ\ssl\<b>.htaccess</b> and uncomment (remove <b>#</b>) four lines as shown:</li>
+</ul>
+
+<pre>
+AuthName "Uniform Server - Secure Server Access"
+AuthType Basic
+AuthUserFile ../../../htpasswd/ssl/.htpasswd
+Require valid-user
+</pre>
+
+<p><b><i>Disable authentication</i></b></p>
+<ul>
+  <li>Click radio button <b>Password disabled</b> (F).</li>
+  <li>Alternatively, edit file UniServerZ\ssl\<b>.htaccess</b> and comment (add <b>#</b>) to four lines as shown:</li>
+</ul>
+
+<pre>
+#AuthName "Uniform Server - Secure Server Access"
+#AuthType Basic
+#AuthUserFile ../../../htpasswd/ssl/.htpasswd
+#Require valid-user
+</pre>
+
+<td width="5%"> &nbsp; </td>
+
+<td>
+   <img src="images/C11_general_ssl_access.gif" alt="Root ssl access">
+</td>
+</tr>
+</table>
+<p><b>Note:</b> The menu provides a convenient way to enable or disable authentication.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Change Access"></a>
+<h2>Change Access</h2>
+
+<p>Server configuration uses an <b>.htaccess</b> file located in root folder UniServerZ\<b>ssl</b>. It is pre-configured to allow local access only. Four lines (Apache directives) control who can access the server. These lines are edited as follows:</p>
+
+
+<table width="100%">
+<tr>
+<td width="45%">
+
+<a name="Change Access Local"></a>
+<b><i>Local Access</i></b>
+<ul>
+  <li>Click radio button <b>Local Access</b> (H).</li>
+  <li>Alternatively, edit file UniServerZ\ssl\<b>.htaccess</b> and uncomment (remove <b>#</b>) four lines as shown:</li>
+</ul>
+
+<pre>
+Order Deny,Allow
+Deny from all
+Allow from 127.0.0.1
+Allow from ::1
+</pre>
+
+<a name="Change Access Intranet"></a>
+<b><i>Local and Intranet Access</i></b>
+<ul>
+  <li>Click radio button <b>Local and Intranet Access</b> (I).</li>
+  <li>Alternatively, edit file UniServerZ\ssl\<b>.htaccess</b> and uncomment (remove <b>#</b>) four lines as shown:</li>
+</ul>
+
+<pre>
+Order Deny,Allow
+Deny from all
+Allow from 127.0.0.1 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8
+Allow from ::1
+</pre>
+
+<a name="Change Access Internet"></a>
+<b><i>Local, Intranet and Internet Access</i></b>
+<ul>
+  <li>Click radio button <b>Local, Intranet and Internet Access</b> (J).</li>
+  <li>Alternatively, edit file UniServerZ\ssl\<b>.htaccess</b> and comment (add <b>#</b>) to four lines as shown:</li>
+</ul>
+
+<pre>
+#Order Deny,Allow
+#Deny from all
+#Allow from 127.0.0.1
+#Allow from ::1
+</pre>
+</td>
+
+<td width="5%"> &nbsp; </td>
+
+<td>
+   <img src="images/C11_general_ssl_access.gif" alt="Root ssl access">
+</td>
+</tr>
+</table>
+
+<p style="font-size:10px"><b>Deny from all</b>: No one allowed access<br>
+<b>Allow from 127.0.0.1 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8</b>: Access is restricted to locahost and Intranet <br>
+<b>Allow from 127.0.0.1</b>: Access is restricted to locahost (127.0.0.1) IPv4<br>
+<b>Allow from ::1</b>: Access is restricted to locahost (::1) IPv6</p>
+
+<p><b>Note:</b> The menu provides a convenient way to change and restrict access.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Apache - Free Server Certificate</title>
+  <meta name="Description" content="Free Server Certificate Install certificates">
+  <meta name="Keywords" content="Install,certificates,Register,domain,name,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p660">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/apache_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Apache - Free Server Certificate</h1>
+</tr>
+</table>
+
+
+<p>A free server certificate using the service from <a href="https://letsencrypt.org/">https://letsencrypt.org/</a> is a better choice than a self-signed certificate.<br>
+Please note that The Uniform Server developers have no relation or affiliation with this site. The material is included here only to provide a better alternative to a self-signed certificate. Other choices likely are available.</p>
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Register a domain name" >Register a domain name</a></li>
+   <li><a href="#Get certificates" >Get certificates</a></li>
+   <li><a href="#Install certificates" >Install certificates</a></li>
+   <li><a href="#Edit SSL Configuration file" >Edit SSL Configuration file</a></li>
+   <li><a href="#Local Test" >Local Test</a></li>
+
+  <li><a href="#Where to next" >Where to next</a></li>
+
+   </ul>
+ </div>
+</div>
+
+<p>Let's Encrypt is a free, automated, and open certificate authority. The term free means just that: no hidden catches or trials.</p>
+   
+<p>Obtaining a free server certificate requires a number of steps. First you need to have a registered domain name, then you get a certificate using a client software for the Windows environment. Finally, you install this certificate on your server. This page covers each step in more detail.</p> 
+
+
+<a name="Register a domain name"></a>
+<h2>Register a domain name</h2>
+
+<p>Register a domain name with a registrar of your choice. The information you supply pertains to the domain you are registering. To obtain a free certificate, the contact e-mail address you supply is of the utmost importance. This is the address where a registrar can contact you. This e-mail address will be used by Let's Encrypt's client software to verify who you are (domain name). Alternatively, if your domain name is active (site has a mail-server), the site email address can be used for verification.</p>
+
+<p><b>Note:</b> Your registrar <b><i>contact e-mail address</i></b> allows you to obtain a signed certificate before making your site live. This allows you to test your site locally with a signed certificate and confirm that Apache’s SSL Vhost server verification chain works.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Get certificates"></a>
+<h2>Get certificates</h2>
+<p>Let’s Encrypt uses the ACME protocol to verify that you control a given domain name and to issue you a certificate. To get a Let’s Encrypt certificate, you’ll need to choose an ACME client software from the <a href="https://letsencrypt.org/">https://letsencrypt.org/</a> website. Select one for the <a href="https://letsencrypt.org/docs/client-options/#clients-windows-/-iis"> Windows / IIS</a> environment and follow the instructions provided on the selected client's website.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Install certificates"></a>
+<h2>Install certificates</h2>
+
+<p>Once your certificate has been issued and files have been downloaded to your computer, copy the two files <b>yourdomain-chain.pem</b> and <b>yourdomain-key.pem</b> to Apache folder <b>server_certs</b></p>
+<ul>
+<li>Copy <b>yourdomain-chain.pem</b> to UniServerZ\core\apache2\server_certs\<b>yourdomain-chain.pem</b></li> 
+<li>Copy <b>yourdomain-key.pem</b> to UniServerZ\core\apache2\server_certs\<b>yourdomain-key.pem</b></li> 
+</ul>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Edit SSL Configuration file"></a>
+<h2>Edit SSL Configuration file</h2>
+
+<p>Two lines require editing in Apache’s SSL configuration file as follows:</p>
+<p>Edit file: UniServerZ\core\apache2\conf\extra\<b>httpd-ssl.conf</b></p>
+
+<p>Locate these two lines:</p>
+<pre>
+SSLCertificateFile "${US_ROOTF}/core/apache2/server_certs/server.crt"
+SSLCertificateKeyFile "${US_ROOTF}/core/apache2/server_certs/server.key"
+</pre>
+
+<p>Edit as shown below:</p>
+<pre>
+SSLCertificateFile "${US_ROOTF}/core/apache2/server_certs/yourdomain-chain.pem"
+SSLCertificateKeyFile "${US_ROOTF}/core/apache2/server_certs/yourdomain-key.pem"
+</pre>
+
+<p><b>Note:</b> The environment variable ${US_ROOTF} is automatically set to the Uniform Server Zero top-level folder, for example C:/<b>UniServerZ</b> </p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Local Test"></a>
+<h2>Local Test</h2>
+<p>Before going live with your secure server, you can test it locally. To do this, your domain name (for example, fred.com) must resolve to an IP address.</p>
+
+<p>Refer to the <a href="apache_basic_configuration.html#Server Name">Server Name</a> page for details; use either option 1 or option 2.</p>
+
+<p>Option 1 is assumed (Entry automatically made in Uniform Server's PAC file).</p>
+<ul>
+  <li>Start the Apache server</li>
+  <li>Click <b>View ssl</b> button</li>
+  <li>The secure test page should be displayed with no alerts.</li>
+</ul>
+
+<p><b>Note</b>: Replace <b>fred.com</b> with the hostname you used when creating your certificate. Be sure to remove this line when you are ready to go live.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Where to next"></a>
+<h2>Where to next</h2>
+
+<p><a href="apache_ssl.html">Apache SSL</a> - Introduction and overview.<br>
+<a href="apache_server_cert_self_signed.html">Self-signed</a> - Self-signed test certificate details.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>MySQL</title>
+  <meta name="Description" content="MySQL is an open source database server. When used in conjunction with PHP scripts, powerful and dynamic server-side applications can be created. MySQL server administration is performed using phpMyAdmin and The Uniform Server’s integrated utilities">
+  <meta name="Keywords" content="MySQL,MariaDB,server,root,password,port,Database,backup,restore,configuration,PHP,phpMyAdmin,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+/*****************************************/
+.heading {
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #ffffff;
+ background-color:  #2F2F76;
+ font-size: 13px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.td_sub{
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #000000;
+ background-color:  #f0f0f0;
+ font-size: 12px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.td_sub2{
+ font-size: 12px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+/*****************************************/
+</style>
+</head>
+
+
+<body id="p700">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/mysql_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>MySQL</h1>
+</tr>
+</table>
+
+
+<p>MySQL is an open source database server. When used in conjunction with PHP scripts, powerful and dynamic server-side applications can be created. MySQL server administration is performed using phpMyAdmin and The Uniform Server’s integrated utilities. This page covers the <b>MySQL</b> UniController menu.</p>
+
+<p><b>Note:</b> With the appropriate module (plugin), you can run either MySQL or MariaDB server. These are equivalent; UniController text adapts to the plugin installed. This documentation makes no distinction and refers to MySQL. While reading this documentation, interchange MySQL and MariaDB as appropriate.</p>
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Change MySQL port" >Change MySQL port</a></li>
+   <li><a href="#Change MySQL root password" >Change MySQL root password</a></li>
+   <li><a href="#Restore default password (root)" >Restore default password (root)</a></li>
+   <li><a href="#Create Delete Database" >Create / Delete Database</a></li>
+   <li><a href="#Create Restricted MySQL User" >Create Restricted MySQL User</a></li>
+   <li><a href="#Edit Restricted MySQL User" >Edit Restricted MySQL User</a></li>
+   <li><a href="#Database backup" >Database backup</a></li>
+   <li><a href="#Database restore" >Database restore</a></li>
+   <li><a href="#Edit Config file my.ini" >Edit Config file my.ini</a></li>
+   <li><a href="#MySQL error log" >MySQL error log</a></li>
+   <li><a href="#MySQL configuration notes" >MySQL configuration notes</a></li>
+   </ul>
+ </div>
+</div>
+
+
+<a name="Change MySQL port"></a>
+<h2>Change MySQL port</h2>
+
+
+<p>The <b>Change MySQL port</b> menu allows you to specify the MySQL port (standard port: 3306).</p>
+
+<p><b><i>Change MySQL port</i></b></p>
+<p class="access">MySQL &gt; Change MySQL port</p>
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+ <ul>
+  <li>Current port setting is displayed.  </li>
+  <li>Change the port to required value. </li>
+  <li>Click the corresponding <b>Ok</b> button. </li>
+ </ul>
+</td>
+<td width="5%">&nbsp;</td>
+<td>
+  <img src="images/C11_change_mysql_port.gif" alt="Change MySQL Port">
+</td>
+</tr>
+</table>
+
+<p><b>Note:</b> For new port to become effective, you must restart the servers.</p>
+
+<p><b>General Notes</b>:</p>
+<p>The Uniform Server Zero sets the port environment variable MYSQL_TCP_PORT and updates the user configuration file <b>user_configuration.bat</b>. The environment variable MYSQL_TCP_PORT is used by MySQL standard utilities.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Change MySQL root password"></a>
+<h2>Change MySQL root password</h2>
+
+<p>Starting UniController provides the first opportunity to change the current root password. It is highly recommended that you set this password at the first opportunity.</p>
+
+<p>Alternatively, you can skip setting a new MySQL root password and run this menu option later using:</p>
+<p class="access">MySQL &gt; Change MySQL root password</p>
+
+<table width="100%">
+<tr valign="top">
+ <td width="45%">
+<ul>
+ <li>The <b>Set New MySQL Password</b> menu opens (see image on right). </li>
+ <li>Enter a new password (A).</li>
+ <li>Click the <b>OK</b> button (B).</li>
+</ul>
+
+  </td>
+  <td width="5%">&nbsp;</td>
+  <td>
+    <img src="images/C11_change_mysql_password.gif" alt="Set root user MySQL password">
+  </td>
+ </tr>
+
+</table>
+<p><b>Note 1:</b> Clicking the <b>Cancel</b> button, no action is taken. You can set the password later.<br>
+   <b>Note 2:</b> For detailed information, see <a href="mysql_change_password.html">MySQL - Change password</a></p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Restore default password (root)"></a>
+<h2>Restore default password (root)</h2>
+
+<p>Restoring the MySQL root password is fully automated; just click the following sub-menu:</p>
+<p class="access">MySQL &gt; Restore default password (root)</p>
+
+<p>You can run <b>Restore default password</b> with or without the MySQL server running. In either situation, the MySQL server is started or re-started with no grant tables and the password restored. After restoration, the MySQL server is stopped.</p>
+
+<p><b>Note:</b> For detailed information, see <a href="mysql_restore_password.html">MySQL - Restore password</a></p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Create Delete Database"></a>
+<h2>Create / Delete Database</h2>
+
+<p>There are three methods for creating or deleting a database: via command prompt, phpMyAdmin or UniController.<br>
+ For detailed information, see <a href="mysql_create_delete_database.html">MySQL Create / Delete Database</a> </p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Create Restricted MySQL User"></a>
+<h2>Create Restricted MySQL User</h2>
+
+<p>A restricted user has no root privileges and is constrained to a single database.
+
+<p>There are three methods for creating a restricted user: at a command prompt, with phpMyAdmin or through UniController.<br>
+For detailed information, see <a href="mysql_create_restricted_user.html">MySQL Create Restricted User</a></p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Edit Restricted MySQL User"></a>
+<h2>Edit Restricted MySQL User</h2>
+
+<p>The same aspects for creating a restricted user (above) apply to editing restricted users.<br>
+For detailed information, see <a href="mysql_edit_restricted_user.html">MySQL Edit Restricted User</a></p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Database backup"></a>
+<h2>Database backup</h2>
+
+<p>The Uniform Server's database backup allows for manual backup of a selected database.<br>
+For detailed information, see <a href="mysql_database_backup_restore.html">MySQL Database Backup / Restore</a></p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Database restore"></a>
+<h2>Database restore</h2>
+
+<p>The Uniform Server's database restore allows for manual restore of a selected database.<br>
+For detailed information, see <a href="mysql_database_backup_restore.html">MySQL Database Backup / Restore</a></p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Edit Config file my.ini"></a>
+<h2>Edit Config file my.ini</h2>
+
+<p>The following sub-menu opens the MySQL configuration file in Notepad, allowing you to directly edit the file:</p>
+<p class="access">MySQL &gt; Edit Config file my.ini</p>
+
+<p>Location of the configuration file:  UniServerZ\core\mysql\<b>my.ini</b></p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="MySQL error log"></a>
+<h2>MySQL error log</h2>
+
+<p>This menu option provides a convenient shortcut, allowing you to view the MySQL server log file. If you are experiencing problems with the server, this should be your first port of call; its content may shed light on a particular issue.</p>
+
+<p class="access">MySQL &gt; MySQL error log</p>
+
+
+<p>The path to the log file is:  UniServerZ\core\mysql\data\<b>mysql.err</b><br>
+<b>Note:</b> Depending on where you extracted UniServer, the path may differ.</p>
+
+
+<p>A short extract from the file:</p>
+<pre>
+(...) [System] [MY-010116] [Server] C:\UniServerZ\core\mysql\bin\mysqld_z.exe (mysqld x.x.x) starting as process 6388
+(...) [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+(...) [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+(...) [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+(...) [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+(...) [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+(...) [System] [MY-010931] [Server] C:\(...)\mysqld_z.exe: ready for connections. Version: 'x.x.x'  socket: ''  port: 3306  MySQL (...)
+</pre>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="MySQL configuration notes"></a>
+<h2>MySQL configuration notes</h2>
+
+<p><b>UniController MySQL command-line parameter override</b></p>
+
+<p>Internally, UniController uses a command-line to start the MySQL server with the following format:</p>
+<pre>
+ ..\UniServerZ\(...)\mysqld_z.exe --defaults-file=" " --tmpdir=" " --datadir=" " --innodb_data_home_dir=" " --innodb_log_group_home_dir=" "
+</pre>
+
+<br>
+<p><b>Parameters with example values</b></p>
+<p>Parameter <b>--defaults-file</b> forces the MySQL server to use a specific configuration file; for example, <b>new_my.ini</b>.</p>
+<pre>
+ --defaults-file="..\UniServerZ\core\mysql\new_my.ini "        Full path to MySQL configuration file
+ --tmpdir="..\UniServerZ\tmp "                                 Full path to temp folder
+ --datadir="..\UniServerZ\core\mysql\data "                    Full path to data folder
+ --innodb_data_home_dir="..\UniServerZ\core\mysql\data "       Full path to innodb data home folder
+ --innodb_log_group_home_dir="..\UniServerZ\core\mysql\data "  Full path to innodb log group folder
+</pre>
+
+
+<p>The above paths are dynamic. For portability, these paths are automatically adjusted relative to folder <b>UniServerZ</b>. Generally, users do not need to change the above parameters. Hence, to prevent inadvertent changes and to make portability transparent, the last four parameters were moved from the configuration file (<b>my.ini</b>) to the command-line.</p>    
+
+<p>Command-line parameters take priority over those in the configuration file. If you are using a fixed installation and need to change any of the above parameter paths, Uniform ZeroXIV provides a mechanism through the server configuration file UniServerZ\home\us_config\<b>us_config.ini</b> explained below.</p>
+
+<br>
+<a name="Configuration section [MYSQL]"></a>
+<h3>Configuration section [MYSQL]</h3>
+
+<p>The configuration file UniServerZ\home\us_config\<b>us_config.ini</b> contains commonly changed parameters.</p>
+
+<table width="100%">
+ <tr>
+ <td width="45%" valign="top">
+   <p><b>Override:</b><br> 
+   To override MySQL command-line parameters, edit configuration file <b>us_config.ini</b>.&nbsp;&nbsp;</p>
+
+   <ol>
+     <li>Add a new section named <b>[MYSQL]</b>.</li>
+     <li>To this section, add parameters you wish to change.</li>
+    </ol>
+
+  <p>Parameters are listed on the right.</p>
+ </td>
+ <td width="5%">&nbsp;</td>
+ <td  valign="top">
+   <p><b><i>Parameters:</i></b></p> 
+  <table>
+   <tr> <td class="td_sub">defaults-file=</td>             <td class="td_sub2">- MySQL configuration file</td></tr>
+   <tr> <td class="td_sub">tmpdir=</td>                    <td class="td_sub2">- MySQL temp folder</td> </tr>
+   <tr> <td class="td_sub">datadir=</td>                   <td class="td_sub2">- MySQL data folder</td> </tr>
+   <tr> <td class="td_sub">innodb_data_home_dir=</td>      <td class="td_sub2">- MySQL innodb data folder</td> </tr>
+   <tr> <td class="td_sub">innodb_log_group_home_dir=</td> <td class="td_sub2">- MySQL innodb log folder</td> </tr>
+   </table>
+  </td>
+ </tr>
+</table>
+
+<p><b>Parameter values:</b></p>
+<p><b><i>Option 1</i>:</b><br>
+All parameter paths are specified in Windows format. For example, <b>defaults-file=C:\my.ini</b> will force the use of <b>my.ini</b> on the C: drive and <b>datadir=D:\xxx</b> will force the use of folder <b>xxx</b> on D: drive for MySQL data folder.</p>
+
+<p><b><i>Option 2</i>:</b><br>
+Except for the <b>defaults-file</b> parameter (which must have a value - full path to file), all parameters can be specified with no value. This disables that command-line parameter, allowing you to set that parameter in the configuration file (<b>my.ini</b>).</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

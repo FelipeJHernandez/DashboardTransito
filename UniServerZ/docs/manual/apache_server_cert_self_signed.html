@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Apache - Self-Signed Server Certificate</title>
+  <meta name="Description" content="Apache Self-Signed Server Certificate">
+  <meta name="Keywords" content="Server,Certificate,Self,signed,Run,batch,file,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p650">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/apache_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Apache - Self-Signed Server Certificate</h1>
+</tr>
+</table>
+
+
+<p>This covers how to enable SSL on The Uniform Server Zero XIV.</p> 
+
+<p>The Uniform Server Zero does not include a test server certificate/key pair, so a default installation has SSL disabled for security reason. A certificate/key pair must be unique to each server. After creating a new server certificate/key pair, SSL is automatically enabled in Apache's configuration file.</p> 
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Creating a self-signed certificate" >Creating a self-signed certificate</a></li>
+   <li><a href="#Alternative script" >Alternative Script</a></li>
+   <li><a href="#Signed certificate" > Signed certificate</a></li>
+   <li><a href="#Where to next" >Where to next</a></li>
+
+   </ul>
+ </div>
+</div>
+
+<a name="Creating a self-signed certificate"></a>
+<h2>Creating a self-signed certificate</h2>
+
+<p>Generating a self-signed certificate requires only a few mouse clicks. The <b>Server Certificate and Key generator</b> form has been pre-configured for a self-signed certificate. There is no need to change these values; just click <b>Generate</b>. However, if you wish, you can change any of the defaults.</p>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+<p class="access">Apache &gt; Apache SSL &gt; Server Certificate and Key generator</p>
+
+<ul>
+  <li>This opens the <b>Server Certificate and Key generator</b> menu shown at right.</li>
+  <li>Click <b>Generate</b> (D). After a short time, a confirmation pop-up is displayed.</li>
+  <li>For the new configuration to become effective, you must <b>restart Apache server</b>.</li>
+</ul>
+<p>The above generates a self-signed certificate.</p>
+
+<p><b>Note 1:</b> If you have changed the server name using <a href="apache_basic_configuration.html">Apache basic configuration</a> menu, that name will be displayed instead of <b>localhost</b> (A).</p>
+<p><b>Note 2:</b> <b>Country</b> and <b>RSA bits</b> (B-C) are dropdown menus.</p>
+<p><b>Note 3:</b> 2048 Bits (C) provide high-grade encryption; no need to change this.</p>
+
+</td>
+<td width="5%"> &nbsp; </td>
+<td>
+   <img src="images/C11_apache_cert_gen_1.gif" alt="Start as program" >
+</td>
+</tr>
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Alternative script"></a>
+<h2>Alternative Script</h2>
+
+<p>The Uniform Server Zero provides an alternative for generating a server certificate and key pair.</p>
+
+<a name="Generate_server_cert_and_key.bat"></a>
+<p>Run the batch file UniServerZ\core\openssl\<b>Generate_server_cert_and_key.bat</b></p>
+
+<p>This script generates a self-signed server certificate and key pair. It assumes you have not changed the server name from its default of <b>localhost</b>. This allows the certificate and key to be automatically generated and installed without any user input.</p>
+
+<p><b>Note:</b> The certificate signing request (<b>server.csr</b>) is not required and is deleted.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Signed certificate"></a>
+<h2>Signed certificate</h2>
+
+<p>If you are intending to purchase a signed certificate, a certificate-signing request (<b>server.csr</b>) is required. Run <b>Server Certificate and Key generator</b>, which does not delete the <b>server.csr</b> file.</p>
+
+<p class="access">Apache &gt; Apache SSL &gt; Server Certificate and Key generator</p>
+
+ <ul>
+   <li>Fill in all appropriate form fields.</li>
+   <li>Click <b>Generate</b>.</li>
+   <li>The certificate-signing request <b>server.csr</b> is generated and saved in folder UniServerZ\core\<b>openssl</b>.</li>
+   <li>Open this file and post the contents for signing by the certificate authority. </li>
+   <li>When you receive the signed certificate, replace the self-signed certificate with it.</li>
+ </ul>
+
+<p><b>Note 1:</b> Copy both the server key (UniServerZ\core\apache2\server_certs\<b>server.key</b>) and the returned signed certificate to another device for safekeeping.</p>
+
+<p><b>Note 2:</b> For a free signed certificate, check out the following page: <a href="apache_free_server_cert.html">Free server certificate</a> </p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Where to next"></a>
+<h2>Where to next</h2>
+
+<p><a href="apache_ssl.html">Apache SSL</a> - Introduction and overview.<br>
+<a href="apache_free_server_cert.html">Free server certificate</a> - How to obtain and install a free server certificate.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Portable FileZilla Server</title>
+  <meta name="Description" content="The FileZilla Server is a flexible and mature product, allowing you to run an FTP server as a standard program or as a service. It is highly configurable, which makes it suitable for both fixed and portable installations.">
+  <meta name="Keywords" content="Portable,FileZilla,Server,Install,module,plugin,Stand-alone,Controller,run,Service,install,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+/*****************************************/
+.heading {
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #ffffff;
+ background-color:  #2F2F76;
+ font-size: 13px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.td_sub{
+ margin:0px;
+ padding:4px;
+ padding-left:8px;
+ color: #000000;
+ background-color:  #f0f0f0;
+ font-size: 12px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+/*****************************************/
+</style>
+</head>
+
+
+<body id="p1800">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+<script language="javascript" type="text/javascript" src="common/portable_filezilla_server_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Portable FileZilla Server</h1>
+</tr>
+</table>
+
+<p>The FileZilla Server is a flexible and mature product, allowing you to run an FTP server as a standard program or as a service. It is highly configurable, which makes it suitable for both fixed and portable installations. Uniform Server uses this flexibility to provide a dynamic server that integrates into the Uniform Server architecture, providing a pre-configured portable ftp server with minimal configuration. In addition, the server can be used on another machine as a stand-alone server. No restrictions are imposed by Uniform Server, allowing for a standard implementation and configuration of the FileZilla Server.</p>
+
+
+<table>
+ <tr valign="top">
+  <td>
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Background">Background</a></li>
+   <li><a href="#Install module (plugin)">Install module (plugin)</a></li>
+   <li><a href="#Folder and File structure">&nbsp;&nbsp;Folder and File structure</a></li>
+   <li><a href="#Stand-alone server">&nbsp;&nbsp;Stand-alone server</a></li>
+   <li><a href="#Portable FileZilla control application">&nbsp;&nbsp;Portable FileZilla control application</a></li>
+
+
+   <li><a href="#UniServer FileZilla Controller">UniServer FileZilla Controller - Integrated into UniServer</a></li>
+   <li><a href="#Run FileZilla server as a Program">&nbsp;&nbsp;Run FileZilla server as a Program</a></li>
+   <li><a href="#Run FZ Controller">&nbsp;&nbsp;Run FZ Controller</a></li>
+   <li><a href="#Run FZ Server">&nbsp;&nbsp;Run FZ Server</a></li>
+   <li><a href="#Quick Test">&nbsp;&nbsp;Quick Test</a></li>
+
+   <li><a href="#Run FileZilla server as a Service">Run FileZilla server as a Service</a></li>
+   <li><a href="#Install and run service">&nbsp;&nbsp;Install and run service</a></li>
+   <li><a href="#Stop and uninstall service">&nbsp;&nbsp;Stop and uninstall service</a></li>
+   </ul>
+ </div>
+</div>
+  </td>
+
+
+  <td>
+<div id="page_links_menu_shadow2" >
+ <div id="page_links_menu2" >
+  <ul>
+
+   <li><a href="#SA UniServer FileZilla Controller">UniServer FileZilla Controller - Stand-alone FileZilla server</a></li>
+   <li><a href="#SA Run FileZilla server as a Program">&nbsp;&nbsp;Run FileZilla server as a Program</a></li>
+   <li><a href="#SA Run FZ Controller">&nbsp;&nbsp;Run FZ Controller</a></li>
+   <li><a href="#SA Run FZ Server">&nbsp;&nbsp;Run FZ Server</a></li>
+   <li><a href="#SA Quick Test">&nbsp;&nbsp;Quick Test</a></li>
+
+   <li><a href="#SA Run FileZilla server as a Service">Run FileZilla server as a Service</a></li>
+   <li><a href="#SA Install and run service">&nbsp;&nbsp;Install and run service</a></li>
+   <li><a href="#SA Stop and uninstall service">&nbsp;&nbsp;Stop and uninstall service</a></li>
+
+   <li><a href="#FTP url formats">FTP url formats</a></li>
+
+   </ul>
+ </div>
+</div>
+  </td>
+
+ </tr>
+</table>
+
+
+
+
+
+<a name="Background"></a>
+<h2>Background</h2>
+
+<p>For convenience, one user (<b>us_user</b>) has been pre-configured with password <b>us_user123</b>. It is important you change this password at the first opportunity. Every time you start The Uniform Server FileZilla Controller, you are prompted to change the password.  Changing the password will stop this annoying prompt.  If you wish, at the same time, you can change the <b>us_user</b> name and optionally change the ftp server port.</p>
+
+<p>After installing ZeroXIV_filezilla_server_x_x_x.exe module, it is assumed you will be transferring files to the Apache root folder <b>www</b> and its subfolders. The <b>us_user</b> has been pre-configured with the path to this folder (for example, C:\UniServerZ\<b>www</b>). Moving Uniform Server (folder <b>UniServerZ</b> and all its content) to a different location, the ftp root path is updated to match the new location.</p>
+
+<p>You can create <a href="apache_vhosts.html">Vhosts</a> using UniController and manually assign ftp users and paths to the Vhost root folders. So long as the ftp root paths are within folder <b>UniServerZ</b>, paths will automatically update when moving the servers.<br>
+<b>Note:</b> Paths outside <b>UniServerZ</b> are not portable and require manually updating.</p>
+
+<p>You can run the FileZilla server as a stand-alone server on another machine by moving or copying folder <b>fz_server</b>. In this scenario, the <b>us_user</b> will have its root folder automatically changed to the sub-folder <b>fz_root</b>.  This is primarily for use when backing up data to an external machine within the same network, for example when using <a href="mysql_auto_db_backup.html#FTP configuration">MySQL Auto DB Backup</a>.</p>
+
+<p>Manually deleting the <b>us_user</b> using FileZilla Server Interface will not change automatic path tracking. Root paths configured in the FileZilla configuration file are automatically updated. This only applies to file paths contained within folder <b>UniServerZ</b>. Likewise, for a stand-alone server, paths in folder <b>fz_server\fz_root</b> are automatically updated.</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Install module (plugin)"></a>
+<h2>Install module (plugin)</h2>
+
+<p>Install The Uniform Server <b>Portable FileZilla Server</b> plugin as follows:</p>
+
+ <ol>
+  <li> Download ZeroXIV_filezilla_server_x_x_x.exe module (plugin). </li>
+  <li> Copy ZeroXIV_filezilla_server_x_x_x.exe module (plugin) to folder <b>UniServerZ</b>. </li>
+  <li> Double-click on the downloaded module; this starts the extraction process. </li>
+  <li> If requested, allow overwriting of existing files. </li>
+  <li> If you wish to save space, delete file  ZeroXIV_filezilla_server_x_x_x.exe </li>
+ </ol>
+
+  <a name="Folder and File structure"></a>
+  <h3>Folder and File structure</h3>
+
+  <table>
+   <tr><td class="heading">Folder</td>               			<td class="heading">File</td>              			   <td class="heading">Function</td></tr>
+   <tr><td class="td_sub">UniServerZ</td>           			<td class="td_sub">UniFzController.bat</td> 		   <td class="td_sub">- Shortcut runs Uniform Server FileZilla Controller <b>fz_controller.exe</b></td></tr>
+
+   <tr><td class="td_sub">UniServerZ\fz_server</td> 			<td class="td_sub">UniFzController.exe</td> 		   <td class="td_sub">- Uniform Server FileZilla Controller Start/Stop server (as a standard program)</td></tr>
+
+   <tr><td class="td_sub">UniServerZ\fz_server\fz_portable</td> <td class="td_sub">&nbsp;</td> 						   <td class="td_sub">- Main application folder</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">FileZilla Server Interface.exe</td> <td class="td_sub">- FileZilla main interface</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">FileZilla Server Interface.xml</td> <td class="td_sub">- Interface configuration file</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">FileZilla Server.exe</td>           <td class="td_sub">- FileZilla main program</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">FileZilla Server.xml</td>           <td class="td_sub">- FileZilla main program configuration file</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">libeay32.dll</td>                   <td class="td_sub">- Open SSL library</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">ssleay32.dll</td>                   <td class="td_sub">- Open SSL library</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">zilla_admin.bat</td>                <td class="td_sub">- Alternative for running <b>FileZilla Server Interface.exe</b></td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">zilla_service_start.bat</td>        <td class="td_sub">- Install and run FileZilla as a service</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">zilla_service_stop.bat</td>         <td class="td_sub" >- Stop and Uninstall FileZilla service</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">zilla_start.bat</td>                <td class="td_sub">- Alternative for running FileZilla Server  (as a standard program)</td></tr>
+   <tr><td class="td_sub">&nbsp;</td>                           <td class="td_sub">zilla_stop.bat</td>                 <td class="td_sub">- Alternative for stopping FileZilla Server (as a standard program)</td></tr>
+
+   <tr><td class="td_sub">UniServerZ\fz_server\fz_root</td>     <td class="td_sub">*.*</td> 						   <td class="td_sub">- Root folder, contains uploaded files, stand-alone FZ server</td></tr>
+  </table>
+
+
+  <a name="Stand-alone server"></a>
+  <h3>Stand-alone server</h3>
+
+  <p>For a stand-alone server, copy file <b>ZeroXIV_filezilla_server_x_x_x.exe</b> to a temporary folder. Double-click to extract files, copy folder <b>fz_server</b> and all its content to the required location.</p>
+
+<a name="Portable FileZilla control application"></a>
+<h3>Portable FileZilla control application</h3>
+
+<p>The FileZilla control application is design to be essentially a click and go application. A pre-configured user has been implemented; for security, you only need to change the user password. A single button control starts and stops the FileZilla server. You can access the FileZilla Interface with a single button click (<b>Start Interface</b>); this interface provides full configuration of the FileZilla server.</p>
+
+<table width="100%">
+<tr valign="top">
+<td width="45%">
+ <ul>
+   <li>Pre-configured User<br>
+       &nbsp;&nbsp;&nbsp;&#9702; <b>Change user name</b>: If desired, enter a new user name. Generally, no need to change this.<br>
+       &nbsp;&nbsp;&nbsp;&#9702; <b>Change user password</b>: It is recommended to <b>change</b> the password.</li>
+   <li><b>Change Port</b>: Standard port is 21. Preferably, do not change this.</li>
+   <li><b>Save changes</b>: Click this button to save new configuration changes.</li>
+   <li><b>Start Interface</b>: Opens FZ Interface and optionally closes it.</li>
+   <li><b>Start FZ Server</b>: Button toggles between Start and Stop FZ Server.</li>
+ </ul>
+<p>Use the FileZilla interface to change or delete the pre-configured user; for details, refer to the <a href="fz_basic_configuration.html">FileZilla Basic Configuration</a> page, which covers adding new users and privileges.</p>
+</td>
+<td width="5%">&nbsp;</td>
+<td>
+   <img src="images/us_filezilla_controller.png" alt="FileZilla Controller">
+</td>
+</tr>
+</table>
+<br>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="UniServer FileZilla Controller"></a>
+<h2>UniServer FileZilla Controller - Integrated into UniServer</h2>
+
+<p>The UniServerZ\<b>fz_server</b> folder contains file <b>UniFzController.exe</b>, which opens The Uniform Server Portable FileZilla control application for running the server as a standard program.</p>
+
+<a name="Run FileZilla server as a Program"></a>
+<h3>Run FileZilla server as a Program</h3>
+
+<p>Uniform Server FileZilla Controller runs the server as a standard program. When using FZ Controller, nothing is installed to your operating system's registry. This is ideal for development, especially when running from a USB memory stick, since you do not have to perform anything special to stop or remove the server.</p>
+
+
+<table width="100%">
+  <tr valign="top">
+    <td width="45%">
+<a name="Run FZ Controller"></a>
+<b><i>Run FZ Controller:</i></b><br>
+      Use one of the following methods to run FZ Controller:
+      <ul>
+        <li>Navigate to the folder <b>UniServerZ</b> and double-click on file <b>UniFzController.bat</b> </li>
+        <li><b>or</b> navigate to the folder UniServerZ\<b>fz_server</b> and double-click on file <b>UniFzController.exe</b></li>
+      </ul>
+
+<p>Before UniServer FileZilla Controller is displayed, the change user password warning pop-up is displayed. Click <b>Ok</b> to continue.</p>
+
+    </td>
+    <td width="5%">&nbsp;</td>
+   <td>
+     <img src="images/us_filezilla_warning.png" alt="FileZilla Warning">
+    </td>
+</tr>
+
+
+<tr valign="top">
+ <td width="45%"><br>
+<a name="Run FZ Server"></a>
+<b><i>Run FZ Server:</i></b><br>
+  <ul>
+    <li>UniServer FileZilla Controller is shown on the right.</li>
+    <li>Change the user password and click <b>Save changes</b> button.</li>
+
+    <li>Click <b>Start FZ Server</b> button. Starts the FileZilla server.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; If challenged by your firewall, allow access.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; Button toggles state displaying <b>Stop FTP server</b>.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; Indicator changes from red to green, indicating server is running. </li>
+  </ul>
+
+ </td>
+ <td width="5%">&nbsp;</td>
+ <td >
+   <img src="images/us_filezilla_controller.png" alt="FileZilla Controller">
+ </td>
+</tr>
+
+
+<tr valign="top">
+ <td width="45%"><br>
+<a name="Quick Test"></a>
+<b><i>Quick Test:</i></b><br>
+  <ul>
+    <li>Start your browser.</li>
+    <li>Enter the following: ftp://us_user@localhost into navigation bar.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; An Authentication pop-up window is displayed; enter your password (<b>us_user123</b>).</li>
+  </ul>
+
+ </td>
+ <td width="5%">&nbsp;</td>
+ <td ><br>
+<b><i>Expected Result:</i></b><br>
+
+  <ul>
+    <li>Index of ftp://us_user@localhost/ displayed.</li>
+    <li>All folders and files in root folder UniServerZ\<b>www</b> are listed.</li>
+  </ul>
+
+ </td>
+</tr>
+
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Run FileZilla server as a Service"></a>
+<h2>Run FileZilla server as a Service</h2>
+
+<p>Before installing and running FileZilla as a service, ensure it is properly configured by running it as a standard program, as explained above.<br>
+ <b>Note:</b> Running as a service adds data to the Windows registry; the server is no-longer portable.<br>
+ Benefit of running as a service: server automatically starts when the host PC re-starts.  </p>
+
+<p>Running as a service does not require the UniServer FileZilla Controller; if running, ensure FileZilla server is stopped and close UniServer FileZilla Controller.<br>
+ Service control is provided by two batch files: <b>zilla_service_start.bat</b> and <b>zilla_service_stop.bat</b><br>
+ These are located in folder UniServerZ\fz_server\<b>fz_portable</b>. Run them as follows:</p>
+
+
+<table width="100%">
+  <tr valign="top">
+    <td width="45%">
+<a name="Install and run service"></a>
+<b>Install and run service:</b><br>
+      <ul>
+        <li>Navigate to the folder fz_server\<b>fz_portable</b></li>
+        <li>Locate file <b>zilla_service_start.bat</b></li>
+
+        <li> Require enhanced administration rights:<br>
+          &nbsp;&nbsp;&nbsp;&#9702; <b>Right-click</b> on file <b>zilla_service_start.bat</b>, select <b>Run as administrator</b><br>
+
+          &nbsp;&nbsp;&nbsp;&#9702; Do you want to allow..: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Install service: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Autostart service: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Start server: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Stop server: <b>NO</b></li>
+        <li>Displays <b>Service Installed and running</b>; press any key to close command window.</li>
+        <li>Run the quick test and confirm the expected results.</li>
+      </ul>
+
+    </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+<a name="Stop and uninstall service"></a>
+<b>Stop and uninstall service:</b><br>
+      <ul>
+        <li>Navigate to the folder fz_server\<b>fz_portable</b></li>
+        <li>Locate file <b>zilla_service_stop.bat</b></li>
+
+        <li>Require enhanced administration rights:<br>
+          &nbsp;&nbsp;&nbsp;&#9702; <b>Right-click</b> on file <b>zilla_service_stop.bat</b>, select <b>Run as administrator</b><br>
+
+          &nbsp;&nbsp;&nbsp;&#9702; Do you want to allow..: <b>YES</b></li>
+        <li>Displays <b>Service stopped and uninstalled</b>; press any key to close command window.</li>
+      </ul>
+    </td>
+</tr>
+
+</table>
+
+<p><b>Note:</b> Default FileZilla service names are <b>FileZilla Server</b> (Service Name) and <b>FileZilla Server FTP server</b> (Service Display Name).</p>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="SA UniServer FileZilla Controller"></a>
+<h2>UniServer FileZilla Controller  - Stand-alone FileZilla server</h2>
+
+<p>The following is a step-by-step guide for configuring and running a stand-alone FTP server. The primary use for such a server is to transfer database backup archives to another PC connected to the same network. For this example, it is assumed you have copied folder <b>fz_server</b> and all its content to drive C: on another PC.<br>
+<b>Note:</b> You can perform this test on your current PC. However, if you followed the examples above, ensure the FileZilla server is not running or installed as a service.</p>
+
+<p>Before continuing, create two test files (<b>test1.txt</b> and <b>test2.txt</b>) in folder C:\fz_server\<b>fz_root</b></p>
+
+
+<a name="SA Run FileZilla server as a Program"></a>
+<h3>Run FileZilla server as a Program</h3>
+
+<p>As stated above and repeated here, UniServer FileZilla Controller runs the server as a standard program. When using UniServer FileZilla Controller, nothing is installed to your operating system's registry. This is ideal for development, especially when running from a USB memory stick, since you do not have to perform anything special to stop or remove the server.</p>
+
+
+<table width="100%">
+  <tr valign="top">
+    <td width="45%">
+<a name="SA Run FZ Controller"></a>
+<b><i>Run FZ Controller:</i></b><br>
+      Use the following methods to run FZ Controller:
+      <ul>
+        <li>Navigate to the folder C:\<b>fz_server</b>. <br>
+          &nbsp;&nbsp;&nbsp;&#9702; Locate the file <b>UniFzController.exe</b> and double-click.</li>
+      </ul>
+
+    <p>Before UniServer FileZilla Controller is displayed, the change user password warning pop-up is displayed. Click <b>Ok</b> to continue.</p>
+
+    </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+     <img src="images/us_filezilla_warning.png" alt="FileZilla Warning">
+    </td>
+</tr>
+
+
+<tr valign="top">
+ <td width="45%"><br>
+<a name="SA Run FZ Server"></a>
+<b><i>Run FZ Server:</i></b><br>
+  <ul>
+    <li>UniServer FileZilla Controller is shown on the right.</li>
+    <li>Change the user password and click <b>Save changes</b> button.</li>
+
+    <li>Click <b>Start FZ Server</b> button. Starts the FileZilla server.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; If challenged by your firewall, allow access.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; Button toggles state displaying <b>Stop FTP server</b>.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; Indicator changes from red to green, indicating server is running. </li>
+  </ul>
+
+ </td>
+ <td width="5%">&nbsp;</td>
+ <td >
+   <img src="images/us_filezilla_controller.png" alt="FileZilla Controller">
+ </td>
+</tr>
+
+
+<tr valign="top">
+ <td width="45%"><br>
+<a name="SA Quick Test"></a>
+<b><i>Quick Test:</i></b><br>
+  <ul>
+    <li>Start your browser.</li>
+    <li>Enter the following: <b>ftp://us_user@localhost</b> into navigation bar.<br>
+         &nbsp;&nbsp;&nbsp;&#9702; An Authentication pop-up window is displayed; enter your password (<b>us_user123</b>).</li>
+  </ul>
+
+ </td>
+ <td width="5%">&nbsp;</td>
+ <td ><br>
+<b><i>Expected Result:</i></b><br>
+
+  <ul>
+    <li>Index of ftp://us_user@localhost/ displayed.</li>
+    <li>All files (<b>test1.txt</b> and <b>test2.txt</b>) in root folder C:\fz_server\<b>fz_root</b> are listed.</li>
+  </ul>
+
+ </td>
+</tr>
+
+</table>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="SA Run FileZilla server as a Service"></a>
+<h2>Run FileZilla server as a Service</h2>
+
+<p>Before installing and running FileZilla as a service, ensure it is properly configured by running it as a standard program, as explained above.<br>
+ <b>Note:</b> Running as a service adds data to the Windows registry; the server is no-longer portable.<br>
+ Benefit of running as a service: server automatically starts when the host PC re-starts.  </p>
+
+<p>Running as a service does not require the UniServer FileZilla Controller; if running, ensure FileZilla server is stopped and close UniServer FileZilla Controller.<br>
+ Service control is provided by two batch files: <b>zilla_service_start.bat</b> and <b>zilla_service_stop.bat</b><br>
+ These are located in folder C:\fz_server\<b>fz_portable</b>. Run them as follows:</p>
+
+
+<table width="100%">
+  <tr valign="top">
+    <td width="45%">
+<a name="SA Install and run service"></a>
+<b>Install and run service:</b><br>
+      <ul>
+        <li>Navigate to the folder C:\fz_server\<b>fz_portable</b></li>
+        <li>Locate file <b>zilla_service_start.bat</b></li>
+
+        <li>Require enhanced administration rights:<br>
+          &nbsp;&nbsp;&nbsp;&#9702; <b>Right-click</b> on file <b>zilla_service_start.bat</b>, select <b>Run as administrator</b>.<br>
+
+          &nbsp;&nbsp;&nbsp;&#9702; Do you want to allow..: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Install service: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Autostart service: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Start server: <b>YES</b><br>
+          &nbsp;&nbsp;&nbsp;&#9702; Stop server: <b>NO</b></li>
+        <li>Displays <b>Service Installed and running</b>; press any key to close command window.</li>
+        <li> Run the quick test and confirm the expected results.</li>
+      </ul>
+
+    </td>
+   <td width="5%">&nbsp;</td>
+   <td>
+<a name="SA Stop and uninstall service"></a>
+<b>Stop and uninstall service:</b><br>
+      <ul>
+        <li>Navigate to the folder C:\fz_server\<b>fz_portable</b></li>
+        <li>Locate file <b>zilla_service_stop.bat</b></li>
+
+        <li>Require enhanced administration rights:<br>
+          &nbsp;&nbsp;&nbsp;&#9702; <b>Right-click</b> on file <b>zilla_service_stop.bat</b>, select <b>Run as administrator</b>.<br>
+
+          &nbsp;&nbsp;&nbsp;&#9702; Do you want to allow..: <b>YES</b></li>
+        <li>Displays <b>Service stopped and uninstalled</b>; press any key to close command window.</li>
+      </ul>
+    </td>
+</tr>
+
+</table>
+
+<p><b>Note:</b> Default FileZilla service names are <b>FileZilla Server</b> (Service Name) and <b>FileZilla Server FTP server</b> (Service Display Name).</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="FTP url formats"></a>
+<h2>FTP url formats</h2>
+
+<p>The following are included for completeness:</p>
+
+<table >
+<tr> <td class="heading">Format</td>                                 <td class="heading">Example</td>                              <td class="heading"> Result</td> </tr>
+<tr> <td class="td_sub">ftp://ftpserver</td>                         <td  class="td_sub">ftp://localhost/</td>                     <td  class="td_sub">Authentication pop-up window: Enter name and password.</td> </tr>
+<tr> <td class="td_sub">ftp://name@ftpserver/</td>                   <td  class="td_sub">ftp://us_user@localhost/</td>             <td  class="td_sub">Authentication pop-up window: Enter password.</td> </tr>
+<tr> <td class="td_sub">ftp://name:password@ftpserver/url-path</td>  <td  class="td_sub">ftp://us_user:us-user123@localhost/</td>  <td  class="td_sub">Authentication passed; index page displayed.</td> </tr>
+</table>
+
+<br>
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

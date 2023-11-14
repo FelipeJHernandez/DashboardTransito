@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Installing Perl</title>
+  <meta name="Description" content="This page covers installing Strawberry Perl and ActivePerl.">
+  <meta name="Keywords" content="Installing,Strawberry,Active,Perl,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p910">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+  <script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+  <script language="javascript" type="text/javascript" src="common/perl_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" ></td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Installing Perl</h1>
+</tr>
+</table>
+
+
+<p>This page covers installing Strawberry Perl and ActivePerl. If you have previously installed Strawberry Perl and are upgrading to a newer version or replacing it with ActivePerl, first delete the old version by deleting the following folder and all its content: C:\UniServerZ\core\<b>perl</b></p>
+
+<p><b>Note:</b> Deleting this folder returns the server to a default state and completely removes Strawberry Perl. </p> 
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+   <li><a href="#Installing Strawberry Perl" >Installing Strawberry Perl</a></li>
+   <li><a href="#Installing ActivePerl" >Installing ActivePerl</a></li>
+   </ul>
+ </div>
+</div>
+
+<a name="Installing Strawberry Perl"></a>
+<h2>Installing Strawberry Perl</h2>
+
+<p>Installing is a misnomer! Nothing is installed to your PCs registry. All files are extracted to their appropriate location within the UniServer folder structure.</p> 
+
+<p>The extraction procedure is identical for all plugin versions. Proceed as follows:</p>
+
+<ol>
+  <li> Download Strawberry Perl installation file, e.g. ZeroXIV_strawberry_perl_x_x_x.exe <br>
+       See <a href="plugins_detail.html">Plugins - Modules</a> page for download details.</li>
+  <li> Save to folder <b>UniServerZ</b>. </li>
+  <li> If running, stop Apache and MySQL servers and also exit UniController. </li>
+  <li> Double-click on the above installation file; this runs the self extracting archive. </li>
+  <li> If prompted, allow overwriting of existing files. </li>
+  <li> If you wish, delete the installation file; it is no longer required. </li>
+</ol>
+
+<p><b>Note:</b> ZeroXIV_strawberry_perl_x_x_x.exe installs full version of Strawberry Perl x.x.x portable.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Installing ActivePerl"></a>
+<h2>Installing ActivePerl</h2>
+
+<p>ActivePerl is considered to be the de facto standard. However, the ActivePerl Community License restricts the way the package can be distributed. Since this is inconsistent with The Uniform Server's license, ActivePerl is not included with The Uniform Server, nor is it available as a plugin. On the other hand, you are free to download, install and use a personal copy of ActivePerl Community Edition.</p>
+
+<p>You may download the latest version of ActivePerl Community Edition from <a href="https://www.activestate.com/products/perl/">ActiveState</a>.</p>
+
+<p><b>Note:</b> ActivePerl is NOT portable.</p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>

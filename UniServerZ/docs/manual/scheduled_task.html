@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Create Scheduled Task</title>
+  <meta name="Description" content="The following page explains how to create a scheduled task in Windows to run the Uniform Server MySQL Auto Backup plugin. Although the instructions are specific to the Uniform Server plugin, they are equally applicable to running other applications such as executables and batch files.">
+  <meta name="Keywords" content="Scheduled,Task,MySQL,Auto,Backup,plugin,The Uniform Server,MPG,Mike Gleaves,Ric,UniServer,Olajide,BobS,SudeepJD,BrainStorm,sbourdon">
+  <link href="common/css/main.css" rel="stylesheet" type="text/css">
+  <link href="common/css/menu.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="p1710">
+<!-- Start header -->
+  <script language="javascript" type="text/javascript" src="common/header.js"></script>
+<!-- End header -->
+
+<table id="main" >
+<tr valign="top">
+
+<td id="td_menu">
+<script language="javascript" type="text/javascript" src="common/top_menu.js"></script>
+<script language="javascript" type="text/javascript" src="common/mysql_auto_back_sub_menu.js"></script>
+</td>
+
+<td id="td_spacer" >
+</td >
+
+<td id="td_content" >
+<!-- ============ Start Content ========== -->
+
+<table >
+<tr>
+ <td>
+  <img src="common/images/zero_logo4.png" alt="Zero logo">
+ </td>
+ <td>
+<h1>Create Scheduled Task</h1>
+</tr>
+</table>
+
+<p>The following page explains how to create a scheduled task in Windows to run the Uniform Server MySQL Auto Backup plugin. Although the instructions are specific to the Uniform Server plugin, they are equally applicable to running other applications, such as executables and batch files. Note that you must be logged on as an Administrator.</p>
+
+
+<div id="page_links_menu_shadow" >
+ <div id="page_links_menu" >
+  <ul>
+ 
+   <li><a href="#Create a task" >Create a task</a></li>
+   <li><a href="#Delete a task" >Delete a task</a></li>
+   <li><a href="#Run task" >Run task - Quick test</a></li>
+   </ul>
+ </div>
+</div>
+
+
+<a name="Create a task"></a>
+<h2>Create a task</h2>
+
+<p><b>Step 1: Start Task Scheduler</b><br>
+To start Task Scheduler, use one of the following methods. Preferred method is method 1.</p>
+
+<p><b>Method 1:</b> Navigate to folder C:\UniServerZ\<b>utils</b> and double-click on <b>start_task_schedule.bat</b><br>
+<b>Method 2:</b> Use a command line; open <b>Run command</b> (Windows key + R), type %windir%\system32\taskschd.msc /s</p>
+
+
+<p><br><b>Step 2: Task Scheduler - Create task</b><br>
+ The <b>Task Scheduler</b> window allows you to create, delete and administer tasks. Start the task creation process as follows:</p>
+ <ul>
+  <li>Click <b>Create Basic Task</b> (a2) - Opens the <b>Create Task</b> window.</li>
+ </ul>
+
+<img src="images/scheduled_task/task_scheduler.png" alt="Task scheduler">
+<p>The <b>Create Basic Task Wizard</b> window is shown below. Every task must have a unique name and preferably a description.</p>
+ <ul>
+   <li>Enter a Name in the <b>Name</b> field (b2). Use <b>UniServer_Auto_Backup</b></li> 
+   <li>Enter a Description in the <b>Description</b> field (c2). Use <b>Uniform Server MySQL automatic backup</b></li>
+   <li>Click <b>Next</b> button (d2).</li>
+ </ul>
+<img src="images/scheduled_task/create_basic_task.png" alt="Create basic task">
+
+
+<p><br><b>Step 3: Create Basic Task Wizard - Task Trigger</b><br>
+You need to decide how often you want to create a MySQL database backup. Generally, once a week is adequate. However, this example sets it to once a day for critical data applications.</p>
+
+<ul>
+   <li>Select one of the options: <b>Daily</b>, <b>Weekly</b> or <b>Monthly</b>. For this example, select <b>Daily</b> (a3) for a daily backup.<br>
+   <li>Click <b>Next</b> button (b3).</li>
+</ul>
+<img src="images/scheduled_task/task_trigger.png" alt="Task trigger">
+
+
+<p><br><b>Step 4: Create Basic Task Wizard - Daily</b><br>
+This step allows you to set the starting date and time of the task. Generally, there is no need to change the start date. The start time requires a little thought; preferably, set the time when your server is under minimum load (check the Apache log for this information). If you want the backup to occur every day, set the <b>Recur Days</b> to 1. If you want it to occur once every three days, set value to 3.</p>
+ <ul>
+  <li>Set the starting date and start time (a4). </li>
+  <li>Set <b>Recur every 1 days</b> (b4) - Makes backup every day.</li>
+  <li>Click <b>Next</b> button (c4).</li>
+ </ul>
+<img src="images/scheduled_task/set_date_time.png" alt="Set date and time">
+
+
+<p><br><b>Step 5: Create Basic Task Wizard - Action</b><br>
+This step allows you to select the action to be performed. Click radio button to select required action for Uniform Server; we are going to run a program.</p>
+ <ul>
+  <li>Select <b>Action</b>, click <b>Start a program</b> radio button (a5).</li>
+  <li>Click <b>Next</b> button (b5).</li>
+ </ul>
+<img src="images/scheduled_task/set_action.png" alt="Set action to program">
+
+
+<p><br><b>Step 6: Create Basic Task Wizard - Start a Program</b><br>
+This step allows you to set the location of the program by either typing in the full path, or by clicking on the <b>Browse</b> button and navigating to the required application. You can optionally add arguments; Uniform Server requires "auto" to be set.</p>
+
+ <ul>
+   <li><b>Program/script</b> (a6): Click <b>Browse</b> button.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; Navigate to application <b>UniDbBackup.exe</b>; for example, C:\UniServerZ\utils\UniDbBackup.exe <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; Click <b>Open</b> button.</li>
+   <li><b>Add arguments</b> (b6): Enter <b>auto</b></li>
+   <li>Click <b>Next</b> button (c6).</li>
+ </ul>
+
+<img src="images/scheduled_task/start_a_program.png" alt="Start a program">
+
+
+<p><br><b>Step 7: Create Basic Task Wizard - Summary</b><br>
+This is the final step in the creation of the scheduling process. Although optional, you can open the properties' dialog for this task. Click on the check box <b>Open the Properties dialog for this when I click Finish</b>. Finally, click on the <b>Finish</b> button to complete the process.</p>
+
+ <ul>
+  <li>Check box <b>Open the Properties dialog for this when I click Finish</b>  (a7): click to select.</li>
+  <li>Click <b>Finish</b> button (b7). New task is created and added to Windows schedule.</li>  
+ </ul>
+
+<img src="images/scheduled_task/summery.png" alt="Task finish summary">
+
+
+<p><br><b>Step 8: UniServer_Auto_Backup Properties (Local Computer)</b><br>
+ This displays task properties; shown for completeness.</p>
+
+ <ul>
+  <li>Click <b>OK</b> button (a8).</li>
+  <li>Click <b>File > Exit</b></li>
+ </ul>
+<img src="images/scheduled_task/properties.png" alt="Task properties">
+<p> </p> 
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Delete a task"></a>
+<h2>Delete a task</h2>
+
+<p><b>Step 9: Task Scheduler - Delete task</b><br>
+To remove a task, start Task Scheduler, select task from the library list and delete. The following details how to remove the Uniform Server <b>UniServer_Auto_Backup</b> task:</p>
+
+ <ul>
+  <li>  Start Task Scheduler: Navigate to folder C:\UniServerZ\<b>utils</b> and double-click on <b>start_task_schedule.bat</b></li>
+  <li>  Left menu: Select <b>Task Scheduler Library</b> (a9)</li>
+  <li>  Center menu: Select <b>UniServer_Auto_Backup</b> (b9); ensure it is highlighted.</li>
+  <li>  Right menu: Click <b>Delete</b> menu item (c9).</li>
+  <li>  Pop-up displayed <b>Do you want to delete this task</b>; click <b>Yes</b> button.</li>
+  <li>  Click <b>File > Exit</b></li>
+ </ul>
+
+<img src="images/scheduled_task/delete_task.png" alt="Delete a task">
+<p> </p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<a name="Run task"></a>
+<h2>Run task - Quick test</h2>
+
+<p><b>Step 10: Task Scheduler - Run task</b><br>
+For testing, there is no need to wait for the scheduled time. You can instantly run the task as follows:</p>
+
+ <ul>
+  <li>  Start Task Scheduler: Navigate to folder C:\UniServerZ\<b>utils</b> and double-click on <b>start_task_schedule.bat</b></li>
+  <li>  Left menu: Select <b>Task Scheduler Library</b> (a10)</li>
+  <li>  Center menu: Select <b>UniServer_Auto_Backup</b> (b10); ensure it is highlighted.</li>
+  <li>  Right menu: Click <b>Run</b> menu item (c10). - Forces a run with the parameters set.</li>
+  <li>  Click <b>File > Exit</b></li>
+ </ul>
+
+<img src="images/scheduled_task/run_task.png" alt="Run task">
+<p> </p>
+
+
+<script language="javascript" type="text/javascript" src="common/top.js"></script>
+<hr>
+<div align="center">--oOo--</div>
+
+
+<!-- ============ End Content ============ -->
+</td>
+</tr>
+</table>
+
+<!-- Start footer -->
+  <script language="javascript" type="text/javascript" src="common/footer.js"></script>
+<!-- End footer -->
+
+</body>
+</html>
