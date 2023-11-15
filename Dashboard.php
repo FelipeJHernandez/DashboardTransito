@@ -791,7 +791,23 @@
          echo "Alcaldia: " . $alcaldia . " - Numero de Accidentes: " . $numeroAccidentes . "<br>";
       }
 
+      //Accidentes con o sin semaforo
+      $query = "SELECT
+        COUNT(CASE WHEN Semaforo = 'Si' THEN 1 END) AS Accidentes_Con_Semaforo,
+        COUNT(CASE WHEN Semaforo = 'No' THEN 1 END) AS Accidentes_Sin_Semaforo
+        FROM
+          lugaraccicente;";
 
+      $resultado = $conn->query($query);
+
+      if (!$resultado) {
+          die("La consulta falló: " . $conn->error);
+      }
+
+        // Obtener los resultados
+        $row = $resultado->fetch_assoc();
+        $accidentesConSemaforo = $row['Accidentes_Con_Semaforo'];
+        $accidentesSinSemaforo = $row['Accidentes_Sin_Semaforo'];
 
   }
   else{

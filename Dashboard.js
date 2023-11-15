@@ -315,7 +315,7 @@ function HeatMapHorario(AccidentesMadrugadaLunes,AccidentesMananaLunes,Accidente
     let chart= anychart.heatMap(datos);
     chart.container("HeatmapHoras");
     chart.draw();
-}   
+}  
 
 function GraficaPastelVehiculos(Tipo_V,N_Evento){
 
@@ -349,10 +349,46 @@ function GraficaAccidentesAlcaldia(alcaldias,numeroAccidentes){
             }]
         },
         options: {
-            responsive: false
+            responsive: false   
         }
     });
 }
+function GraficaSemaforos(accidentesConSemaforo, accidentesSinSemaforo) {
+    // Crear un elemento canvas para la gráfica
+    var canvas = document.createElement('canvas');
+    canvas.id = 'graficaSemaforos';
+    document.body.appendChild(canvas);
+  
+    // Obtener el contexto del canvas
+    var ctx = canvas.getContext('2d');
+  
+    // Configurar los datos de la gráfica
+    var data = {
+      labels: ['Accidentes con semáforo', 'Accidentes sin semáforo'],
+      datasets: [{
+        label: 'Comparación de accidentes',
+        data: [accidentesConSemaforo, accidentesSinSemaforo],
+        backgroundColor: ['blue', 'red']
+      }]
+    };
+  
+    // Configurar las opciones de la gráfica
+    var options = {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+  
+    // Crear la gráfica de barras
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: options
+    });
+  }
 // Llama a la función para crear la gráfica pasando los valores necesarios
 crearGraficaPastelHM(numHombres, numMujeres);
 crearGraficaEdad(rango0a10, rango10a20, rango20a40, rango40a60, rango60oMas);
@@ -363,3 +399,4 @@ crearGraficaTipodeAccidente(choques2018,atropellos2018,derrapes2018,caidasc2018,
 HeatMapHorario(AccidentesMadrugadaLunes,AccidentesMananaLunes,AccidentesMediodiaLunes,AccidentesTardeLunes,AccidentesNocheLunes,AccidentesMuyNocheLunes,AccidentesMadrugadaMartes,AccidentesMananaMartes,AccidentesMediodiaMartes,AccidentesTardeMartes,AccidentesNocheMartes,AccidentesMuyNocheMartes,AccidentesMadrugadaMiercoles,AccidentesMananaMiercoles,AccidentesMediodiaMiercoles,AccidentesTardeMiercoles,AccidentesNocheMiercoles,AccidentesMuyNocheMiercoles,AccidentesMadrugadaJueves,AccidentesMananaJueves,AccidentesMediodiaJueves,AccidentesTardeJueves,AccidentesNocheJueves,AccidentesMuyNocheJueves,AccidentesMadrugadaViernes,AccidentesMananaViernes,AccidentesMediodiaViernes,AccidentesTardeViernes,AccidentesNocheViernes,AccidentesMuyNocheViernes,AccidentesMadrugadaSabado,AccidentesMananaSabado,AccidentesMediodiaSabado,AccidentesTardeSabado,AccidentesNocheSabado,AccidentesMuyNocheSabado,AccidentesMadrugadaDomingo,AccidentesMananaDomingo,AccidentesMediodiaDomingo,AccidentesTardeDomingo,AccidentesNocheDomingo,AccidentesMuyNocheDomingo);
 GraficaPastelVehiculos(Tipo_V,N_Evento);
 GraficaAccidentesAlcaldia(alcaldias,numeroAccidentes);
+GraficaSemaforos(accidentesConSemaforo, accidentesSinSemaforo);

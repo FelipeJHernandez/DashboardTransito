@@ -136,6 +136,8 @@
     var Tipo_V = <?php echo json_encode($Tipo_V); ?>;
     var N_Evento = <?php echo json_encode($N_Evento); ?>;
 
+    var accidentesConSemaforo= <?php echo json_encode($accidentesConSemaforo);?>;
+    var accidentesSinSemaforo= <?php echo json_encode($accidentesSinSemaforo);?>;
   </script>
 
 <div class="container body">
@@ -280,7 +282,7 @@
                             <div class="x_title">
                                 <a><h4>Accidentes por G&eacute;nero</h4></a>
                             </div>
-                            <div class = "graficaMuestra">
+                            <div class = "graficaMuestra1">
                                 <canvas id="graficaPastel"></canvas>
                             </div>
                         </div>
@@ -295,8 +297,7 @@
                             <div class="x_title">
                                 <a><h4>Accidentes por Edades</h4></a>
                             </div>
-                            <div class = "graficaMuestra">
-                                <p style = "color: white;">Porcentaje de incolucrados en cada rango de edad</p>
+                            <div class = "graficaMuestra1">
                                 <canvas id="graficaEdad" width="400" height="400"></canvas>
                             </div>
                         </div>
@@ -365,7 +366,48 @@
                 </div>
                 
                 <div class="clearfix"></div>
-                                
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <a><h4>Vehiculos</h4></a>
+                            </div>
+                            <div class = "graficaMuestra">
+                              <canvas id="tipoVehiculo" width="400" height="400"></canvas> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <a><h4>Accidentes con respecto a los semáforos  </h4></a>
+                            </div>
+                            <div class = "graficaMuestra">
+                              <canvas id="graficaSemaforos" width="400" height="400"></canvas> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <a><h4>Accidentes por hora y días </h4></a>
+                            </div>
+                            <div class = "HeatmapHoras">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
             <!-- /page content -->
           
@@ -373,7 +415,12 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Hecho por: <b></b>
+                 Hecho por:
+                    <ul>
+                        <li>Mauricio Gonzáles Castelazo</li>
+                        <li>Felipe de Jesús Hernández Perez</li>
+                        <li>Dania Barbara Venegas Bofill</li>
+                    </ul>
                 </div>
                 <div class="clearfix"></div>
             </footer>
