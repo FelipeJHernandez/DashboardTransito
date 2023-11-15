@@ -4996,7 +4996,18 @@ ul.notifications {
     height: 800px;
 }
 
-#graficaPastel{
+.graficaMuestra1{
   width: 100%;
-  height: 400;
+  max-width: 800px; /* Limita el ancho máximo a 1300px si el contenedor es más ancho */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  overflow: hidden;
+}
+#graficaPastel{
+  width: 100%; /* Usa el 100% del ancho del contenedor padre */
+  height: 400px;
+
+}
+.x_panel {
+  margin: 0; /* Elimina el margen */
+  width: auto; /* Elimina el ancho fijo y deja que se ajuste automáticamente */
 }

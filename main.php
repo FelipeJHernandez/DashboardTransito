@@ -130,8 +130,8 @@
     var AccidentesNocheDomingo=<?php echo $AccidentesNocheDomingo;?>;
     var AccidentesMuyNocheDomingo=<?php echo $AccidentesMuyNocheDomingo;?>;
     
-    var alcaldias =<?php echo $alcaldias;?>;
-    var numeroAccidentes = <?php echo $numeroAccidentes;?>;
+    var alcaldias =<?php echo json_encode($alcaldias);?>;
+    var numeroAccidentes = <?php echo json_encode($numeroAccidentes);?>;
 
     var Tipo_V = <?php echo json_encode($Tipo_V); ?>;
     var N_Evento = <?php echo json_encode($N_Evento); ?>;
@@ -357,7 +357,7 @@
                                 <a><h4>Accidentes por alcaldias</h4></a>
                             </div>
                             <div class = "graficaMuestra">
-                              <!--<  <canvas id="graficaAccidentesAlcaldia" width="400" height="400"></canvas> -->
+                              <canvas id="graficaAccidentesAlcaldia" width="400" height="400"></canvas> 
                             </div>
                         </div>
                     </div>
@@ -368,7 +368,7 @@
                                 
             </div>
             <!-- /page content -->
-            <div id="HeatmapHoras"></div>
+          
             
             <!-- footer content -->
             <footer>
