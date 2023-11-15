@@ -1,5 +1,5 @@
 <?php
-  $conn = mysqli_connect("localhost", "root", "root", "hechos_transito");
+  $conn = mysqli_connect("localhost", "root", "R00t", "hechos_transito");
   if ($conn) {
       //genero
     	$query = "SELECT count(Genero) as totM from identidad where Genero = 'M'";
