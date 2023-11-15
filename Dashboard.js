@@ -142,6 +142,26 @@ function crearGraficaTipodeAccidente(choques2018,atropellos2018,derrapes2018,cai
     });
 }
 
+
+function GraficaAccidentesAlcaldia(alcaldia,numeroAccidentes){
+    console.log(alcaldia);
+    var datos = {
+        labels: alcaldia,
+        datasets: [{
+            data: numeroAccidentes,
+            backgroundColor: ['#66ccff', '#ffccff'],
+        }]
+    };
+
+
+
+    var ctx = document.getElementById("graficaAccidentesAlcaldia").getContext('2d');
+    var pastelChart = new Chart(ctx, {
+        type: 'pie',
+        data: datos
+    });
+}
+
 function HeatMapHorario(AccidentesMadrugadaLunes,AccidentesMananaLunes,AccidentesMediodiaLunes,AccidentesTardeLunes,AccidentesNocheLunes,AccidentesMuyNocheLunes,AccidentesMadrugadaMartes,AccidentesMananaMartes,AccidentesMediodiaMartes,AccidentesTardeMartes,AccidentesNocheMartes,AccidentesMuyNocheMartes,AccidentesMadrugadaMiercoles,AccidentesMananaMiercoles,AccidentesMediodiaMiercoles,AccidentesTardeMiercoles,AccidentesNocheMiercoles,AccidentesMuyNocheMiercoles,AccidentesMadrugadaJueves,AccidentesMananaJueves,AccidentesMediodiaJueves,AccidentesTardeJueves,AccidentesNocheJueves,AccidentesMuyNocheJueves,AccidentesMadrugadaViernes,AccidentesMananaViernes,AccidentesMediodiaViernes,AccidentesTardeViernes,AccidentesNocheViernes,AccidentesMuyNocheViernes,AccidentesMadrugadaSabado,AccidentesMananaSabado,AccidentesMediodiaSabado,AccidentesTardeSabado,AccidentesNocheSabado,AccidentesMuyNocheSabado,AccidentesMadrugadaDomingo,AccidentesMananaDomingo,AccidentesMediodiaDomingo,AccidentesTardeDomingo,AccidentesNocheDomingo,AccidentesMuyNocheDomingo){
     var datos=[{
         x:"Lunes",
@@ -337,22 +357,6 @@ function GraficaPastelVehiculos(Tipo_V,N_Evento){
         options: opciones
     });
 }
-
-function GraficaAccidentesAlcaldia(alcaldias,numeroAccidentes){
-    var ctx = document.getElementById('graficaAccidentesAlcaldia').getContext('2d');
-    var pastelChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: alcaldias,
-            datasets: [{
-                data: numeroAccidentes
-            }]
-        },
-        options: {
-            responsive: false   
-        }
-    });
-}
 function GraficaSemaforos(accidentesConSemaforo, accidentesSinSemaforo) {
     // Crear un elemento canvas para la gráfica
     var canvas = document.createElement('canvas');
@@ -398,5 +402,5 @@ crearGraficaPastelrolLesionados(cantidadPasajerosLesionados, cantidadConductores
 crearGraficaTipodeAccidente(choques2018,atropellos2018,derrapes2018,caidasc2018,volcaduras2018,caidasp2018,choques2019,atropellos2019,derrapes2019,caidasc2019,volcaduras2019,caidasp2019,choques2020,atropellos2020,derrapes2020,caidasc2020,volcaduras2020,caidasp2020,choques2021,atropellos2021,derrapes2021,caidasc2021,volcaduras2021,caidasp2021,choques2022,atropellos2022,derrapes2022,caidasc2022,volcaduras2022,caidasp2022);
 HeatMapHorario(AccidentesMadrugadaLunes,AccidentesMananaLunes,AccidentesMediodiaLunes,AccidentesTardeLunes,AccidentesNocheLunes,AccidentesMuyNocheLunes,AccidentesMadrugadaMartes,AccidentesMananaMartes,AccidentesMediodiaMartes,AccidentesTardeMartes,AccidentesNocheMartes,AccidentesMuyNocheMartes,AccidentesMadrugadaMiercoles,AccidentesMananaMiercoles,AccidentesMediodiaMiercoles,AccidentesTardeMiercoles,AccidentesNocheMiercoles,AccidentesMuyNocheMiercoles,AccidentesMadrugadaJueves,AccidentesMananaJueves,AccidentesMediodiaJueves,AccidentesTardeJueves,AccidentesNocheJueves,AccidentesMuyNocheJueves,AccidentesMadrugadaViernes,AccidentesMananaViernes,AccidentesMediodiaViernes,AccidentesTardeViernes,AccidentesNocheViernes,AccidentesMuyNocheViernes,AccidentesMadrugadaSabado,AccidentesMananaSabado,AccidentesMediodiaSabado,AccidentesTardeSabado,AccidentesNocheSabado,AccidentesMuyNocheSabado,AccidentesMadrugadaDomingo,AccidentesMananaDomingo,AccidentesMediodiaDomingo,AccidentesTardeDomingo,AccidentesNocheDomingo,AccidentesMuyNocheDomingo);
 GraficaPastelVehiculos(Tipo_V,N_Evento);
-GraficaAccidentesAlcaldia(alcaldias,numeroAccidentes);
+GraficaAccidentesAlcaldia(alcaldia,numeroAccidentes);
 GraficaSemaforos(accidentesConSemaforo, accidentesSinSemaforo);

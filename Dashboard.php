@@ -1,5 +1,5 @@
 <?php
-  $conn = mysqli_connect("localhost", "root", "root", "hechos_transito");
+  $conn = mysqli_connect("localhost", "root", "R00t", "hechos_transito");
   if ($conn) {
       //genero
     	$query = "SELECT count(Genero) as totM from identidad where Genero = 'M'";
@@ -767,6 +767,20 @@
       }
       $rango = mysqli_fetch_assoc($resultado);
       $AccidentesMuyNocheDomingo = $rango['num_Accidentes'];
+
+      //vehiculos
+      $query = "SELECT Tipo_vehiculo as Tipo_V, COUNT(ID_Evento) as N_Evento FROM vehiculo GROUP BY Tipo_vehiculo;";
+      $resultado = $conn->query($query);
+
+      if (!$resultado) {
+          die("La consulta falló: " . $conn->error);
+      }
+      $pos=0;
+      while($fila=mysqli_fetch_row($resultado)){
+          $Tipo_V[$pos]=$fila[0];
+          $N_Evento[$pos]=$fila[1];
+          $pos++;
+      }
       
       // Consulta para obtener el número de accidentes por alcaldía
       $query = "SELECT a.Alcaldia, COUNT(e.iD_Evento) AS NumeroAccidentes
@@ -786,9 +800,8 @@
       }
 
       while ($row = mysqli_fetch_assoc($resultado)) {
-         $alcaldia = $row['Alcaldia'];
-          $numeroAccidentes = $row['NumeroAccidentes'];
-         echo "Alcaldia: " . $alcaldia . " - Numero de Accidentes: " . $numeroAccidentes . "<br>";
+          $alcaldia[] = $row['Alcaldia'];
+          $numeroAccidentes[] = $row['NumeroAccidentes'];
       }
 
       //Accidentes con o sin semaforo

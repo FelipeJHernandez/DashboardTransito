@@ -14,6 +14,8 @@
   <link href="./css/custom.css" rel="stylesheet">
   <link href="./css/style.css"  rel="stylesheet">
   <script src="https://kit.fontawesome.com/c868c28022.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-heatmap.min.js"></script>
   <title>Dashboard Transito</title>
 </head>
 <body class= "nav-md">
@@ -130,7 +132,7 @@
     var AccidentesNocheDomingo=<?php echo $AccidentesNocheDomingo;?>;
     var AccidentesMuyNocheDomingo=<?php echo $AccidentesMuyNocheDomingo;?>;
     
-    var alcaldias =<?php echo json_encode($alcaldias);?>;
+    var alcaldia =<?php echo json_encode($alcaldia);?>;
     var numeroAccidentes = <?php echo json_encode($numeroAccidentes);?>;
 
     var Tipo_V = <?php echo json_encode($Tipo_V); ?>;
@@ -402,8 +404,9 @@
                             <div class="x_title">
                                 <a><h4>Accidentes por hora y días </h4></a>
                             </div>
-                            <div class = "HeatmapHoras">
-                            </div>
+                            <div id="HeatmapHoras">
+        
+                            </div>       
                         </div>
                     </div>
                     
