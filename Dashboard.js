@@ -359,38 +359,20 @@ function GraficaPastelVehiculos(Tipo_V,N_Evento){
 }
 function GraficaSemaforos(accidentesConSemaforo, accidentesSinSemaforo) {
     // Crear un elemento canvas para la gráfica
-    var canvas = document.createElement('canvas');
-    canvas.id = 'graficaSemaforos';
-    document.body.appendChild(canvas);
-  
-    // Obtener el contexto del canvas
-    var ctx = canvas.getContext('2d');
-  
-    // Configurar los datos de la gráfica
-    var data = {
-      labels: ['Accidentes con semáforo', 'Accidentes sin semáforo'],
-      datasets: [{
-        label: 'Comparación de accidentes',
-        data: [accidentesConSemaforo, accidentesSinSemaforo],
+    var datos = {
+        label: "Accidentes con y sin semaforo",
+        data: [accidentesConSemaforo, accidentesSinSemaforo], 
         backgroundColor: ['blue', 'red']
-      }]
     };
-  
-    // Configurar las opciones de la gráfica
-    var options = {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true
+
+
+    var ctx = document.getElementById('graficaSemaforos').getContext('2d');
+    var barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels:['Accidentes con Semaforo', 'Accidentes sin semaforo'],
+          datasets: [datos]
         }
-      }
-    };
-  
-    // Crear la gráfica de barras
-    var chart = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: options
     });
   }
 // Llama a la función para crear la gráfica pasando los valores necesarios

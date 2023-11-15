@@ -383,11 +383,12 @@
                 </div>
 
                 <div class="clearfix"></div>
+
                 <div class="row">
                     <div class="col-md-8 col-sm-8">
                         <div class="x_panel">
                             <div class="x_title">
-                                <a><h4>Accidentes con respecto a los semáforos  </h4></a>
+                                <a><h4>Semaforos</h4></a>
                             </div>
                             <div class = "graficaMuestra">
                               <canvas id="graficaSemaforos" width="400" height="400"></canvas> 
