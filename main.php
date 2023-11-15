@@ -257,6 +257,9 @@
                     <div class="col-md-3 col-sm-4 tile_stats_count text-wrap">
                         <span class="count_top"> <i class="fa-solid fa-traffic-light" style="color: #435065;"></i>Semaforo/Intersecciones</span>
                     </div>
+                    <div class="col-md-3 col-sm-4 tile_stats_count text-wrap">
+                        <span class="count_top"><i class="fa-solid fa-calendar-week" style="color: #7488aa;"></i>por horas y días</span>
+                    </div>
                 </div>
                 <!-- /top tiles -->
                 
@@ -271,7 +274,7 @@
                             <h4>Tipo de accidentes</h4>
 
                                 <div class="graficaMuestra">
-                                <canvas id="tipoAccidente" ></canvas>
+                                <canvas id="tipoAccidente"width="400" height="500" ></canvas>
                         </div>
                     </div>
                 </div>
@@ -284,8 +287,8 @@
                             <div class="x_title">
                                 <a><h4>Accidentes por G&eacute;nero</h4></a>
                             </div>
-                            <div class = "graficaMuestra1">
-                                <canvas id="graficaPastel"></canvas>
+                            <div class = "graficaMuestra">
+                                <canvas id="graficaPastel"width="350" height="350"></canvas>
                             </div>
                         </div>
                     </div>
@@ -299,7 +302,7 @@
                             <div class="x_title">
                                 <a><h4>Accidentes por Edades</h4></a>
                             </div>
-                            <div class = "graficaMuestra1">
+                            <div class = "graficaMuestra">
                                 <canvas id="graficaEdad" width="400" height="400"></canvas>
                             </div>
                         </div>
@@ -316,7 +319,7 @@
                                 <a><h4>Status de los involucrados</h4></a>
                             </div>
                             <div class = "graficaMuestra">
-                            <canvas id="graficaCondicion" width="400" height="400"></canvas>
+                            <canvas id="graficaCondicion" width="300" height="300"></canvas>
                             </div>
                         </div>
                     </div>
@@ -405,7 +408,7 @@
                             <div class="x_title">
                                 <a><h4>Accidentes por hora y días </h4></a>
                             </div>
-                            <div id="HeatmapHoras">
+                            <div id="HeatmapHoras" style="width: 800px; height: 600px;">
         
                             </div>       
                         </div>
